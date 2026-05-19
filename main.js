@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tabPages = document.querySelectorAll(".tab-page");
 
     function hideAllTabs() {
-        tabPages.forEach(page => page.computedStyleMap.display = "None");
+        tabPages.forEach(page => page.style.display = "None");
         tabButtons.forEach(btn => btn.classList.remove("active"));
     }
 
@@ -20,4 +20,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     showTab("treasure");
-})
+});

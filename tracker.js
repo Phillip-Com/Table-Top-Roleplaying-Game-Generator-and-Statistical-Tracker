@@ -12,8 +12,6 @@ if (typeof window.CodePen === "undefined") window.CodePen = {};
         let reactionMode = false;
         let reactionCharacter = null;
 
-        init();
-
         document.addEventListener("visibilitychange", () => {
           if (document.hidden) saveGameData("tab hidden");
         });

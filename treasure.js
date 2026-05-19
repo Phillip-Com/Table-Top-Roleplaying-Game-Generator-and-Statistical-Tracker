@@ -2722,6 +2722,7 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", () => {
             // === UI HOOKUP ===
         document.getElementById("generateBtn").addEventListener("click", () => {
           const type = document.getElementById("generatorType").value;
@@ -2764,4 +2765,5 @@
           tierSelect.style.display = "block";
         }
         })
+      });
         

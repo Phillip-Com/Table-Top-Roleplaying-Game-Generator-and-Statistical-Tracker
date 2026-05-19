@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset=""UTF-8">
+        <title>D&D Tools</title>
+        <link rel=""stylesheet" href=""css/main.css">
+    </head>
+</html>
+<body>
+    <div id="top-tabs">
+  <button class="tab-btn" data-tab="treasure">Treasure Generator</button>
+  <button class="tab-btn" data-tab="encounter">Encounter Generator</button>
+  <button class="tab-btn" data-tab="tracker">D&D Stats Tracker</button>
+  <button class="tab-btn" data-tab="npc">NPC Generator</button>
+</div>
+
+<!-- ========================= -->
+<!--   TAB CONTENT SECTIONS    -->
+<!-- ========================= -->
+
+<div id="tab-content">
+
+  <!-- ⭐ TAB 1: TREASURE GENERATOR -->
+  <div id="tab-treasure" class="tab-page">
+    <h2>TREASURE GENERATOR</h2>
+
+    <div class="tab-layout">
+      <!-- LEFT SIDE: Display -->
+      <div class="tab-left">
+        <div id="output"></div>
+      </div>
+
+      <!-- RIGHT SIDE: Generator Options -->
+      <div class="tab-right">
+        <div id="app-treasure" class="generator">
+          <h1>D&D 5e Treasure & Magic Shop Generator</h1>
+          <label for="generatorType">Choose Generator:</label>
+          <select id="generatorType">
+            <option value="individual">Individual Treasure</option>
+            <option value="hoard">Treasure Hoard</option>
+            <option value="shop">Magic Shop</option>
+          </select>
+
+          <div id="shopTypes">
+            <label for="types">Shop Types:</label>
+            <select id="types">
+              <option value="magicSeller">Arcane Merchant</option>
+              <option value="armorSeller">Armor Merchant</option>
+              <option value="potionSeller">Potion Merchant</option>
+              <option value="ringSeller">Ring Merchant</option>
+              <option value="scrollSeller">Scroll Merchant</option>
+              <option value="wandSeller">Wand Merchant</option>
+              <option value="weaponSeller">Weapon Merchant</option>
+            </select>
+          </div>
+
+          <div id="magicLevelContainer">
+            <label for="magicLevel">Magic Level:</label>
+            <select id="magicLevel">
+              <option value="veryLow">Very Low Magic</option>
+              <option value="low">Low Magic</option>
+              <option value="mid" selected>Mid Magic</option>
+              <option value="high">High Magic</option>
+              <option value="extreme">Extreme Magic</option>
+            </select>
+          </div>
+
+          <div id="tierSelector">
+            <label for="tier">Tier (Level Range):</label>
+            <select id="tier">
+              <option value="1">Tier 1 (Levels 1–4)</option>
+              <option value="2">Tier 2 (Levels 5–10)</option>
+              <option value="3">Tier 3 (Levels 11–16)</option>
+              <option value="4">Tier 4 (Levels 17–20)</option>
+            </select>
+          </div>
+
+          <button id="generateBtn">Generate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⭐ TAB 2: ENCOUNTER GENERATOR -->
+  <div id="tab-encounter" class="tab-page">
+    <h2>ENCOUNTER GENERATOR</h2>
+
+    <div class="tab-layout">
+      <!-- LEFT SIDE: Results -->
+      <div class="tab-left">
+        <h2>Encounter Results</h2>
+
+        <div class="level-section">
+          <h3>Levels 1–4</h3>
+          <div id="tier-1-results" class="result-box"></div>
+        </div>
+
+        <div class="level-section">
+          <h3>Levels 5–10</h3>
+          <div id="tier-2-results" class="result-box"></div>
+        </div>
+
+        <div class="level-section">
+          <h3>Levels 11–16</h3>
+          <div id="tier-3-results" class="result-box"></div>
+        </div>
+
+        <div class="level-section">
+          <h3>Levels 17–20</h3>
+          <div id="tier-4-results" class="result-box"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: Generator Controls -->
+      <div class="tab-right">
+        <h2>Encounter Generator</h2>
+        <label for="region-select">Select Region:</label>
+        <select id="region-select">
+          <option value="artic">Artic</option>
+          <option value="coastal">Coastal</option>
+          <option value="desert">Desert</option>
+          <option value="forest">Forest</option>
+          <option value="grassland">Grassland</option>
+          <option value="hill">Hill</option>
+          <option value="mountain">Mountain</option>
+          <option value="swamp">Swamp</option>
+          <option value="underdark">Underdark</option>
+          <option value="underwater">Underwater</option>
+          <option value="urban">Urban</option>
+        </select>
+
+        <div>
+          <label for="encounter-type-select">Encounter Type:</label>
+          <select id="encounter-type-select">
+            <option value="roleplay">Roleplay</option>
+            <option value="monster">Monster</option>
+            <option value="both">Both</option>
+          </select>
+        </div>
+
+
+        <button id="generate-btn">Generate Encounter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⭐ TAB 3: D&D STATS TRACKER -->
+  <div id="tab-tracker" class="tab-page">
+    <h2>D&D STATS TRACKER</h2>
+
+    <div class="tracker-container">
+
+      <!-- =============================== -->
+      <!--        START MENU (Centered)     -->
+      <!-- =============================== -->
+      <div id="start-menu" class="tracker-start centered-panel">
+        <form id="start-form">
+
+          <label for="numPCs">Number of PCs:</label>
+          <input type="number" id="numPCs" min="0" max="10">
+
+          <div id="pc-names"></div>
+
+          <div>
+            <label>Include NPCs <input type="checkbox" id="includeNPCs"></label>
+          </div>
+
+          <div>
+            <label for="edition">Edition:</label>
+            <select id="edition">
+              <option value="5e">5e</option>
+              <option value="pathfinder">Pathfinder</option>
+            </select>
+          </div>
+
+          <button id="start-btn" type="button">Start Game</button>
+        </form>
+      </div>
+
+      <!-- =============================== -->
+      <!--      MAIN TRACKER APP           -->
+      <!-- =============================== -->
+      <div id="app-tracker" style="display:none; width:100%;">
+
+        <!-- Top tracker sub-tabs -->
+        <div class="tab-buttons tracker-tabs">
+          <button onclick="switchTab('combat')">Combat</button>
+          <button onclick="switchTab('stats')">Stats</button>
+          <button onclick="switchTab('stats-editor')">Stats Editor</button>
+          <button onclick="switchTab('summary')">Stats Summary</button>
+          <button id="sync-google-btn">Sync Data to Google Sheets</button>
+          <button id="restart-btn">Restart Program</button>
+        </div>
+
+        <div class="tracker-layout">
+
+          <!-- ========== LEFT SIDE (MAIN VIEWS) ========== -->
+          <div class="tracker-left">
+
+            <!-- COMBAT -->
+            <div id="combat" class="tab-content">
+              <h2>Combat Menu</h2>
+              <div id="combat-actions" style="margin-top:10px;"></div>
+
+              <div id="combat-tracker">
+                <p>Turn Order:</p>
+                <div id="initiative-controls" style="margin-bottom:10px;"></div>
+                <ul id="initiative-list"></ul>
+              </div>
+            </div>
+
+            <!-- STATS -->
+            <div id="stats" class="tab-content" style="display:none;">
+              <h2>Stats Menu</h2>
+              <div id="stats-character-buttons" class="character-buttons"></div>
+              <div id="stats-actions" style="margin-top:10px;"></div>
+            </div>
+
+            <!-- STATS EDITOR -->
+            <div id="stats-editor" class="tab-content" style="display:none;">
+              <h2>Stats Editor</h2>
+              <div id="editor-character-buttons" class="character-buttons"></div>
+              <div id="editor-container"></div>
+            </div>
+
+            <!-- SUMMARY -->
+            <div id="summary" class="tab-content" style="display:none;">
+              <h2>Stats Summary</h2>
+              <button id="copy-summary-btn" class="summary-copy-all">
+                Copy All Summary
+              </button>
+
+              <div id="summary-grid"
+                   style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; margin-top:12px;">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ========== RIGHT SIDE (STICKY STATS PANEL) ========== -->
+          <div id="side-stats" class="tracker-right">
+            <h3>Character Stats</h3>
+            <div id="stats-display-content">
+              <p>No character selected</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- GLOBAL ACTION MODAL -->
+        <div id="action-modal" class="modal hidden">
+          <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <div id="modal-body"></div>
+            <button id="modal-confirm">Confirm</button>
+            <button id="modal-cancel">Cancel</button>
+          </div>
+        </div>
+
+        <!-- GOOGLE SYNC MODAL -->
+        <div id="sync-modal" class="modal hidden">
+          <div class="modal-content">
+            <h3>Sync Data to Google Sheets</h3>
+
+            <label for="syncSheetUrl">Google Sheet URL:</label>
+            <input type="text" id="syncSheetUrl">
+
+            <label for="sessionNumber">Session Number:</label>
+            <input type="number" id="sessionNumber" min="1">
+
+            <div style="margin-top:10px;">
+              <button id="sync-confirm">Confirm</button>
+              <button id="sync-cancel">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <img id="mystery-image"
+           src="https://www.nicepng.com/png/full/191-1911020_herobrine-herobrine-minecraft.png"
+           style="position:fixed; bottom:20px; right:600px; width:100px;
+                  opacity:0; transition:opacity 30s ease;">
+
+    </div>
+  </div>
+  <!-- ⭐ TAB 4: NPC GENERATOR -->
+  <div id="tab-npc" class="tab-page">
+    <h2>NPC GENERATOR</h2>
+
+    <div class="tab-layout">
+      <!-- LEFT SIDE: NPC Display -->
+      <div class="tab-left">
+        <div class="card">
+          <h2 id="charName">Generated NPC</h2>
+          <table width="100%">
+            <tr>
+              <td align="center"><strong>STR:</strong> <span id="str"></span></td>
+              <td align="center"><strong>DEX:</strong> <span id="dex"></span></td>
+              <td align="center"><strong>CON:</strong> <span id="con"></span></td>
+              <td align="center"><strong>INT:</strong> <span id="int"></span></td>
+              <td align="center"><strong>WIS:</strong> <span id="wis"></span></td>
+              <td align="center"><strong>CHA:</strong> <span id="cha"></span></td>
+            </tr>
+          </table><br>
+          <p><strong>Alignment:</strong> <span id="charAlignment"></span></p>
+          <p><strong>Background:</strong> <span id="charBackground"></span></p>
+          <p><strong>Race:</strong> <span id="charRace"></span></p>
+          <p><strong>Age:</strong> <span id="charAge"></span></p>
+          <p><strong>Gender:</strong> <span id="charGender"></span></p>
+          <p><strong>Height:</strong> <span id="charHeight"></span></p>
+          <p><strong>Weight:</strong> <span id="charWeight"></span></p>
+          <p><strong>Skin:</strong> <span id="charSkin"></span></p>
+          <p><strong>Hair:</strong> <span id="charHair"></span></p>
+          <p><strong>Eyes:</strong> <span id="charEyes"></span></p>
+          <p><strong>Trait 1:</strong> <span id="charTrait1"></span></p>
+          <p><strong>Trait 2:</strong> <span id="charTrait2"></span></p>
+          <p><strong>Ideal:</strong> <span id="charIdeals"></span></p>
+          <p><strong>Bond:</strong> <span id="charBonds"></span></p>
+          <p><strong>Flaw:</strong> <span id="charFlaws"></span></p>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: Controls -->
+      <div class="tab-npc">
+        <label for="region">Select Region:</label>
+        <select id="region">
+          <option value="Random">Random</option>
+          <option value="Empire">Empire</option>
+          <option value="SummerIsle">Summer Isle</option>
+          <option value="Neshiustein">Neshiustein</option>
+          <option value="CarponIsles">Carpon Isles</option>
+          <option value="Sherus">Sherus</option>
+          <option value="Drustein">Drustein</option>
+          <option value="Whiteberg">Whiteberg</option>
+          <option value="Sundermark">Sundermark</option>
+        </select>
+
+        <button id="generate">Generate Character</button>
+
+        <div id="customRegion">
+          <div id="customNameContainer">
+            <label for="customNameType">Custom Name Type:</label>
+            <select id="customNameType">
+              <option value="Any">Region Default</option>
+              <option value="Empire">English</option>
+              <option value="Sherus">Elvish</option>
+              <option value="Drustein">Gnomish</option>
+              <option value="Whiteberg">Dwarvish</option>
+              <option value="Sundermark">French</option>
+            </select>
+          </div>
+          
+          <details open> 
+            <summary> Backgrounds </summary>
+            <div class="background-grid">
+              <label><input type="checkbox" data-bg="Acolyte"checked>Acolyte: </label>
+              <label><input type="checkbox" data-bg="Artisan"checked>Artisan: </label>
+              <label><input type="checkbox" data-bg="Charlatan"checked>Charlatan: </label>
+              <label><input type="checkbox" data-bg="Criminal"checked>Criminal: </label>
+              <label><input type="checkbox" data-bg="Entertainer"checked>Entertainer: </label>
+              <label><input type="checkbox" data-bg="Farmer"checked>Farmer: </label>
+              <label><input type="checkbox" data-bg="Guard"checked>Guard: </label>
+              <label><input type="checkbox" data-bg="Guide"checked>Guide: </label>
+              <label><input type="checkbox" data-bg="Hermit"checked>Hermit: </label>
+              <label><input type="checkbox" data-bg="Merchant"checked>Merchant: </label>
+              <label><input type="checkbox" data-bg="Noble"checked>Noble: </label>
+              <label><input type="checkbox" data-bg="Sage"checked>Sage: </label>
+              <label><input type="checkbox" data-bg="Sailor"checked>Sailor: </label>
+              <label><input type="checkbox" data-bg="Scribe"checked>Scribe: </label>
+              <label><input type="checkbox" data-bg="Soldier"checked>Soldier: </label>
+              <label><input type="checkbox" data-bg="Wayfarer"checked>Wayfarer: </label>
+          </details>
+          
+          <details open>
+            <summary> Player's Handbook <input type="checkbox" id="PHB" checked> </summary> 
+            <p> 
+            <div class="race-grid">
+              <label><input type="checkbox" id="booldragonborn"checked>Dragonborn: <input type="number" id="dragonborn" data-race="Dragonborn" data-section="PHB" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+              <label><input type="checkbox" id="booldwarf"checked>Dwarf: <input type="number" id="dwarf" data-race="Dwarf" data-section="PHB" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+              <label><input type="checkbox" id="boolelf"checked>Elf: <input type="number" id="elf" data-race="Elf" data-section="PHB" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+              <label><input type="checkbox" id="boolgnome"checked>Gnome: <input type="number" id="gnome" data-race="Gnome" data-section="PHB" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+              <label><input type="checkbox" id="boolhalfelf"checked>Half-Elf: <input type="number" id="halfElf" data-race="Half-Elf" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+              <label><input type="checkbox" id="boolhalfling"checked>Halfling: <input type="number" id="halfling" data-race="Halfling" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+              <label><input type="checkbox" id="boolhalforc"checked>Half-Orc: <input type="number" id="halfOrc" data-race="Half-Orc" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+              <label><input type="checkbox" id="boolhuman"checked>Human: <input type="number" id="human" data-race="Human" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+              <label><input type="checkbox" id="booltiefling"checked>Tiefling: <input type="number" id="tiefling" data-race="Tiefling" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            </div>
+            </p> 
+          </details>
+
+        <details open>
+          <summary> Mordenkainen Presents: Monsters of the Multiverse <input type="checkbox" id="MP:MM"checked> </summary> 
+          <p> 
+          <div class="race-grid">
+            <label><input type="checkbox" id="boolaarakocra"checked>
+              Aarakocra: <input type="number" id="aarakocra" data-race="Aarakocra" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolaasimar"checked>Aasimar: <input type="number" id="aasimar" data-race="Aasimar" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolbugbear"checked>Bugbear: <input type="number" id="bugbear" data-race="Bugbear" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolcentaur"checked>Centaur: <input type="number" id="centaur" data-race="Centaur" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolfirbolg"checked>Firbolg: <input type="number" id="firbolg" data-race="Firbolg" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolgenasi"checked>Genasi: <input type="number" id="genasi" data-race="Genasi" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolgoblin"checked>Goblin: <input type="number" id="goblin" data-race="Goblin" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolgoliath"checked>Goliath: <input type="number" id="goliath" data-race="Goliath" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolhobgoblin"checked>Hobgoblin: <input type="number" id="hobgoblin" data-race="Hobgoblin" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolkenku"checked>Kenku: <input type="number" id="kenku" data-race="Kenku" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolkobold"checked>Kobold: <input type="number" id="kobold" data-race="Kobold" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boollizardfolk"checked>Lizardfolk: <input type="number" id="lizardfolk" data-race="Lizardfolk" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolorc"checked>Orc: <input type="number" id="orc" data-race="Orc" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolpixie"checked>Pixie: <input type="number" id="pixie" data-race="Pixie" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolsatyr"checked>Satyr: <input type="number" id="satyr" data-race="Satyr" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolsprite"checked>Sprite: <input type="number" id="sprite" data-race="Sprite" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="booltabaxi"checked>Tabaxi: <input type="number" id="tabaxi" data-race="Tabaxi" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="booltortle"checked>Tortle: <input type="number" id="tortle" data-race="Tortle" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="booltriton"checked>Triton: <input type="number" id="triton" data-race="Triton" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolyuanti"checked>Yuan-ti Pureblood: <input type="number" id="yuanti" data-race="Yuan-ti Pureblood" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            </p> 
+        </details>
+
+        <details open>
+          <summary> MISC <input type="checkbox" id="misc"checked> </summary> 
+          <p> 
+          <div class="race-grid">
+            <label><input type="checkbox" id="booldrathunine"checked>Drathunine: <input type="number" id="drathunine" data-race="Drathunine" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolgnoll"checked>Gnoll: <input type="number" id="gnoll" data-race="Gnoll" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolhalfcyclops"checked>Half-Cyclops: <input type="number" id="half-cyclops" data-race="Half-Cyclops" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boollocodon"checked>Loxodon: <input type="number" id="loxodon" data-race="Loxodon" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolquickling"checked>Quickling: <input type="number" id="quickling" data-race="Quickling" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolwarforged"checked>Warforged: <input type="number" id="warforged" data-race="Warforged" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            </p> 
+        </details>
+
+        <details open>
+          <summary> Undead <input type="checkbox" id="undead"checked> </summary> 
+          <p> 
+          <div class="race-grid">
+            <label><input type="checkbox" id="boolghost"checked>Ghost: <input type="number" id="ghost" data-race="Ghost" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolghoul"checked>Ghoul: <input type="number" id="ghoul" data-race="Ghoul" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolskeleton"checked>Skeleton: <input type="number" id="skeleton" data-race="Skeleton" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolspecter"checked>Specter: <input type="number" id="specter" data-race="Specter" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolvampire"checked>Vampire: <input type="number" id="vampire" data-race="Vampire" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            <label><input type="checkbox" id="boolzombie"checked>Zombie: <input type="number" id="zombie" data-race="Zombie" min="0" max="100" value="0" step="1"><span class="chance-display"></span></label>
+            </p> 
+        </details>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+</div>
+
+    <!-- Load JS files at the bottom, order matters -->
+    <script src="js/treasure.js"></script>
+    <script src="js/encounter.js"></script>
+    <script src="js/tracker.js"></script>
+    <script src="js/npc.js"></script>
+    <script src="js/main.js"></script>
+</body>

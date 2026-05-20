@@ -419,17 +419,7 @@ if (typeof window.CodePen === "undefined") window.CodePen = {};
             // create a visual card
             const card = document.createElement("div");
             card.className = "summary-card";
-            card.style.cssText = `
-      background-color: #111;
-      color: #eee;
-      padding: 12px;
-      border-radius: 8px;
-      box-shadow: 0 0 6px rgba(255,255,255,0.1);
-      white-space: pre-wrap;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    `;
+            card.classList.add("summary-card");
 
             const pre = document.createElement("pre");
             pre.textContent = summaryText;

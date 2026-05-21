@@ -1,0 +1,215 @@
+{
+          "weapon": {
+            "any": ["club", "dagger", "greatclub", "handaxe", "javelin", "lighthammer", "mace", "quarterstaff", "sickle", "spear", "flail", "glaive", "greataxe", "halberd", "lance", "morningstar", "pike", "scimitar", "trident", "warpick", "whip", "maul", "shortsword", "longsword", "greatsword", "warhammer", "battleaxe", "rapier", "dart", "sling", "shortbow", "longbow", "light crossbow", "heavy crossbow", "blowgun", "hand crossbow", "net"],
+            "melee": ["club", "dagger", "greatclub", "handaxe", "javelin", "lighthammer", "mace", "quarterstaff", "sickle", "spear", "flail", "glaive", "greataxe", "halberd", "lance", "morningstar", "pike", "scimitar", "trident", "warpick", "whip", "maul", "shortsword", "longsword", "greatsword", "warhammer", "battleaxe", "rapier"],
+            "ranged": ["dart", "sling", "shortbow", "longbow", "light crossbow", "heavy crossbow", "blowgun", "hand crossbow", "net"],
+            "anySword": ["sickle","scimitar","shortsword","longsword","greatsword","rapier"],
+            "anyBow": ["shortbow","longbow","light crossbow","heavy crossbow","hand crossbow"],
+            "bladed": ["glaive","greatsword","longsword","rapier","scimitar","shortsword"],
+            "vorpal": ["glaive","greatsword","longsword","scimitar"],
+            "pointed": ["dagger","rapier","scimitar","shortsword","sickle","spear"],
+            "long": ["lance","pike"],
+            "hammer": ["maul","warhammer"],
+            "axe": ["battleaxe","greataxe","halberd"],
+            "allAxe": ["battleaxe","greataxe","halberd","handaxe"],
+            "strungBow": ["longbow","shortbow"],
+           "onehandedMelee": ["club","dagger","handaxe","javelin","lighthammer","mace","sickle","flail","morningstar","scimitar","trident","warpick","whip","shortsword","rapier"],
+            "ammunition": ["arrow", "bolt", "blowgun needles", "sling bullets"],
+            "answering": ["longsword) (Answerer - Chaotic Good - Emerald","longsword) (Back Talker - Chaotic Evil - Jet","longsword) (Concluder - Lawful Neutral - Amythyst","longsword) (Last Quip - Chaotic Neutral - Tourmaline","longsword) (Rebutter - Neutral Good - Topaz","longsword) (Replier - Neutral - Peridot","longsword) (Retorter - Lawful Good - Aquamarine","longsword) (Scather - Lawful Evil - Garnet","longsword) (Squelcher - Neutral Evil - Spinel"]
+          },
+          "armor": {
+            "light": ["padded", "leather", "studded leather"],
+            "medium": ["hide", "chain shirt", "scale mail", "breastplate", "half plate"],
+            "heavy": ["ring mail", "chain mail", "splint", "plate"],
+            "shield": ["light shield", "medium shield", "heavy shield", "tower shield"],
+            "MHNotHide": ["chain shirt","scale mail","breastplate","half plate","ring mail","chain mail","splint","plate"],
+            "magicArmor": ["Half Plate +2","Half Plate +2","Plate +2","Plate +2","Studded Leather +3","Studded Leather +3","Breast Plate +3","Breast Plate +3","Splint +3","Splint +3","Half Plate +3","Plate +3"],
+            "elvenChain": ["chain mail","chain shirt"],
+            "plates": ["breastplate","half plate","plate"],
+            "heavyPlate": ["half plate","plate"]
+          },
+          "potion": {
+            "bpsresistance": ["bludgeoning","piercing","slashing"],
+            "resistance": ["acid", "cold", "fire", "force", "lightning", "necrotic", "poison", "psychic", "radiant", "thunder"],
+            "giantStrength": {
+              "uncommon": ["Hill Giant"],
+              "rare": ["Frost Giant","Stone Giant","Fire Giant"],
+              "veryRare": ["Cloud Giant"],
+              "legendary": ["Storm Giant"]
+            },
+            "healing": {
+              "common": ["basic"],
+              "uncommon": ["greater"],
+              "rare": ["superior"],
+              "veryRare": ["supreme"]
+            }
+          },
+          "ring": {
+            "resistance": ["acid - pearl","cold tourmaline","fire -garnet","force -sapphire","lightning - citrine","necrotic - jet","poison - amethyst","psychic - jade","radiant - topaz","thunder -spinel"]
+          },
+          "scroll": {
+            "zero": ["Acid Splash","Blade Ward","Booming Blade","Chill Touch","Control Flames","Create Bonfire","Dancing Lights","Druidcraft","Eldritch Blast","Elementalism","Encode Thoughts","Fire Bolt","Friends","Frostbite","Green-Flame Blade","Guidance","Gust","Infestation","Light","Lightning lure","Mage Hand","Magic Stone","Mending","Message","Mind Sliver","Minor Illusion","Mold Earth","Poison Spray","Prestidigitation","Primal Savagery","Produce Flame","Ray of Frost","Resistance","Sacred Flame","Shape Water","Shillelagh","Shocking Grasp","Sorcerous Burst","Spare the Dying","Starry Wisp","Sword Burst","Thaumaturgy","Thorn Whip","Thunderclap","Toll the Dead","True Strike","Vicious Mockery","Word of Radiance"],
+            "one": ["Absorb Elements","Alarm","Animal Friendship","Armor of Agathys","Arms of Hadar","Bane","Beast Bond","Bless","Burning Hands","Catapult","Cause Fear","Ceremony","Chaos Bolt","Charm Person","Chromatic Orb","Color Spray","Command","Compelled Duel","Comprehend Languages","Create or Destroy Water","Cure Wounds","Detect Evil and Good","Detect Poison and Disease","Disquise Self","Dissonant Whispers","Distort Value","Divine Favor","Divine Smite","Earth Tremor","Ensaring Strike","Entangle","Expeditious Retreat","Faerie Fire","False Life","Feather Fall","Find Familiar","Floating Disk","Fog Cloud","Frost Fingers","Goodberry","Grease","Guiding Bolt","Hail of Thorns","Healing Word","Hellish Rebuke","Heroism","Hex","Hideous Laughter","Hunter's Mark","Ice Knife","Identify","Illusory Script","Inflict Wounds","Jim's Magic Missile","Jump","Longstrider","Mage Armor","Magic Missile","Protection from Evil and Good","Purify Food and Drink","Ray of Sickness","Sanctuary","Searing Smite","Shield","Shield of Faith","Silent Image","Silvery Barbs","Sleep","Snare","Speak with Animals","Spellfire Flare","Tasha's Caustic Brew","Tenser's Floating Disk","Thunderous Smite","Thunderwave","Unseen Servant","Witch Bolt","Wrathful Smite","Zephyr Smite"],
+            "two": ["Acid Arrow","Aganazzar's Scorcher","Aid","Air Bubble","Alter Self","Animal Messenger","Arcane Lock","Arcane Vigor","Arcanist's Magic Aura","Augury","Barkskin","Beast Sense","Blindness/Deafness","Blur","Borrowed Knowledge","Branding Smite","Calm Emotions","Cloud of Daggers","Continual Flame","Cordon of Arrows","Crown of Madness","Darkness","Darkvision","Detect Thoughts","Dragon's Breath","Dust Devil","Earthbind","Enhance Ability","Enlarge/Reduce","Enthrall","Find Steed","Find Traps","Flame Blade","Flaming Sphere","Flock of Familiars","Gentle Repose","Gift of Gab","Gust of Wind","HEaling Spirit","Heat Metal","Hold Person","Invisibility","Jim's Glowing Coin","Kinetic Juant","Knock","Lesser Restoration","Levitate","Locate Animals or Plants","Locate Object","Magic Mouth","Magic Weapon","Maximilian's Earthen Grasp","Melf's Acid Arrow","Mind Spike","Mirror Image","Misty Step","Moonbeam","Nathair's Mischief","Pass without Trace","Phantasmal Force","Prayer of Healing","Protection from Poison","Pyrotechnics","Ray of Enfeeblement","Rime's Binding Ice","Rope Trick","Scorching Ray","See Inbvisibility","Shadow Blade","Shatter","Shining Smite","Silence","Skywrite","Snilloc's Snowball Swarm","Spider Climb","Spike Growth","Spiritual Weapon","Spray of Cards","Suggestion","Summon Beast","Tasha's Mind Whip","Vortex Warp","Warding Bond","Warding Wind","Warp Sense","Web","Wither and Bloom","Zone of Truth"],
+            "three": ["Animate Dead","Antagonize","Ashardalon's Stride","Aura of Vitality","Beacon of Hope","Bestow Curse","Blinding Smite","Blink","Call Lightning","Catnap","Clairvoyance","Conjure Animals","Conjure Barrage","Conjure Constructs","Counterspell","Create Food and Water","Crusader's Mantle","Daylight","Dispel Magic","Elemental Weapon","Enemies Abound","Erupting Earth","Fast Friends","Fear","Feign Death","Fireball","Flame Arrows","Fly","Galder's Tower","Gaseous Form","Glyph of Warding","Haste","Hunger of Hadar","Hypnotic Pattern","Incite Greed","Intellect Fortress","Leomund's Tiny Hut","Life Transference","Lightning Arrow","Lightning Bolt","Magic Circle","Major Image","Mass Healing Word","Meld into Stone","Melf's Minute Meteors","Motivational Speed","Nondetection","Phantom Steed","Plant Growth","Protection from Energy","Remove Curse","Revivify","Sending","Sleet Storm","Slow","Speak with Dead","Speak with Plants","Spirit Guardians","Spirit Shroud","Stinking Cloud","Summon Fey","Summon Lesser Demon","Summon Shadowspawn","Summon Undead","Thunder Step","Tidal Wave","Tiny Servant","Tongues","Vampiric Touch","Wall of Sand","Wall of Watter","Water Breathing","Water Walk","Wind Wall"],
+            "four": ["Arcane Eye","Aura of Life","Aura of Purity","Banishment","Black Tentacles","Blight","Charm Monster","Compulsion","Confusion","Conjure Minor Elementals","Conjure Woodland Beings","Control Water","Death Ward","Dimension Door","Divination","Dominate Beast","Elemental Bane","Fabricate","Faithful Hound","Find Greater Steed","Fire Shield","Freedom of Movement","Galder's Speedy Courier","Giant Insect","Grasping Vine","Greater Invisibility","Guardian of Faith","Guardian of Nature","Hallucinatory Terrain","Ice Storm","Leomund's Secret Chest","Locate Creature","Mordenkainen's Private Sanctum","Otiluke's Resilient Sphere","Phantasmal Killer","Polymorph","Raulothim's Psychic Lance","Shadow of Moil","Sickening Radiance","Spirit of Death","Staggering Smite","Stone Shape","Stoneskin","Storm Sphere","Summon Aberration","Summon Construct","Summon Elemental","Summon Greater Demon","Vitriolic Sphere","Wall of Fire","Watery Sphere"],
+            "five": ["Animate Objects","Antilife Shell","Arcane Hand","Awaken","Banishing Smite","Circle of Power","Cloudkill","Commune","Commune with Nature","Cone of Cold","Conjure Elemental","Conjure Volley","Contact Other Plane","Contagion","Control Winds","Create Spelljamming Helm","Creation","Danse Macabre","Dawn","Dawn","Destructive Wave","Dispel Evil and Good","Dominate Person","Dream","Enervation","Far Step","Flame Strike","Geas","Greater Restoration","Hollow","Hold Monster","Holy Weapon","Immolation","Infernal Calling","Insect Plague","Jallarzi's Storm of Radiance","Legend Lore","Maelstrom","Mass Cure Wounds","Mislead","Modify Memory","Negative Energy Flood","Passwall","Planar Binding","Raise Dead","Rary's Telepathic Bond","Reincarnate","Scrying","Seeming","Skill Empowerment","Steel Wind Strike","Summon Celestial","Summon Draconic Spirit","Swift Quiver","Synaptic Static","Telekinesis","Teleportation Circle","Transmute Rock","Tree Stride","Wall of Force","Wall of Light","Wall of Stone","Wrath of Nature","Yolande's Regal Presence"],
+            "six": ["Arcane Gate","Blade Barrier","Bones of the Earth","Chain Lightning","Circle of Death","Conjure Fey","Contingency","Create Homunculus","Create Undead","Disintegrate","Drawmij's Instant Summons","Druid Grove","Eyebite","Find the Path","Fizban's Platinum Shield","Flesh to Stone","Forbiddance","Freezing Sphere","Globe of Invulnerability","Guards and Wards","Harm","Heal","Heroes' Feast","Investiture of Flame","Investiture of Ice","Investiture of Stone","Investiture of Wind","Magic Jar","Mass Suggestion","Mental Prison","Move Earth","Otto's Irresistable Dance","Planar Ally","Primordial Ward","Programmed Illusion","Scatter","Soul Cage","Summon Fiend","Sunbeam","Tasha's Bubbling Cauldron","Tenser's Transformation","Transport Via Plants","True Seeing","Wall of Ice","Wall of Thorns","Wind Walk","Word of Recall"],
+            "seven": ["Conjure Celestial","Crown of Stars","Delayed Blast Firball","Divine Word","Draconic Transformation","Dream of the Blue Veil","Etherealness","Finger of Death","Fire Storm","Forcecage","Magnificent Mansion","Mirage Arcane","Mordenkainen's Sword","Plane Shift","Power Word ortify","Power Word Pain","Primatic Spray","Project Image","Regenerate","Resurrection","Reverse Gravity","Sequester","Simulacrum","Symbol","Teleport","Temple of the Gods","Whirlwind"],
+            "eight": ["Abi-Dalzim's Horrid Wilting","Animal Shapes","Antimagic Field","Antipathy/Sympathy","Befuddlement","Clone","Control Weather","Demiplane","Dominate Monster","Earthquake","Feeblemind","Glibness","Holy Aura","Illusory Dragon","Incendiary Cloud","Maddening Darkness","Maze","Mighty Fortress","Mind Blank","Power Word Stun","Sunburst","Telepathy","Tsunami"],
+            "nine": ["Astral Projection","Blade of Disaster","Foresight","Gate","Imprisonment","Invulnerability","Mass Heal","Mass Polymorph","Meteor Swarm","Power Word Heal","Power Word Kill","Primatic Wall","Psychic Scream","Shapechange","Storm of Vengeance","Time Stop","True Polymorph","True Resurrection","Weird","Wish"]
+          },
+          "golem": [
+            { "min": 1, "max": 5, "item": {"name": "Clay"}},
+            { "min": 6, "max": 17, "item": {"name": "Flesh"}},
+            { "min": 18, "max": 18, "item": {"name": "Iron"}},
+            { "min": 19, "max": 20, "item": {"name": "Stone"}}
+          ],
+          "beltOfGiantStrength": {
+            "rare": ["Hill"],
+            "veryRare": ["Frost","Stone","Fire"],
+            "legendary": ["Cloud","Storm"]
+          },
+          "giantStrength": ["Belt of Frost Giant Strength","Belt of Stone Giant Strength"],
+          "carpet": ["3 ft. x 5 ft.","4 ft. x 6 ft.","5 ft. x 7 ft.","6 ft. x 9 ft."],
+          "ironFlask": [
+            { "min": 1, "max": 50, "item": {"name": "Empty"}},
+            { "min": 51, "max": 51, "item": {"name": "Arcanaloth"}},
+            { "min": 52, "max": 52, "item": {"name": "Cambion"}},
+            { "min": 51, "max": 54, "item": {"name": "Dao"}},
+            { "min": 55, "max": 57, "item": {"name": ["Barlgura","Shadow Demon","Vrock"]}},
+            { "min": 59, "max": 60, "item": {"name": ["Chasme","Hezou"]}},
+            { "min": 61, "max": 62, "item": {"name": ["Glabrezu","Yochlol"]}},
+            { "min": 63, "max": 64, "item": {"name": "Nalfeshnee"}},
+            { "min": 65, "max": 65, "item": {"name": "Marilith"}},
+            { "min": 66, "max": 66, "item": {"name": ["Balor","Goristro"]}},
+            { "min": 67, "max": 67, "item": {"name": "Deva"}},
+            { "min": 68, "max": 69, "item": {"name": ["Horned Devil","Erinyes","Ice Devil","Pit Fiend"]}},
+            { "min": 70, "max": 72, "item": {"name": ["Imp","Spined Devil","Bearded Devil","Barbed Devil","Chain Devil","Bone Devil"]}},
+            { "min": 73, "max": 74, "item": {"name": "Djinni"}},
+            { "min": 75, "max": 76, "item": {"name": "Efreeti"}},
+            { "min": 77, "max": 78, "item": {"name": ["Air Elemental","Earth Elemental","Fire Elemental","Water Elemental"]}},
+            { "min": 79, "max": 79, "item": {"name": "Githyanki Knight"}},
+            { "min": 80, "max": 80, "item": {"name": "Githzerai Zerth"}},
+            { "min": 81, "max": 82, "item": {"name": "Invisible Stalker"}},
+            { "min": 83, "max": 84, "item": {"name": "Marid"}},
+            { "min": 85, "max": 86, "item": {"name": "Mezzoloth"}},
+            { "min": 87, "max": 88, "item": {"name": "Night Hag"}},
+            { "min": 89, "max": 90, "item": {"name": "Nycaloth"}},
+            { "min": 91, "max": 91, "item": {"name": "Planetar"}},
+            { "min": 92, "max": 93, "item": {"name": "Salamander"}},
+            { "min": 94, "max": 95, "item": {"name": ["Red Slaad","Blue Slaad","Green Slaad","Gray Slaad","Death Slaad"]}},
+            { "min": 96, "max": 96, "item": {"name": "Solar"}},
+            { "min": 97, "max": 98, "item": {"name": ["Succubus/Incubus"]}},
+            { "min": 99, "max": 99, "item": {"name": "Ultroloth"}},
+            { "min": 100, "max": 100, "item": {"name": "Xorn"}}
+          ],
+          "prayerBeads": [
+            { "min": 1, "max": 6, "item": {"name": "Bless"}},
+            { "min": 7, "max": 12, "item": {"name": ["Cure Wounds (2nd level", "Lesser Restoration"]}},
+            { "min": 13, "max": 16, "item": {"name": "Greater Restoration"}},
+            { "min": 17, "max": 18, "item": {"name": "Branding Smite"}},
+            { "min": 19, "max": 19, "item": {"name": "Planar Ally"}},
+            { "min": 20, "max": 20, "item": {"name": "Wind Walk"}}
+          ],
+          "hornOfValhalla": {
+            "rare": ["silver","brass"],
+            "veryRare": ["bronze"],
+            "legendary": ["iron"]
+          },
+          "figurine": ["bronze griffon","ebony fly","golden lions","ivory goats","marbled elephant","onyx dog","onyx dog","serpentine owl"],
+          "wand": {
+            "woodFocus": ["Fernian Ash - Fire","Irian Rosewood - Radiant","Kythrian Manchineel - Acid or Poison","Lamannian Oak - Lightning or Thunder","Mabaran Ebony - Necrotic","Risian Pine - Cold","Shavarran Birch - Force","Xorian Wenge - Psychic"]
+          },
+          "instruments": ["Bagpipes","Drums","Dulcimer","Flute","Lute","Lyre","Horn","Pan Flute","Shawm","Viol"],
+          "instrumentOfBards":{
+            "uncommon": ["Doss Lute","Fochlucan Bandore","Mac-Fuirmidh Cittern"],
+            "rare": ["Canaith Mandolin","Cli Lyre"],
+            "veryRare": ["Anstruth Harp"],
+            "legendary": ["Ollamh Harp"]
+          },
+          "ioun": {
+            "rare": ["Awareness","Protection","Reserve","Sustenance"],
+            "veryRare": ["Absorption","Agility","Fortitude","Insight","Intellect","Leadership","Strength"],
+            "legendary": ["Greater Absorption","Mastery","Regeneration"]
+          },
+          "orbShield": ["Fernian Basalt - Fire", "Irian Quartz - Radiant","Kythrian Skarn - Acid and Poison","Lamannian Flint - Lightning and Thunder","Mabaran Obsidian - Necrotic","Risian Shale - Cold","Shavarran Chert - Force","Xorian Marble - Psychic"],
+          "trickBag": ["gray","rust","tan"],
+          "deck": {
+            "illusion": ["FAILED"]
+          },
+          "dust": {
+            "dryness": ["FAILED"]
+          },
+          "elemental": ["Blue Saphhire - Air Elemental","Yellow Diamond - Earth Elemental","Red Corundum - Fire Elemental","Emerald - Water Elemental"],
+          "dose": {
+            "keoghtom": ["FAILED"],
+            "bagOfBeans": ["FAILED"],
+            "beadOfForce": ["FAILED"],
+            "necklaceOfFireball": ["FAILED"]
+          },
+          "mindCrystal": {
+            "common": ["subtle"],
+            "uncommon": ["careful","distant","empowered","extended"],
+            "rare": ["heightened","quickened"]
+          },
+          "creature": [
+            { "min": 1, "max": 10, "item": {"name": "aberration"}},
+            { "min": 11, "max": 20, "item": {"name": "beast"}},
+            { "min": 21, "max": 30, "item": {"name": "celestial"}},
+            { "min": 31, "max": 40, "item": {"name": "elemental"}},
+            { "min": 41, "max": 50, "item": {"name": "fey"}},
+            { "min": 51, "max": 75, "item": {"name": "fiend"}},
+            { "min": 76, "max": 80, "item": {"name": "plants"}},
+            { "min": 81, "max": 100, "item": {"name": "undead"}}
+          ],
+          "scrollOfProtection": [
+            { "min": 1, "max": 10, "item": {"name": "aberrations"}},
+            { "min": 11, "max": 15, "item": {"name": "beasts"}},
+            { "min": 16, "max": 20, "item": {"name": "celestials"}},
+            { "min": 21, "max": 25, "item": {"name": "constructs"}},
+            { "min": 26, "max": 35, "item": {"name": "dragons"}},
+            { "min": 36, "max": 45, "item": {"name": "elementals"}},
+            { "min": 46, "max": 50, "item": {"name": "humanoids"}},
+            { "min": 51, "max": 60, "item": {"name": "fey"}},
+            { "min": 61, "max": 70, "item": {"name": "fiends"}},
+            { "min": 71, "max": 75, "item": {"name": "giants"}},
+            { "min": 76, "max": 80, "item": {"name": "monstrosities"}},
+            { "min": 81, "max": 85, "item": {"name": "oozes"}},
+            { "min": 86, "max": 90, "item": {"name": "plants"}},
+            { "min": 91, "max": 100, "item": {"name": "undead"}}
+          ],
+          "alignment": [
+            { "min": 1, "max": 2, "item": {"name": "chaotic evil"}},
+            { "min": 3, "max": 4, "item": {"name": "chaotic neutral"}},
+            { "min": 5, "max": 7, "item": {"name": "chaotic good"}},
+            { "min": 8, "max": 9, "item": {"name": "neutral evil"}},
+            { "min": 10, "max": 11, "item": {"name": "neutral"}},
+            { "min": 12, "max": 13, "item": {"name": "neutral good"}},
+            { "min": 14, "max": 15, "item": {"name": "lawful evil"}},
+            { "min": 16, "max": 17, "item": {"name": "lawful neutral"}},
+            { "min": 18, "max": 20, "item": {"name": "lawful good"}}
+          ],
+          "dragonScale": ["scale mail) (Black - Acid", "scale mail) (Blue - Lightning","scale mail) (Brass - Fire","scale mail) (Bronze - Lightning","scale mail) (Copper - Acid","scale mail) (Gold - Fire","scale mail) (Green - Poison","scale mail) (Red - Fire","scale mail) (Silver - Cold","scale mail) (White - Cold"],
+          "featherTokenByRarity": {
+            "uncommon": ["Anchor","Fan","Tree"],
+            "rare": ["Bird","Swan Boat","Whip"]
+          },
+          "usefulItems": [
+            { "min": 1, "max": 2, "item": {"name": "chaotic evil"}},
+            { "min": 3, "max": 4, "item": {"name": "chaotic neutral"}},
+            { "min": 5, "max": 7, "item": {"name": "chaotic good"}},
+            { "min": 8, "max": 9, "item": {"name": "neutral evil"}},
+            { "min": 10, "max": 11, "item": {"name": "neutral"}},
+            { "min": 12, "max": 13, "item": {"name": "neutral good"}},
+            { "min": 14, "max": 15, "item": {"name": "lawful evil"}},
+            { "min": 16, "max": 17, "item": {"name": "lawful neutral"}},
+            { "min": 18, "max": 20, "item": {"name": "lawful good"}}
+          ],
+          "slingBullets": [
+            {"min": 1, "max": 1, "item": {"name": "Banishment"}},
+            {"min": 2, "max": 2, "item": {"name": "Fulguration"}},
+            {"min": 3, "max": 3, "item": {"name": "Stunning"}},
+            {"min": 4, "max": 4, "item": {"name": "Tracking"}}
+          ]
+        }

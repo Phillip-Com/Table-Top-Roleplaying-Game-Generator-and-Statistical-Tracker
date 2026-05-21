@@ -1,0 +1,17 @@
+{
+          "common": [
+            { "name": "Potion of Healing", "keyword": ["basic"], "attunement": "" }
+          ],
+          "uncommon": [
+            { "name": "Potion of Healing", "keyword": ["greater"], "attunement": "" }
+          ],
+          "rare": [
+            { "name": "Potion of Healing", "keyword": ["superior"], "attunement": "" }
+          ],
+          "veryRare": [
+            { "name": "Potion of Healing", "keyword": ["supreme"], "attunement": "" }
+          ],
+          "legendary": [
+            { "name": "", "keyword": ["extra"], "attunement": "" }
+          ]
+        }

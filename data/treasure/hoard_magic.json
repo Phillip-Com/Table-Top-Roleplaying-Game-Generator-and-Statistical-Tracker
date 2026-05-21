@@ -1,0 +1,4087 @@
+{
+    "A": [
+        {
+            "min": 1,
+            "max": 50,
+            "item": {
+                "name": "Potion of Healing",
+                "keyword": [
+                    "basic"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 51,
+            "max": 60,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "cantrip"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 61,
+            "max": 70,
+            "item": {
+                "name": "Potion of Climbing",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 71,
+            "max": 90,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "1st level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 91,
+            "max": 94,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "2nd level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 95,
+            "max": 98,
+            "item": {
+                "name": "Potion of Healing",
+                "keyword": [
+                    "greater"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 99,
+            "max": 99,
+            "item": {
+                "name": "Bag of Holding",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 100,
+            "max": 100,
+            "item": {
+                "name": "Driftglobe",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        }
+    ],
+    "B": [
+        {
+            "min": 1,
+            "max": 15,
+            "item": {
+                "name": "Potion of Healing",
+                "keyword": [
+                    "greater"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 16,
+            "max": 22,
+            "item": {
+                "name": "Potion of Fire Breath",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 23,
+            "max": 29,
+            "item": {
+                "name": "Potion of Resistance",
+                "keyword": [
+                    "potion",
+                    "resistance"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 30,
+            "max": 34,
+            "item": {
+                "name": "Ammunition +1",
+                "keyword": [
+                    "weapon",
+                    "ammunition"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 35,
+            "max": 39,
+            "item": {
+                "name": "Potion of Animal Friendship",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 40,
+            "max": 44,
+            "item": {
+                "name": "Potion of Hill Giant Strength",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 45,
+            "max": 49,
+            "item": {
+                "name": "Potion of Growth",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 50,
+            "max": 54,
+            "item": {
+                "name": "Potion of Water Breathing",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 55,
+            "max": 59,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "2nd level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 60,
+            "max": 64,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "3rd level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 65,
+            "max": 67,
+            "item": {
+                "name": "Bag of Holding",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 68,
+            "max": 70,
+            "item": {
+                "name": "Keoghtom's Ointment",
+                "keyword": [
+                    "dose",
+                    "keoghtom's"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 71,
+            "max": 73,
+            "item": {
+                "name": "Oil of Slipperiness",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 74,
+            "max": 75,
+            "item": {
+                "name": "Dust of Disappearance",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 76,
+            "max": 77,
+            "item": {
+                "name": "Dust of Dryness",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 78,
+            "max": 79,
+            "item": {
+                "name": "Dust of Sneezing and Choking",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 80,
+            "max": 81,
+            "item": {
+                "name": "Elemental Gem",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 82,
+            "max": 83,
+            "item": {
+                "name": "Philter of Love",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 84,
+            "max": 84,
+            "item": {
+                "name": "Alchemy Jug",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 85,
+            "max": 85,
+            "item": {
+                "name": "Cap of Water Breathing",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 86,
+            "max": 86,
+            "item": {
+                "name": "Cloak of the Manta Ray",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 87,
+            "max": 87,
+            "item": {
+                "name": "Driftglobe",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 88,
+            "max": 88,
+            "item": {
+                "name": "Goggle of Night",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 89,
+            "max": 89,
+            "item": {
+                "name": "Helm of Comprehending Languages",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 90,
+            "max": 90,
+            "item": {
+                "name": "Immovable Rod",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 91,
+            "max": 91,
+            "item": {
+                "name": "Lantern of Revealing",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 92,
+            "max": 92,
+            "item": {
+                "name": "Mariner's Armor",
+                "keyword": [
+                    "armor"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 93,
+            "max": 93,
+            "item": {
+                "name": "Mithral Armor",
+                "keyword": [
+                    "armor",
+                    "medium",
+                    "heavy"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 94,
+            "max": 94,
+            "item": {
+                "name": "Potion of Poison",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 95,
+            "max": 95,
+            "item": {
+                "name": "Ring of Swimming",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 96,
+            "max": 96,
+            "item": {
+                "name": "Robe of Useful Items",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 97,
+            "max": 97,
+            "item": {
+                "name": "Rope of Climbing",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 98,
+            "max": 98,
+            "item": {
+                "name": "Saddle of the Cavalier",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 99,
+            "max": 99,
+            "item": {
+                "name": "Wand of Magic Detection",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 100,
+            "max": 100,
+            "item": {
+                "name": "Wand of Secrets",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ""
+            }
+        }
+    ],
+    "C": [
+        {
+            "min": 1,
+            "max": 15,
+            "item": {
+                "name": "Potion of Healing",
+                "keyword": [
+                    "superior"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 16,
+            "max": 22,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "4th level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 23,
+            "max": 27,
+            "item": {
+                "name": "Ammunition +2",
+                "keyword": [
+                    "ammunition"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 28,
+            "max": 32,
+            "item": {
+                "name": "Potion of Clairvoyance",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 33,
+            "max": 37,
+            "item": {
+                "name": "Potion of Diminution",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 38,
+            "max": 42,
+            "item": {
+                "name": "Potion of Gaseous Form",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 43,
+            "max": 47,
+            "item": {
+                "name": "Potion of Frost Giant Strength",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 48,
+            "max": 52,
+            "item": {
+                "name": "Potion of Stone Giant Strength",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 53,
+            "max": 57,
+            "item": {
+                "name": "Potion of Heroism",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 58,
+            "max": 62,
+            "item": {
+                "name": "Potion of Invulnerability",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 63,
+            "max": 67,
+            "item": {
+                "name": "Potion of mind Reading",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 68,
+            "max": 72,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "5th level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 73,
+            "max": 75,
+            "item": {
+                "name": "Elixir of Health",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 76,
+            "max": 78,
+            "item": {
+                "name": "Oil of Etherealness",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 79,
+            "max": 81,
+            "item": {
+                "name": "Potion of Fire Giant Strength",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 82,
+            "max": 84,
+            "item": {
+                "name": "Quaal's Feather Token",
+                "keyword": [
+                    "feather token"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 85,
+            "max": 87,
+            "item": {
+                "name": "Scroll of Protection",
+                "keyword": [
+                    "creature"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 88,
+            "max": 89,
+            "item": {
+                "name": "Bag of Beans",
+                "keyword": [
+                    "dose",
+                    "bag of beans"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 90,
+            "max": 91,
+            "item": {
+                "name": "Bead of Force",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 92,
+            "max": 92,
+            "item": {
+                "name": "Chime of Opening",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 93,
+            "max": 93,
+            "item": {
+                "name": "Decanter of Endless Water",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 94,
+            "max": 94,
+            "item": {
+                "name": "Eyes of minute Seeing",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 95,
+            "max": 95,
+            "item": {
+                "name": "Folding Boat",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 96,
+            "max": 96,
+            "item": {
+                "name": "Heward's Handy Haversack",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 97,
+            "max": 97,
+            "item": {
+                "name": "Horseshoes of Speed",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 98,
+            "max": 98,
+            "item": {
+                "name": "Necklace of Fireballs",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 99,
+            "max": 99,
+            "item": {
+                "name": "Periapt of Health",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 100,
+            "max": 100,
+            "item": {
+                "name": "Sending Stones",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        }
+    ],
+    "D": [
+        {
+            "min": 1,
+            "max": 20,
+            "item": {
+                "name": "Potion of Healing",
+                "keyword": [
+                    "supreme"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 21,
+            "max": 30,
+            "item": {
+                "name": "Potion of Invisibility",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 31,
+            "max": 40,
+            "item": {
+                "name": "Potion of Speed",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 41,
+            "max": 50,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "6th level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 51,
+            "max": 57,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "7th level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 58,
+            "max": 62,
+            "item": {
+                "name": "Ammunition +3",
+                "keyword": [
+                    "ammunition"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 63,
+            "max": 67,
+            "item": {
+                "name": "Oil of Sharpness",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 68,
+            "max": 72,
+            "item": {
+                "name": "Potion of Flying",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 73,
+            "max": 77,
+            "item": {
+                "name": "Potion of Cloud Giant Strength",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 78,
+            "max": 82,
+            "item": {
+                "name": "Potion of Longevity",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 83,
+            "max": 87,
+            "item": {
+                "name": "Potion of Vitality",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 88,
+            "max": 92,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "8th level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 93,
+            "max": 95,
+            "item": {
+                "name": "Horseshoes of a Zephyr",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 96,
+            "max": 98,
+            "item": {
+                "name": "Nolzur's Marvelous Pigments",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 99,
+            "max": 99,
+            "item": {
+                "name": "Bag of Devouring",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 100,
+            "max": 100,
+            "item": {
+                "name": "Portable Hole",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        }
+    ],
+    "E": [
+        {
+            "min": 1,
+            "max": 30,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "8th level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 31,
+            "max": 55,
+            "item": {
+                "name": "Potion of Storm Giant Strength",
+                "keyword": [
+                    "potion"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 56,
+            "max": 70,
+            "item": {
+                "name": "Potion of Healing",
+                "keyword": [
+                    "Supreme"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 71,
+            "max": 85,
+            "item": {
+                "name": "Spell Scroll",
+                "keyword": [
+                    "scroll",
+                    "9th level"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 86,
+            "max": 93,
+            "item": {
+                "name": "Universal Solvent",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 94,
+            "max": 98,
+            "item": {
+                "name": "Arrow of Slaying",
+                "keyword": [
+                    "arrow",
+                    "scroll of protection"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 99,
+            "max": 100,
+            "item": {
+                "name": "Sovereign Glue",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        }
+    ],
+    "F": [
+        {
+            "min": 1,
+            "max": 15,
+            "item": {
+                "name": "Weapon +1",
+                "keyword": [
+                    "weapon",
+                    "any"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 16,
+            "max": 18,
+            "item": {
+                "name": "Shield +1",
+                "keyword": [
+                    "shield"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 19,
+            "max": 21,
+            "item": {
+                "name": "Sentinel Shield",
+                "keyword": [
+                    "shield"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 22,
+            "max": 23,
+            "item": {
+                "name": "Amulet of Proof Against Detection and Location",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 24,
+            "max": 25,
+            "item": {
+                "name": "Boots of Elvenkind",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 26,
+            "max": 27,
+            "item": {
+                "name": "Boots of Striding and Springing",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 28,
+            "max": 29,
+            "item": {
+                "name": "Bracers of Archery",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 30,
+            "max": 31,
+            "item": {
+                "name": "Brooch of Shielding",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 32,
+            "max": 33,
+            "item": {
+                "name": "Broom of Flying",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 34,
+            "max": 35,
+            "item": {
+                "name": "Cloak of Elvenkind",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 36,
+            "max": 37,
+            "item": {
+                "name": "Cloak of Protection",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 38,
+            "max": 39,
+            "item": {
+                "name": "Gauntlets of Ogre Power",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 40,
+            "max": 41,
+            "item": {
+                "name": "Hat of Disquise",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 42,
+            "max": 43,
+            "item": {
+                "name": "Javelin of Lightning",
+                "keyword": [
+                    "javelin"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 44,
+            "max": 45,
+            "item": {
+                "name": "Pearl of Power",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ". [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 46,
+            "max": 47,
+            "item": {
+                "name": "Rod of the Pact Keeper +1",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ", [requires attunement by a Warlock]"
+            }
+        },
+        {
+            "min": 48,
+            "max": 49,
+            "item": {
+                "name": "Slippers of Spider Climbing",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 50,
+            "max": 51,
+            "item": {
+                "name": "Staff of the Adder",
+                "keyword": [
+                    "staff"
+                ],
+                "attunement": ", [requires attunement by a Cleric, Druid, or Warlock]"
+            }
+        },
+        {
+            "min": 52,
+            "max": 53,
+            "item": {
+                "name": "Staff of the Python",
+                "keyword": [
+                    "staff"
+                ],
+                "attunement": ", [requires attunement by a Cleric, Druid, or Warlock]"
+            }
+        },
+        {
+            "min": 54,
+            "max": 55,
+            "item": {
+                "name": "Sword of Vengeance",
+                "keyword": [
+                    "weapon",
+                    "bladed"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 56,
+            "max": 57,
+            "item": {
+                "name": "Trident of Fish Command",
+                "keyword": [
+                    "trident"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 58,
+            "max": 59,
+            "item": {
+                "name": "Wand of Magic Missiles",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 60,
+            "max": 61,
+            "item": {
+                "name": "Wand of the War Mage +1",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 62,
+            "max": 63,
+            "item": {
+                "name": "Wand of Web",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 64,
+            "max": 65,
+            "item": {
+                "name": "Weapon of Warning",
+                "keyword": [
+                    "weapon",
+                    "any"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 66,
+            "max": 66,
+            "item": {
+                "name": "Adamantine Armor",
+                "keyword": [
+                    "chain mail"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 67,
+            "max": 67,
+            "item": {
+                "name": "Adamantine Armor",
+                "keyword": [
+                    "chain shirt"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 68,
+            "max": 68,
+            "item": {
+                "name": "Adamantine Armor",
+                "keyword": [
+                    "scale mail"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 69,
+            "max": 69,
+            "item": {
+                "name": "Back of Tricks",
+                "keyword": [
+                    "Gray"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 70,
+            "max": 70,
+            "item": {
+                "name": "Back of Tricks",
+                "keyword": [
+                    "Rust"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 71,
+            "max": 71,
+            "item": {
+                "name": "Back of Tricks",
+                "keyword": [
+                    "Tan"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 72,
+            "max": 72,
+            "item": {
+                "name": "Boots of the Winterland",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 73,
+            "max": 73,
+            "item": {
+                "name": "Circlet of Blasting",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 74,
+            "max": 74,
+            "item": {
+                "name": "Deck of Illusions",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 75,
+            "max": 75,
+            "item": {
+                "name": "Eversmoking Bottle",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 76,
+            "max": 76,
+            "item": {
+                "name": "Eyes of Charming",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 77,
+            "max": 77,
+            "item": {
+                "name": "Eyes of the Eagle",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 78,
+            "max": 78,
+            "item": {
+                "name": "Figurine of Wondrous Power",
+                "keyword": [
+                    "Silver Raven"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 79,
+            "max": 79,
+            "item": {
+                "name": "Gem of Brightness",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 80,
+            "max": 80,
+            "item": {
+                "name": "Gloves of Missile Snaring",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 81,
+            "max": 81,
+            "item": {
+                "name": "Gloves of Swimming and Climb",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 82,
+            "max": 82,
+            "item": {
+                "name": "Gloves of Thievery",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 83,
+            "max": 83,
+            "item": {
+                "name": "Headband of Intellect",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 84,
+            "max": 84,
+            "item": {
+                "name": "Helm of Telepathy",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 85,
+            "max": 85,
+            "item": {
+                "name": "Instrument of the Bards",
+                "keyword": [
+                    "Doss Lute"
+                ],
+                "attunement": ", [requires attunement by a Bard]"
+            }
+        },
+        {
+            "min": 86,
+            "max": 86,
+            "item": {
+                "name": "Instrument of the Bards",
+                "keyword": [
+                    "Fochlucan Bandore"
+                ],
+                "attunement": ", [requires attunement by a Bard]"
+            }
+        },
+        {
+            "min": 87,
+            "max": 87,
+            "item": {
+                "name": "Instrument of the Bards",
+                "keyword": [
+                    "Mac-Fuirmidh Cittern"
+                ],
+                "attunement": ", [requires attunement by a Bard]"
+            }
+        },
+        {
+            "min": 88,
+            "max": 88,
+            "item": {
+                "name": "Medallion of Thoughts",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 89,
+            "max": 89,
+            "item": {
+                "name": "Necklace of Adaptation",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 90,
+            "max": 90,
+            "item": {
+                "name": "Periapt of Wound Closure",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement ]"
+            }
+        },
+        {
+            "min": 91,
+            "max": 91,
+            "item": {
+                "name": "Pipes of Haunting",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 92,
+            "max": 92,
+            "item": {
+                "name": "Pipes of the Sewers",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 93,
+            "max": 93,
+            "item": {
+                "name": "Ring of Jumping",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 94,
+            "max": 94,
+            "item": {
+                "name": "Ring of mind Shielding",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 95,
+            "max": 95,
+            "item": {
+                "name": "Ring of Warmth",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 96,
+            "max": 96,
+            "item": {
+                "name": "Ring of Water Walking",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 97,
+            "max": 97,
+            "item": {
+                "name": "Quiver of Ehlonna",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 98,
+            "max": 98,
+            "item": {
+                "name": "Stone of Good Luck",
+                "keyword": [
+                    "luckstone"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 99,
+            "max": 99,
+            "item": {
+                "name": "Wind Fan",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 100,
+            "max": 100,
+            "item": {
+                "name": "Winged Boots",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        }
+    ],
+    "G": [
+        {
+            "min": 1,
+            "max": 11,
+            "item": {
+                "name": "Weapon +2",
+                "keyword": [
+                    "weapon",
+                    "any"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 12,
+            "max": 14,
+            "item": {
+                "name": "Figurine of Wondrous Power",
+                "keyword": [
+                    "figurine"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 15,
+            "max": 15,
+            "item": {
+                "name": "Adamantine Armor",
+                "keyword": [
+                    "breastplate"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 16,
+            "max": 16,
+            "item": {
+                "name": "Adamantine Armor",
+                "keyword": [
+                    "splint"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 17,
+            "max": 17,
+            "item": {
+                "name": "Amulet of Health",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 18,
+            "max": 18,
+            "item": {
+                "name": "Armor of Vulnerability",
+                "keyword": [
+                    "armor",
+                    "light",
+                    "medium",
+                    "heavy"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 19,
+            "max": 19,
+            "item": {
+                "name": "Arrow-catching Shield",
+                "keyword": [
+                    "shield"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 20,
+            "max": 20,
+            "item": {
+                "name": "Belt of Dwarvenkind",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 21,
+            "max": 21,
+            "item": {
+                "name": "Belt of Hill Giant Strength",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 22,
+            "max": 22,
+            "item": {
+                "name": "Berserker Axe",
+                "keyword": [
+                    "weapon",
+                    "axe"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 23,
+            "max": 23,
+            "item": {
+                "name": "Boots of Levitation",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 24,
+            "max": 24,
+            "item": {
+                "name": "Boots of Speed",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 25,
+            "max": 25,
+            "item": {
+                "name": "Bowl of Commanding Water Elementals",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 26,
+            "max": 26,
+            "item": {
+                "name": "Bracers of Defense",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 27,
+            "max": 27,
+            "item": {
+                "name": "Brazier of Commanding Fire Elementals",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 28,
+            "max": 28,
+            "item": {
+                "name": "Cape of the Mountebank",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 29,
+            "max": 29,
+            "item": {
+                "name": "Censer of Controlling Air Elementals",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 30,
+            "max": 30,
+            "item": {
+                "name": "Armor +1",
+                "keyword": [
+                    "chain mail"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 31,
+            "max": 31,
+            "item": {
+                "name": "Armor of Resistance",
+                "keyword": [
+                    "armor",
+                    "chain mail",
+                    "resistance"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 32,
+            "max": 32,
+            "item": {
+                "name": "Armor +1",
+                "keyword": [
+                    "chain shirt"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 33,
+            "max": 33,
+            "item": {
+                "name": "Armor of Resistance",
+                "keyword": [
+                    "armor",
+                    "chain shirt",
+                    "resistance"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 34,
+            "max": 34,
+            "item": {
+                "name": "Cloak of Displacement",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 35,
+            "max": 35,
+            "item": {
+                "name": "Cloak of the Bat",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 36,
+            "max": 36,
+            "item": {
+                "name": "Cube of Force",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 37,
+            "max": 37,
+            "item": {
+                "name": "Daern's Instant Fortress",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 38,
+            "max": 38,
+            "item": {
+                "name": "Dagger of Venom",
+                "keyword": [
+                    "Dagger"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 39,
+            "max": 39,
+            "item": {
+                "name": "Dimensional Shackles",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 40,
+            "max": 40,
+            "item": {
+                "name": "Dragon Slayer",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 41,
+            "max": 41,
+            "item": {
+                "name": "Elven Chain",
+                "keyword": [
+                    "chain shirt"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 42,
+            "max": 42,
+            "item": {
+                "name": "Flame Tongue",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 43,
+            "max": 43,
+            "item": {
+                "name": "Gem of Seeing",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 44,
+            "max": 44,
+            "item": {
+                "name": "Giant Slayer",
+                "keyword": [
+                    "weapon"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 45,
+            "max": 45,
+            "item": {
+                "name": "Glamoured Studded Leather",
+                "keyword": [
+                    "studded leather"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 46,
+            "max": 46,
+            "item": {
+                "name": "Helm of Teleportation",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 47,
+            "max": 47,
+            "item": {
+                "name": "Horn of Blasting",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 48,
+            "max": 48,
+            "item": {
+                "name": "Horn of Valhalla",
+                "keyword": [
+                    "horn of valhalla",
+                    "rare"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 49,
+            "max": 49,
+            "item": {
+                "name": "Instrument of the Bards",
+                "keyword": [
+                    "Canaith Mandolin"
+                ],
+                "attunement": ", [requires attunement by a Bard]"
+            }
+        },
+        {
+            "min": 50,
+            "max": 50,
+            "item": {
+                "name": "Instrument of the Bards",
+                "keyword": [
+                    "Cli Lyre"
+                ],
+                "attunement": ", [requires attunement by a Bard]"
+            }
+        },
+        {
+            "min": 51,
+            "max": 51,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "awareness"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 52,
+            "max": 52,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "protection"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 53,
+            "max": 53,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "reserve"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 54,
+            "max": 54,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "sustenance"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 55,
+            "max": 55,
+            "item": {
+                "name": "Iron Bands of Bilarro",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 56,
+            "max": 56,
+            "item": {
+                "name": "Armor +1",
+                "keyword": [
+                    "leather"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 57,
+            "max": 57,
+            "item": {
+                "name": "Armor of Resistance",
+                "keyword": [
+                    "armor",
+                    "leather",
+                    "resistance"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 58,
+            "max": 58,
+            "item": {
+                "name": "Mace of Disruption",
+                "keyword": [
+                    "mace"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 59,
+            "max": 59,
+            "item": {
+                "name": "Mace of Smiting",
+                "keyword": [
+                    "mace"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 60,
+            "max": 60,
+            "item": {
+                "name": "Mace of Terror",
+                "keyword": [
+                    "mace"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 61,
+            "max": 61,
+            "item": {
+                "name": "Mantle of Spell Resistance",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 62,
+            "max": 62,
+            "item": {
+                "name": "Necklace of Prayer Beads",
+                "keyword": [
+                    "prayer beads"
+                ],
+                "attunement": ", [requires attunement by a Cleric, Druid, or Paladin]"
+            }
+        },
+        {
+            "min": 63,
+            "max": 63,
+            "item": {
+                "name": "Periapt of Proof Against Poison",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 64,
+            "max": 64,
+            "item": {
+                "name": "Ring of Animal Influence",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 65,
+            "max": 65,
+            "item": {
+                "name": "Ring of Evasion",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 66,
+            "max": 66,
+            "item": {
+                "name": "Ring of Feather Falling",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 67,
+            "max": 67,
+            "item": {
+                "name": "Ring of Free Action",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 68,
+            "max": 68,
+            "item": {
+                "name": "Ring of Protection",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 69,
+            "max": 69,
+            "item": {
+                "name": "Ring of Resistance",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 70,
+            "max": 70,
+            "item": {
+                "name": "Ring of Spell Storing",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 71,
+            "max": 71,
+            "item": {
+                "name": "Ring of the Ram",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 72,
+            "max": 72,
+            "item": {
+                "name": "Ring of X-ray Vision",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 73,
+            "max": 73,
+            "item": {
+                "name": "Robe of Eyes",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 74,
+            "max": 74,
+            "item": {
+                "name": "Rod of Rulership",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 75,
+            "max": 75,
+            "item": {
+                "name": "Rod of the Pact Keeper +2",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ", [requires attunement by a Warlock]"
+            }
+        },
+        {
+            "min": 76,
+            "max": 76,
+            "item": {
+                "name": "Rope of Entanglement",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 77,
+            "max": 77,
+            "item": {
+                "name": "Armor +1",
+                "keyword": [
+                    "scale mail"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 78,
+            "max": 78,
+            "item": {
+                "name": "Armor of Resistance",
+                "keyword": [
+                    "armor",
+                    "scale mail",
+                    "resistance"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 79,
+            "max": 79,
+            "item": {
+                "name": "Shield +2",
+                "keyword": [
+                    "shield"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 80,
+            "max": 80,
+            "item": {
+                "name": "Shield of Missile Attraction",
+                "keyword": [
+                    "shield"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 81,
+            "max": 81,
+            "item": {
+                "name": "Staff of Charming",
+                "keyword": [
+                    "staff"
+                ],
+                "attunement": ", [requires attunement by a Bard, Cleric, Druid, Sorcerer, Warlock, or Wizard]"
+            }
+        },
+        {
+            "min": 82,
+            "max": 82,
+            "item": {
+                "name": "Staff of Healing",
+                "keyword": [
+                    "staff"
+                ],
+                "attunement": ", [requires attunement by a Bard, Cleric, or Druid]"
+            }
+        },
+        {
+            "min": 83,
+            "max": 83,
+            "item": {
+                "name": "Staff of Swarming Insects",
+                "keyword": [
+                    "staff"
+                ],
+                "attunement": ", [requires attunement by a Bard, Cleric, Druid, Sorcerer, Warlock, or Wizard]"
+            }
+        },
+        {
+            "min": 84,
+            "max": 84,
+            "item": {
+                "name": "Staff of the Woodlands",
+                "keyword": [
+                    "quarterstaff"
+                ],
+                "attunement": ", [requires attunement by a Druid]"
+            }
+        },
+        {
+            "min": 85,
+            "max": 85,
+            "item": {
+                "name": "Staff of Withering",
+                "keyword": [
+                    "quarterstaff"
+                ],
+                "attunement": ", [requires attunement] by a Cleric, Druid, or Warlock"
+            }
+        },
+        {
+            "min": 86,
+            "max": 86,
+            "item": {
+                "name": "Stone of Controlling Earth Elementals",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 87,
+            "max": 87,
+            "item": {
+                "name": "Sun Blade",
+                "keyword": [
+                    "longsword"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 88,
+            "max": 88,
+            "item": {
+                "name": "Sword of Life Stealing",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 89,
+            "max": 89,
+            "item": {
+                "name": "Sword of Wounding",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 90,
+            "max": 90,
+            "item": {
+                "name": "Tentacle Rod",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 91,
+            "max": 91,
+            "item": {
+                "name": "Vicious Weapon",
+                "keyword": [
+                    "weapon",
+                    "any"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 92,
+            "max": 92,
+            "item": {
+                "name": "Wand of Binding",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 93,
+            "max": 93,
+            "item": {
+                "name": "Wand of Enemy Detection",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 94,
+            "max": 94,
+            "item": {
+                "name": "Wand of Fear",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 95,
+            "max": 95,
+            "item": {
+                "name": "Wand of Fireballs",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 96,
+            "max": 96,
+            "item": {
+                "name": "Wand of Lightning Bolts",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 97,
+            "max": 97,
+            "item": {
+                "name": "Wand of Paralysis",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 98,
+            "max": 98,
+            "item": {
+                "name": "Wand of the War Mage +2",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 99,
+            "max": 99,
+            "item": {
+                "name": "Wand of Wonder",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 100,
+            "max": 100,
+            "item": {
+                "name": "Wings of Flying",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        }
+    ],
+    "H": [
+        {
+            "min": 1,
+            "max": 10,
+            "item": {
+                "name": "Weapon +3",
+                "keyword": [
+                    "weapon",
+                    "any"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 11,
+            "max": 12,
+            "item": {
+                "name": "Amulet of the Planes",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 13,
+            "max": 14,
+            "item": {
+                "name": "Carpet of Flying",
+                "keyword": [
+                    "carpet"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 15,
+            "max": 23,
+            "item": {
+                "name": "Crystal Ball",
+                "keyword": [
+                    "very rare"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 17,
+            "max": 25,
+            "item": {
+                "name": "Ring of Regeneration",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 19,
+            "max": 27,
+            "item": {
+                "name": "Ring of Shooting Stars",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 21,
+            "max": 29,
+            "item": {
+                "name": "Ring of Telekinesis",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 23,
+            "max": 31,
+            "item": {
+                "name": "Robe of Scintillating Colors",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement ": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 25,
+            "max": 33,
+            "item": {
+                "name": "Robe of Stars",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 27,
+            "max": 35,
+            "item": {
+                "name": "Rod of Absorption",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 29,
+            "max": 37,
+            "item": {
+                "name": "Rod of Alertness",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 31,
+            "max": 39,
+            "item": {
+                "name": "Rod of Security",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 33,
+            "max": 41,
+            "item": {
+                "name": "Rod of the Pact Keeper +3",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ", [requires attunement by a Warlock]"
+            }
+        },
+        {
+            "min": 35,
+            "max": 43,
+            "item": {
+                "name": "Scimitar of Speed",
+                "keyword": [
+                    "scimitar"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 37,
+            "max": 45,
+            "item": {
+                "name": "Shield +3",
+                "keyword": [
+                    "armor",
+                    "shield"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 39,
+            "max": 47,
+            "item": {
+                "name": "Staff of Fire",
+                "keyword": [
+                    "staff"
+                ],
+                "attunement": ", [requires attunement by a Druid, Sorcerer, Warlock, or Wizard]"
+            }
+        },
+        {
+            "min": 41,
+            "max": 49,
+            "item": {
+                "name": "Staff of Frost",
+                "keyword": [
+                    "staff"
+                ],
+                "attunement": ", [requires attunement by a Druid, Sorcerer, Warlock, or Wizard]"
+            }
+        },
+        {
+            "min": 43,
+            "max": 51,
+            "item": {
+                "name": "Staff of Power",
+                "keyword": [
+                    "quarterstaff"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 45,
+            "max": 53,
+            "item": {
+                "name": "Staff of Striking",
+                "keyword": [
+                    "quarterstaff"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 47,
+            "max": 55,
+            "item": {
+                "name": "Staff of Thunder and Lightning",
+                "keyword": [
+                    "quarterstaff"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 49,
+            "max": 57,
+            "item": {
+                "name": "Sword of Sharpness",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 51,
+            "max": 59,
+            "item": {
+                "name": "Wand of Polymorph",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 53,
+            "max": 61,
+            "item": {
+                "name": "Wand of the War Mage +3",
+                "keyword": [
+                    "wand"
+                ],
+                "attunement": ", [requires attunement by a Spellcaster]"
+            }
+        },
+        {
+            "min": 55,
+            "max": 55,
+            "item": {
+                "name": "Adamantine Armor",
+                "keyword": [
+                    "half plate"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 56,
+            "max": 56,
+            "item": {
+                "name": "Adamantine Armor",
+                "keyword": [
+                    "plate"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 57,
+            "max": 57,
+            "item": {
+                "name": "Animated Shield",
+                "keyword": [
+                    "shield"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 58,
+            "max": 58,
+            "item": {
+                "name": "Belt of Fire Giant Strength",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 59,
+            "max": 59,
+            "item": {
+                "name": "Belt of Giant Strength",
+                "keyword": [
+                    "wondrous",
+                    "giant strength"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 60,
+            "max": 60,
+            "item": {
+                "name": "Armor +1",
+                "keyword": [
+                    "breastplate"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 61,
+            "max": 61,
+            "item": {
+                "name": "Armor of Resistance",
+                "keyword": [
+                    "breastplate"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 62,
+            "max": 62,
+            "item": {
+                "name": "Candle of Invocation",
+                "keyword": [
+                    "alignment"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 63,
+            "max": 63,
+            "item": {
+                "name": "Armor +2",
+                "keyword": [
+                    "chain mail"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 64,
+            "max": 64,
+            "item": {
+                "name": "Armor +2",
+                "keyword": [
+                    "chain shirt"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 65,
+            "max": 65,
+            "item": {
+                "name": "Cloak of Arachnida",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 66,
+            "max": 66,
+            "item": {
+                "name": "Dancing Sword",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 67,
+            "max": 67,
+            "item": {
+                "name": "Demon Armor",
+                "keyword": [
+                    "plate"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 68,
+            "max": 68,
+            "item": {
+                "name": "Dragon Scale Mail",
+                "keyword": [
+                    "scale mail",
+                    "dragon"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 69,
+            "max": 69,
+            "item": {
+                "name": "Dwarven Plate",
+                "keyword": [
+                    "plate"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 70,
+            "max": 70,
+            "item": {
+                "name": "Dwarven Thrower",
+                "keyword": [
+                    "warhammer"
+                ],
+                "attunement": ", [requires attunement by a Dwarf or a creature attuned to a Belt of Dwarvenkind]"
+            }
+        },
+        {
+            "min": 71,
+            "max": 71,
+            "item": {
+                "name": "Efreeti Bottle",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 72,
+            "max": 72,
+            "item": {
+                "name": "Figurine of Wondrous Power",
+                "keyword": [
+                    "obsidian steed"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 73,
+            "max": 73,
+            "item": {
+                "name": "Frost Brand",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 74,
+            "max": 74,
+            "item": {
+                "name": "Helm of Brilliance",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 75,
+            "max": 75,
+            "item": {
+                "name": "Horn of Valhalla",
+                "keyword": [
+                    "bronze"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 76,
+            "max": 76,
+            "item": {
+                "name": "Instrument of the Bards",
+                "keyword": [
+                    "Anstruth Harp"
+                ],
+                "attunement": ", [requires attunement by a Bard]"
+            }
+        },
+        {
+            "min": 77,
+            "max": 77,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "absorption"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 78,
+            "max": 78,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "agility"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 79,
+            "max": 79,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "fortitude"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 80,
+            "max": 80,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "insight"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 81,
+            "max": 81,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "intellect"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 82,
+            "max": 82,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "leadership"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 83,
+            "max": 83,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "strength"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 84,
+            "max": 84,
+            "item": {
+                "name": "Armor +2",
+                "keyword": [
+                    "leather"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 85,
+            "max": 85,
+            "item": {
+                "name": "Manual of Bodily Health",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 86,
+            "max": 86,
+            "item": {
+                "name": "Manual of Gainful Exercise",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 87,
+            "max": 87,
+            "item": {
+                "name": "Manual of Golems",
+                "keyword": [
+                    "golem"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 88,
+            "max": 88,
+            "item": {
+                "name": "Manual of Quickness of Action",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 89,
+            "max": 89,
+            "item": {
+                "name": "Mirror of Life Trapping",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 90,
+            "max": 90,
+            "item": {
+                "name": "Nine Lives Stealer",
+                "keyword": [
+                    "weapon"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 91,
+            "max": 91,
+            "item": {
+                "name": "Oathbow",
+                "keyword": [
+                    "longbow"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 92,
+            "max": 92,
+            "item": {
+                "name": "Armor +2",
+                "keyword": [
+                    "scale mail"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 93,
+            "max": 93,
+            "item": {
+                "name": "Spellguard Shield",
+                "keyword": [
+                    "shield"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 94,
+            "max": 94,
+            "item": {
+                "name": "Armor +1",
+                "keyword": [
+                    "splint"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 95,
+            "max": 95,
+            "item": {
+                "name": "Armor of Resistance",
+                "keyword": [
+                    "armor",
+                    "splint",
+                    "resistance"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 96,
+            "max": 96,
+            "item": {
+                "name": "Armor +1",
+                "keyword": [
+                    "studded leather"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 97,
+            "max": 97,
+            "item": {
+                "name": "Armor of Resistance",
+                "keyword": [
+                    "armor",
+                    "studded leather",
+                    "resistance"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 98,
+            "max": 98,
+            "item": {
+                "name": "Tome of Clear Thought",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 99,
+            "max": 99,
+            "item": {
+                "name": "Tome of Leadership and Influence",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 100,
+            "max": 100,
+            "item": {
+                "name": "Tome of Understanding",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        }
+    ],
+    "I": [
+        {
+            "min": 1,
+            "max": 5,
+            "item": {
+                "name": "Defender",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 6,
+            "max": 10,
+            "item": {
+                "name": "Hammer of Thunderbolts",
+                "keyword": [
+                    "maul"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 11,
+            "max": 15,
+            "item": {
+                "name": "Luck Blade",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 16,
+            "max": 20,
+            "item": {
+                "name": "Sword of Answering",
+                "keyword": [
+                    "weapon",
+                    "answering"
+                ],
+                "attunement": ", [requires attunement by a creature with the same alignment as the sword]"
+            }
+        },
+        {
+            "min": 21,
+            "max": 23,
+            "item": {
+                "name": "Holy Avenger",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ", [requires attunement by a Paladin]"
+            }
+        },
+        {
+            "min": 24,
+            "max": 26,
+            "item": {
+                "name": "Ring of Djinni Summoning",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 27,
+            "max": 29,
+            "item": {
+                "name": "Ring of Invisibility",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 30,
+            "max": 32,
+            "item": {
+                "name": "Ring of Spell Turning",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 33,
+            "max": 35,
+            "item": {
+                "name": "Rod of Lordly Might",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 36,
+            "max": 38,
+            "item": {
+                "name": "Staff of the Magi",
+                "keyword": [
+                    "quarterstaff"
+                ],
+                "attunement": ", [requires attunement by a Sorcerer, Warlock, or Wizard]"
+            }
+        },
+        {
+            "min": 39,
+            "max": 41,
+            "item": {
+                "name": "Vorpal Sword",
+                "keyword": [
+                    "weapon",
+                    "any sword"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 42,
+            "max": 43,
+            "item": {
+                "name": "Belt of Cloud Giant Strength",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 44,
+            "max": 45,
+            "item": {
+                "name": "Armor +2",
+                "keyword": [
+                    "breastplate"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 46,
+            "max": 47,
+            "item": {
+                "name": "Armor +3",
+                "keyword": [
+                    "chain mail"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 48,
+            "max": 49,
+            "item": {
+                "name": "Armor +3",
+                "keyword": [
+                    "chain shirt"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 50,
+            "max": 51,
+            "item": {
+                "name": "Cloak of Invisibility",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 52,
+            "max": 53,
+            "item": {
+                "name": "Crystal Ball",
+                "keyword": [
+                    "legendary"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 54,
+            "max": 55,
+            "item": {
+                "name": "Armor +1",
+                "keyword": [
+                    "half plate"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 56,
+            "max": 57,
+            "item": {
+                "name": "Iron Flask",
+                "keyword": [
+                    "wondrous",
+                    "iron flask"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 58,
+            "max": 59,
+            "item": {
+                "name": "Armor +3",
+                "keyword": [
+                    "leather"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 60,
+            "max": 61,
+            "item": {
+                "name": "Armor +1",
+                "keyword": [
+                    "plate"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 62,
+            "max": 63,
+            "item": {
+                "name": "Robe off the Archmagi",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement by a Sorcerer, Warlock, or Wizard]"
+            }
+        },
+        {
+            "min": 64,
+            "max": 65,
+            "item": {
+                "name": "Rod of Resurrection",
+                "keyword": [
+                    "rod"
+                ],
+                "attunement": ", [requires attunement by a Cleric, Druid, or Paladin]"
+            }
+        },
+        {
+            "min": 66,
+            "max": 67,
+            "item": {
+                "name": "Armor +1",
+                "keyword": [
+                    "scale mail"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 68,
+            "max": 69,
+            "item": {
+                "name": "Scarab of Protection",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 70,
+            "max": 71,
+            "item": {
+                "name": "Armor +2",
+                "keyword": [
+                    "splint"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 72,
+            "max": 73,
+            "item": {
+                "name": "Armor +2",
+                "keyword": [
+                    "studded leather"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 74,
+            "max": 75,
+            "item": {
+                "name": "Well of Many Worlds",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 76,
+            "max": 76,
+            "item": {
+                "name": "Magic Armor",
+                "keyword": [
+                    "armor",
+                    "magic armor"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 77,
+            "max": 77,
+            "item": {
+                "name": "Apparatus of Kwalish",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 78,
+            "max": 78,
+            "item": {
+                "name": "Armor of Invulnerability",
+                "keyword": [
+                    "plate"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 79,
+            "max": 79,
+            "item": {
+                "name": "Belt of Storm Giant Strength",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 80,
+            "max": 80,
+            "item": {
+                "name": "Cubic Gate",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 81,
+            "max": 81,
+            "item": {
+                "name": "Deck of Many Things",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 82,
+            "max": 82,
+            "item": {
+                "name": "Efreeti Chain",
+                "keyword": [
+                    "armor"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 83,
+            "max": 83,
+            "item": {
+                "name": "Armor of Resistance",
+                "keyword": [
+                    "armor",
+                    "half plate",
+                    "resistance"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 84,
+            "max": 84,
+            "item": {
+                "name": "Horn of Valhalla",
+                "keyword": [
+                    "iron"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 85,
+            "max": 85,
+            "item": {
+                "name": "Instrument of the Bards",
+                "keyword": [
+                    "Ollamh Harp"
+                ],
+                "attunement": ", [requires attunement by a Bard]"
+            }
+        },
+        {
+            "min": 86,
+            "max": 86,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "greater absorption"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 87,
+            "max": 87,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "mastery"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 88,
+            "max": 88,
+            "item": {
+                "name": "Ioun Stone",
+                "keyword": [
+                    "regeneration"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 89,
+            "max": 89,
+            "item": {
+                "name": "Plate Armor of Etherealness",
+                "keyword": [
+                    "plate"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 90,
+            "max": 90,
+            "item": {
+                "name": "Armor of Resistance",
+                "keyword": [
+                    "armor",
+                    "plate",
+                    "resistance"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 91,
+            "max": 91,
+            "item": {
+                "name": "Ring of Air Elemental Command",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 92,
+            "max": 92,
+            "item": {
+                "name": "Ring of Earth Elemental Command",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 93,
+            "max": 93,
+            "item": {
+                "name": "Ring of Fire Elemental Command",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 94,
+            "max": 94,
+            "item": {
+                "name": "Ring of Three Wishes",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 95,
+            "max": 95,
+            "item": {
+                "name": "Ring of Water Elemental Command",
+                "keyword": [
+                    "ring"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 96,
+            "max": 96,
+            "item": {
+                "name": "Sphere of Annihilation",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ""
+            }
+        },
+        {
+            "min": 97,
+            "max": 97,
+            "item": {
+                "name": "Talisman of Pure Good",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement by a creature of good alignment]"
+            }
+        },
+        {
+            "min": 98,
+            "max": 98,
+            "item": {
+                "name": "Talisman of the Sphere",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement]"
+            }
+        },
+        {
+            "min": 99,
+            "max": 99,
+            "item": {
+                "name": "Talisman of Ultimate Evil",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement by a creature of evil alignment]"
+            }
+        },
+        {
+            "min": 100,
+            "max": 100,
+            "item": {
+                "name": "Tome of the Stilled Tongue",
+                "keyword": [
+                    "wondrous"
+                ],
+                "attunement": ", [requires attunement by a Wizard]"
+            }
+        }
+    ]
+}

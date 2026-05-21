@@ -1,0 +1,37 @@
+{
+          "veryLow": {
+            "common": [1, 4],
+            "uncommon": [0, 2],
+            "rare": [0, 0],
+            "veryRare": [0, 0],
+            "legendary": [0, 0]
+          },
+          "low": {
+            "common": [1, 8],
+            "uncommon": [0, 3],
+            "rare": [0, 2],
+            "veryRare": [0, 0],
+            "legendary": [0, 0]
+          },
+          "mid": {
+            "common": [1, 15],
+            "uncommon": [0, 6],
+            "rare": [0, 4],
+            "veryRare": [0, 3],
+            "legendary": [0, 1]
+          },
+          "high": {
+            "common": [1, 20],
+            "uncommon": [0, 12],
+            "rare": [0, 6],
+            "veryRare": [0, 4],
+            "legendary": [0, 2]
+          },
+          "extreme": {
+            "common": [1, 30],
+            "uncommon": [0, 15],
+            "rare": [0, 10],
+            "veryRare": [0, 8],
+            "legendary": [0, 4]
+          }
+        }

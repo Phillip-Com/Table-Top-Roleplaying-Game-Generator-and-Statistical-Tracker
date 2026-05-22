@@ -638,6 +638,7 @@ function abilities(background) {
 
 // Name generator
 function randomFrom(array) {
+  if (!array || array.length === 0) return "";
   return array[Math.floor(Math.random() * array.length)];
 }
 
@@ -723,6 +724,56 @@ function backGround() {
     : null;
 }
 
+function generateBackgroundProfile(background, alignment) {
+  const data = backgroundTraits[background.toLowerCase()];
+
+  if (!data) {
+    console.error(`Background trait for ${background} not found.`);
+    return null;
+  }
+
+  const traits = [...data.personalityTraits];
+
+  const trait1 = randomFrom(traits);
+  // Remove trait1 from the array to avoid duplicates
+  const remainingTraits = traits.filter(trait => trait !== trait1);
+  const trait2 = randomFrom(remainingTraits);
+
+  let alignmentKey = "neutral";
+
+  const lowerAlignment = alignment.toLowerCase();
+
+  let idealPool = [];
+
+  if (lowerAlignment.includes("lawful")) {
+    idealPool.push(...(data.ideals.lawful || []));
+  }
+
+  if (lowerAlignment.includes("chaotic")) {
+    idealPool.push(...(data.ideals.chaotic || []));
+  }
+
+  if (lowerAlignment.includes("good")) {
+    idealPool.push(...(data.ideals.good || []));
+  }
+
+  if (lowerAlignment.includes("evil")) {
+    idealPool.push(...(data.ideals.evil || []));
+  }
+
+  // fallback
+  if (idealPool.length === 0) {
+    idealPool = data.ideals.neutral || [];
+  }
+
+  const ideal = randomFrom(idealPool);
+
+  const bond = randomFrom(data.bonds);
+  const flaw = randomFrom(data.flaws);
+
+  return { trait1, trait2, ideal, bond, flaw };
+}
+
 const backgroundTraits = {
   acolyte: {
     personalityTraits: [
@@ -737,28 +788,28 @@ const backgroundTraits = {
     ],
     ideals: {
       lawful: ["Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld. (Lawful)",
-      "Power. I hope to one day rise to the top of my faith's religious hierarchy. (Lawful)",
-      "Faith. I trust that my deity will guide my actions.I have faith that if I work hard, things will go well. (Lawful)",
-      "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings. (Any)"
-    ],
+        "Power. I hope to one day rise to the top of my faith's religious hierarchy. (Lawful)",
+        "Faith. I trust that my deity will guide my actions.I have faith that if I work hard, things will go well. (Lawful)",
+        "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings. (Any)"
+      ],
       neutral: ["Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings. (Any)",
-    ],
+      ],
       chaotic: ["Change. We must help bring about the changes the gods are constantly working in the world. (Chaotic)",
-      "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings. (Any)",
-    ],
+        "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings. (Any)",
+      ],
       good: ["Charity. I always try to help those in need, no matter what the personal cost. (Good)",
-      "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings. (Any)",
-    ],
+        "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings. (Any)",
+      ],
       evil: ["Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings. (Any)",
-    ]
+      ]
     },
-    bonds: [ "I would die to recover an ancient relic of my faith that was lost long ago.",
+    bonds: ["I would die to recover an ancient relic of my faith that was lost long ago.",
       "I will someday get revenge on the corrupt temple hierarchy who branded me a heretic.",
       "I owe my life to the priest who took me in when my parents died.",
       "Everything I do is for the common people.",
       "I will do anything to protect the temple where I served.",
       "I seek to preserve a sacred text that my enemies consider heretical and seek to destroy.",
-],
+    ],
     flaws: ["I judge others harshly, and myself even more severely.",
       "I put too much trust in those who wield power within my temple's hierarchy.",
       "My piety sometimes leads me to blindly trust those that profess faith in my god.",
@@ -779,18 +830,18 @@ const backgroundTraits = {
     ],
     ideals: {
       lawful: ["Perfection. True craftsmanship only exists when methods are refined and preserved across generations. (Lawful)",
-      "Craft Guilds. The rules and traditions of artisans exist to protect quality and honor. (Lawful)",
-    ],
+        "Craft Guilds. The rules and traditions of artisans exist to protect quality and honor. (Lawful)",
+      ],
       neutral: ["Mastery. The purpose of life is to refine one's skill to its purest form. (Neutral)",
-      "Work. Creation is its own reward, regardless of fame or recognition. (Neutral)",],
+        "Work. Creation is its own reward, regardless of fame or recognition. (Neutral)",],
       chaotic: ["Innovation. Every object can be improved, and tradition should never limit creativity. (Chaotic)",
-      "Expression. A craft is only meaningful if it reflects the freedom of the maker. (Chaotic)",
-    ],
+        "Expression. A craft is only meaningful if it reflects the freedom of the maker. (Chaotic)",
+      ],
       good: ["Service. My craft exists to improve the lives of others, not myself. (Good)",
-      "Beauty. The world is better when it is filled with meaningful, well-made things. (Good)",],
+        "Beauty. The world is better when it is filled with meaningful, well-made things. (Good)",],
       evil: ["Exploitation. Skill is power, and I intend to profit from those who lack it. (Evil)",
-      "Control. Whoever controls creation controls society itself. (Evil)",
-    ]
+        "Control. Whoever controls creation controls society itself. (Evil)",
+      ]
     },
     bonds: ["My craft was taught to me by someone I owe everything to, and I will not disgrace their teachings.",
       "A rival artisan once humiliated me, and I will prove their methods inferior.",
@@ -820,16 +871,16 @@ const backgroundTraits = {
     ],
     ideals: {
       lawful: ["Fairness. I never target people who can't afford to lose a few coins. (Lawful)",
-      "Aspiration. I'm determined to make something of myself. (Any)"],
+        "Aspiration. I'm determined to make something of myself. (Any)"],
       neutral: ["Aspiration. I'm determined to make something of myself. (Any)",],
       chaotic: ["Independence. I am a free spirit - no one tells me what to do. (Chaotic)",
-      "Creativity. I never run the same con twice. (Chaotic)",
-      "Aspiration. I'm determined to make something of myself. (Any)"],
+        "Creativity. I never run the same con twice. (Chaotic)",
+        "Aspiration. I'm determined to make something of myself. (Any)"],
       good: ["Charity. I distribute the money I acquire to the people who really need it. (Good)",
-      "Friendship. Material goods come and go. Bonds of friendship last forever. (Good)",
-      "Aspiration. I'm determined to make something of myself. (Any)",],
+        "Friendship. Material goods come and go. Bonds of friendship last forever. (Good)",
+        "Aspiration. I'm determined to make something of myself. (Any)",],
       evil: ["Aspiration. I'm determined to make something of myself. (Any)",
-    ]
+      ]
     },
     bonds: ["I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.",
       "I owe everything to my mentor - a horrible person who's probably rotting in jail somewhere.",
@@ -859,12 +910,12 @@ const backgroundTraits = {
     ideals: {
       lawful: ["Honor. I don't steal from others in the trade. (Lawful)"],
       neutral: ["People. I'm loyal to my friends, not to any ideals, and everyone else can take a trip down the Styx for all I care. (Neutral)",
-    ],
+      ],
       chaotic: ["Freedom. Chains are meant to be broken, as are those who would forge them. (Chaotic)",
-    ],
+      ],
       good: ["Charity. I steal from the wealthy so that I can help people in need. (Good)",
-      "Redemption. There's a spark of good in everyone. (Good)",
-    ],
+        "Redemption. There's a spark of good in everyone. (Good)",
+      ],
       evil: ["Greed. I will do whatever it takes to become wealthy. (Evil)",]
     },
     bonds: ["I'm trying to pay off an old debt I owe to a generous benefactor.",
@@ -880,7 +931,7 @@ const backgroundTraits = {
       "I have a *tell* that reveals when I'm lying.",
       "I turn tail and run when things look bad.",
       "An innocent person is in prison for a crime that I committed. I'm okay with that.",
-   ]
+    ]
   },
   entertainer: {
     personalityTraits: ["I know a story relevant to almost every situation.",
@@ -893,20 +944,20 @@ const backgroundTraits = {
       "I change my mood or my mind as quickly as I change key in a song."],
     ideals: {
       lawful: ["Tradition. The stories, legends, and songs of the past must never be forgotten, for they teach us who we are. (Lawful)",
-      "Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)",
-    ],
+        "Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)",
+      ],
       neutral: ["People. I like seeing the smiles on people's faces when I perform. That's all that matters. (Neutral)",
-      "Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)",
-    ],
+        "Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)",
+      ],
       chaotic: ["Creativity. The world is in need of new ideas and bold action. (Chaotic)",
-      "Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)",
-    ],
+        "Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)",
+      ],
       good: ["Beauty. When I perform, I make the world better than it was. (Good)",
-      "Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)",
-    ],
+        "Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)",
+      ],
       evil: ["Greed. I'm only in it for the money and fame. (Evil)",
-      "Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)",
-    ]
+        "Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)",
+      ]
     },
     bonds: ["My instrument is my most treasured possession, and it reminds me of someone I love.",
       "Someone stole my precious instrument, and someday I'll get it back.",
@@ -934,18 +985,18 @@ const backgroundTraits = {
       "I sometimes underestimate dangers outside of rural life."],
     ideals: {
       lawful: ["Tradition. The rhythms of planting and harvest are older than any kingdom. (Lawful)",
-      "Stability. Order in nature and society keeps life predictable and safe. (Lawful)",
-    ],
+        "Stability. Order in nature and society keeps life predictable and safe. (Lawful)",
+      ],
       neutral: ["Balance. Life is about taking only what the land can give in return. (Neutral)",
-      "Endurance. Survival matters more than ideals or ambition. (Neutral)",
-    ],
+        "Endurance. Survival matters more than ideals or ambition. (Neutral)",
+      ],
       chaotic: ["Freedom. The land belongs to no lord or law, only those who work it. (Chaotic)",
-      "Change. Seasons shift, and so must we—nothing should remain rigid. (Chaotic)"],
+        "Change. Seasons shift, and so must we—nothing should remain rigid. (Chaotic)"],
       good: ["Community. No one should go hungry while others have enough. (Good)",
-      "Care. The land, animals, and people are all worth protecting. (Good)",],
+        "Care. The land, animals, and people are all worth protecting. (Good)",],
       evil: ["Possession. The land exists to serve those strong enough to claim it. (Evil)",
-      "Survival. Only I and mine matter when resources are scarce. (Evil)",
-    ]
+        "Survival. Only I and mine matter when resources are scarce. (Evil)",
+      ]
     },
     bonds: ["My family’s land is everything to me, and I will protect it at any cost.",
       "A bad harvest or disaster nearly destroyed my home once, and I fear it happening again.",
@@ -972,18 +1023,18 @@ const backgroundTraits = {
       "I have trouble turning off my 'watchful' mindset, even when off duty.",
       "I assume problems will escalate unless actively controlled."],
     ideals: {
-      lawful: [ "Order. Without rules, society collapses into chaos and suffering. (Lawful)",
-      "Duty. I exist to uphold structure, not question it. (Lawful)"],
+      lawful: ["Order. Without rules, society collapses into chaos and suffering. (Lawful)",
+        "Duty. I exist to uphold structure, not question it. (Lawful)"],
       neutral: ["Balance. My duty is to protect people, not systems. (Neutral)",
-      "Stability. Peace matters more than who enforces it. (Neutral)",
-    ],
+        "Stability. Peace matters more than who enforces it. (Neutral)",
+      ],
       chaotic: ["Judgment. Rules mean nothing without context and conscience. (Chaotic)",
-      "Reform. Power must be challenged when it becomes unjust. (Chaotic)"],
+        "Reform. Power must be challenged when it becomes unjust. (Chaotic)"],
       good: ["Protection. I exist to shield the innocent, no matter the cost. (Good)",
-      "Mercy. Even criminals deserve fairness and restraint. (Good)",],
+        "Mercy. Even criminals deserve fairness and restraint. (Good)",],
       evil: ["Control. Fear is the most effective form of order. (Evil)",
-      "Power. Authority is only meaningful when it cannot be challenged. (Evil)",
-    ]
+        "Power. Authority is only meaningful when it cannot be challenged. (Evil)",
+      ]
     },
     bonds: ["I failed to protect someone I was sworn to defend, and I will never let it happen again.",
       "My oath of service means everything to me, even above my personal life.",
@@ -1011,17 +1062,17 @@ const backgroundTraits = {
       "I remember routes and terrain better than names or faces."],
     ideals: {
       lawful: ["Reliability. A guide must never break trust or abandon responsibility. (Lawful)",
-      "Structure. Safe travel depends on rules and preparation. (Lawful)"],
+        "Structure. Safe travel depends on rules and preparation. (Lawful)"],
       neutral: ["Survival. Getting through the journey matters more than philosophy. (Neutral)",
-      "Pragmatism. The best path is the one that works. (Neutral)",
-    ],
+        "Pragmatism. The best path is the one that works. (Neutral)",
+      ],
       chaotic: ["Freedom. No path should be owned or restricted. (Chaotic)",
-      "Discovery. The world is meant to be explored, not controlled. (Chaotic)"],
+        "Discovery. The world is meant to be explored, not controlled. (Chaotic)"],
       good: ["Protection. No traveler under my care will be left behind. (Good)",
-      "Guidance. Helping others find their way is a moral duty. (Good)",],
+        "Guidance. Helping others find their way is a moral duty. (Good)",],
       evil: ["Exploitation. Travelers are resources to be used or abandoned. (Evil)",
-      "Dominion. Those who control the route control everything. (Evil)",
-    ]
+        "Dominion. Those who control the route control everything. (Evil)",
+      ]
     },
     bonds: ["I once lost travelers under my care, and I will never let it happen again.",
       "There is a route or destination I am determined to reach no matter the danger.",
@@ -1029,7 +1080,7 @@ const backgroundTraits = {
       "I am searching for a lost place that only I remember the way to.",
       "I feel responsible for anyone who chooses to travel with me.",
       "I believe every journey has meaning, even if others do not understand it."
-   ],
+    ],
     flaws: ["I become reckless when I think I know the safest path.",
       "I struggle to admit when I am lost or uncertain.",
       "I underestimate dangers that are familiar to me.",
@@ -1049,16 +1100,16 @@ const backgroundTraits = {
       "I am working on a grand philosophical theory and love sharing my ideas."],
     ideals: {
       lawful: ["Logic. Emotions must not cloud our sense of what is right and true, or our logical thinking. (Lawful)",
-      "Self-Knowledge. If you know yourself, there's nothing left to know. (Any)"],
+        "Self-Knowledge. If you know yourself, there's nothing left to know. (Any)"],
       neutral: ["Live and Let Live. Meddling in the affairs of others only causes trouble. (Neutral)",
-      "Self-Knowledge. If you know yourself, there's nothing left to know. (Any)",
-    ],
+        "Self-Knowledge. If you know yourself, there's nothing left to know. (Any)",
+      ],
       chaotic: ["Free Thinking. Inquiry and curiosity are the pillars of progress. (Chaotic)",
-      "Self-Knowledge. If you know yourself, there's nothing left to know. (Any)"],
+        "Self-Knowledge. If you know yourself, there's nothing left to know. (Any)"],
       good: ["Greater Good. My gifts are meant to be shared with all, not used for my own benefit. (Good)",
-      "Self-Knowledge. If you know yourself, there's nothing left to know. (Any)",],
+        "Self-Knowledge. If you know yourself, there's nothing left to know. (Any)",],
       evil: ["Power. Solitude and contemplation are paths toward mystical or magical power. (Evil)",
-      "Self-Knowledge. If you know yourself, there's nothing left to know. (Any)",]
+        "Self-Knowledge. If you know yourself, there's nothing left to know. (Any)",]
     },
     bonds: ["Nothing is more important than the other members of my hermitage, order, or association.",
       "I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.",
@@ -1066,14 +1117,14 @@ const backgroundTraits = {
       "I entered seclusion because I loved someone I could not have.",
       "Should my discovery come to light, it could bring ruin to the world.",
       "My isolation gave me great insight into a great evil that only I can destroy.",
-   ],
+    ],
     flaws: ["Now that I've returned to the world, I enjoy its delights a little too much.",
       "I harbor bloodthirsty thoughts that my isolation and meditation failed to quell.",
       "I am dogmatic in my thoughts and philosophy.",
       "I let my need to win arguments overshadow friendships and harmony.",
       "I'd risk too much to uncover a lost bit of knowledge.",
       "I like keeping secrets and won't share them with anyone.",
-   ]
+    ]
   },
   merchant: {
     personalityTraits: ["I am always calculating the value of things, even when I try not to.",
@@ -1086,16 +1137,16 @@ const backgroundTraits = {
       "I tend to talk too much when trying to convince someone."],
     ideals: {
       lawful: ["Contracts. A deal is sacred and must be honored once struck. (Lawful)",
-      "Order. Markets only function when rules are enforced. (Lawful)"],
+        "Order. Markets only function when rules are enforced. (Lawful)"],
       neutral: ["Balance. Trade should benefit both sides, or it will fail eventually. (Neutral)",
-      "Pragmatism. Value is value, regardless of morality. (Neutral)",
-    ],
+        "Pragmatism. Value is value, regardless of morality. (Neutral)",
+      ],
       chaotic: ["Opportunity. Rules exist to be worked around. (Chaotic)",
-      "Risk. Fortune favors those willing to act without permission. (Chaotic)"],
+        "Risk. Fortune favors those willing to act without permission. (Chaotic)"],
       good: ["Fair Trade. No one should be cheated in a deal. (Good)",
-      "Support. Wealth should help lift others out of hardship. (Good)",],
-      evil: [ "Profit. Everything and everyone has a price. (Evil)",
-      "Exploitation. The weak exist to be leveraged. (Evil)",]
+        "Support. Wealth should help lift others out of hardship. (Good)",],
+      evil: ["Profit. Everything and everyone has a price. (Evil)",
+        "Exploitation. The weak exist to be leveraged. (Evil)",]
     },
     bonds: ["I will restore my family’s fortune and reputation, no matter the cost.",
       "A business rival ruined me, and I intend to surpass and outlast them.",
@@ -1110,7 +1161,7 @@ const backgroundTraits = {
       "I am willing to sacrifice long-term trust for short-term gain.",
       "I become anxious when I am not in control of a transaction.",
       "I assume everyone is trying to get the better of me."
-   ]
+    ]
   },
   noble: {
     personalityTraits: ["My eloquent flattery makes everyone I talk to feel like the most wonderful and important person in the world.",
@@ -1123,14 +1174,14 @@ const backgroundTraits = {
       "If you do me an injury, I will crush you, ruin your name, and salt your fields."],
     ideals: {
       lawful: ["Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine. (Lawful)",
-      "Family. Blood runs thicker than water. (Any)"],
+        "Family. Blood runs thicker than water. (Any)"],
       neutral: ["Family. Blood runs thicker than water. (Any)",],
       chaotic: ["Independence. I must prove that I can handle myself without the coddling of my family. (Chaotic)",
-      "Family. Blood runs thicker than water. (Any)"],
+        "Family. Blood runs thicker than water. (Any)"],
       good: ["Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity. (Good)",
-      "Family. Blood runs thicker than water. (Any)",],
+        "Family. Blood runs thicker than water. (Any)",],
       evil: ["Power. If I can attain more power, no one will tell me what to do. (Evil)",
-      "Family. Blood runs thicker than water. (Any)",]
+        "Family. Blood runs thicker than water. (Any)",]
     },
     bonds: ["I will face any challenge to win the approval of my family.",
       "My house's alliance with another noble family must be sustained at all costs.",
@@ -1139,7 +1190,7 @@ const backgroundTraits = {
       "My loyalty to my sovereign is unwavering.",
       "The common folk must see me as a hero of the people.",
     ],
-    flaws: [ "I secretly believe that everyone is beneath me.",
+    flaws: ["I secretly believe that everyone is beneath me.",
       "I hide a truly scandalous secret that could ruin my family forever.",
       "I too often hear veiled insults and threats in every word addressed to me, and I'm quick to anger.",
       "I have an insatiable desire for decadent pleasures.",
@@ -1158,16 +1209,16 @@ const backgroundTraits = {
       "I'm convinced that people are always trying to steal my secrets."],
     ideals: {
       lawful: ["Logic. Emotions must not cloud our logical thinking. (Lawful)",
-      "Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)"],
-      neutral: [ "Knowledge. The path to power and self-improvement is through knowledge. (Neutral)",
-      "Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)",
-    ],
+        "Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)"],
+      neutral: ["Knowledge. The path to power and self-improvement is through knowledge. (Neutral)",
+        "Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)",
+      ],
       chaotic: ["No Limits. Nothing should fetter the infinite possibility inherent in all existence. (Chaotic)",
-      "Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)"],
+        "Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)"],
       good: ["Beauty. What is beautiful points us beyond itself toward what is true. (Good)",
-      "Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)",],
-      evil: [  "Power. Knowledge is the path to power and domination. (Evil)",
-      "Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)",]
+        "Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)",],
+      evil: ["Power. Knowledge is the path to power and domination. (Evil)",
+        "Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)",]
     },
     bonds: ["It is my duty to protect my students.",
       "I have an ancient text that holds terrible secrets that must not fall into the wrong hands.",
@@ -1176,7 +1227,7 @@ const backgroundTraits = {
       "I've been searching my whole life for the answer to a certain question.",
       "I sold my soul for knowledge. I hope to do great deeds and win it back.",
     ],
-    flaws: [ "I am easily distracted by the promise of information.",
+    flaws: ["I am easily distracted by the promise of information.",
       "Most people scream and run when they see a demon. I stop and take notes on its anatomy.",
       "Unlocking an ancient mystery is worth the price of a civilization.",
       "I overlook obvious solutions in favor of complicated ones.",
@@ -1195,18 +1246,18 @@ const backgroundTraits = {
       "I like a job well done, especially if I can convince someone else to do it."],
     ideals: {
       lawful: ["Fairness. We all do the work, so we all share in the rewards. (Lawful)",
-      "Aspiration. Someday I'll own my own ship and chart my own destiny. (Any)",
-    ],
-      neutral: [ "People. I'm committed to my crewmates, not to ideals. (Neutral)",
-      "Aspiration. Someday I'll own my own ship and chart my own destiny. (Any)",
-    ],
+        "Aspiration. Someday I'll own my own ship and chart my own destiny. (Any)",
+      ],
+      neutral: ["People. I'm committed to my crewmates, not to ideals. (Neutral)",
+        "Aspiration. Someday I'll own my own ship and chart my own destiny. (Any)",
+      ],
       chaotic: ["Freedom. The sea is freedom - the freedom to go anywhere and do anything. (Chaotic)",
-      "Aspiration. Someday I'll own my own ship and chart my own destiny. (Any)"],
+        "Aspiration. Someday I'll own my own ship and chart my own destiny. (Any)"],
       good: ["Respect. The thing that keeps a ship together is mutual respect between captain and crew. (Good)",
-      "Aspiration. Someday I'll own my own ship and chart my own destiny. (Any)",],
+        "Aspiration. Someday I'll own my own ship and chart my own destiny. (Any)",],
       evil: ["Mastery. I'm a predator, and the other ships on the sea are my prey. (Evil)",
-      "Aspiration. Someday I'll own my own ship and chart my own destiny. (Any)",
-   ]
+        "Aspiration. Someday I'll own my own ship and chart my own destiny. (Any)",
+      ]
     },
     bonds: ["I'm loyal to my captain first, everything else second.",
       "The ship is most important - crewmates and captains come and go.",
@@ -1221,7 +1272,7 @@ const backgroundTraits = {
       "Once I start drinking, it's hard for me to stop.",
       "I can't help but pocket loose coins and other trinkets I come across.",
       "My pride will probably lead to my destruction.",
-   ]
+    ]
   },
   scribe: {
     personalityTraits: ["I notice inconsistencies, errors, and missing details immediately.",
@@ -1234,18 +1285,18 @@ const backgroundTraits = {
       "I sometimes lose track of the real world while focusing on details."],
     ideals: {
       lawful: ["Truth. Knowledge must be recorded accurately and preserved without distortion. (Lawful)",
-      "Order. Information must be organized to be meaningful. (Lawful)",
-    ],
+        "Order. Information must be organized to be meaningful. (Lawful)",
+      ],
       neutral: ["Understanding. Knowledge itself is the highest pursuit. (Neutral)",
-      "Preservation. Information should outlast those who record it. (Neutral)",
-    ],
+        "Preservation. Information should outlast those who record it. (Neutral)",
+      ],
       chaotic: ["Revelation. Knowledge should be free from restriction or gatekeeping. (Chaotic)",
-      "Discovery. The unknown is more important than any system of rules. (Chaotic)"],
+        "Discovery. The unknown is more important than any system of rules. (Chaotic)"],
       good: ["Sharing. Knowledge should help others grow and improve. (Good)",
-      "Clarity. Truth should be accessible to all, not hidden. (Good)",],
-      evil: [ "Control. Those who hold knowledge hold power over others. (Evil)",
-      "Secrecy. Some truths are best kept hidden—for my benefit. (Evil)",
-    ]
+        "Clarity. Truth should be accessible to all, not hidden. (Good)",],
+      evil: ["Control. Those who hold knowledge hold power over others. (Evil)",
+        "Secrecy. Some truths are best kept hidden—for my benefit. (Evil)",
+      ]
     },
     bonds: ["I am protecting a piece of knowledge that others would destroy if they found it.",
       "My mentor entrusted me with unfinished work that I must complete.",
@@ -1273,18 +1324,18 @@ const backgroundTraits = {
       "I face problems head-on.A simple, direct solution is the best path to success."],
     ideals: {
       lawful: ["Responsibility. I do what I must and obey just authority. (Lawful)",
-      "Nation. My city, nation, or people are all that matter. (Any)",
-    ],
+        "Nation. My city, nation, or people are all that matter. (Any)",
+      ],
       neutral: ["Live and Let Live. Ideals aren't worth killing over or going to war for. (Neutral)",
-      "Nation. My city, nation, or people are all that matter. (Any)",
-    ],
+        "Nation. My city, nation, or people are all that matter. (Any)",
+      ],
       chaotic: ["Independence. When people follow orders blindly, they embrace a kind of tyranny. (Chaotic)",
-      "Nation. My city, nation, or people are all that matter. (Any)"],
+        "Nation. My city, nation, or people are all that matter. (Any)"],
       good: ["Greater Good. Our lot is to lay down our lives in defense of others. (Good)",
-      "Nation. My city, nation, or people are all that matter. (Any)",],
+        "Nation. My city, nation, or people are all that matter. (Any)",],
       evil: ["Might. In life as in war, the stronger force wins. (Evil)",
-      "Nation. My city, nation, or people are all that matter. (Any)",
-    ]
+        "Nation. My city, nation, or people are all that matter. (Any)",
+      ]
     },
     bonds: ["I would still lay down my life for the people I served with.",
       "Someone saved my life on the battlefield. To this day, I will never leave a friend behind.",
@@ -1293,13 +1344,13 @@ const backgroundTraits = {
       "Those who fight beside me are those worth dying for.",
       "I fight for those who cannot fight for themselves.",
     ],
-    flaws: [ "The monstrous enemy we faced in battle still leaves me quivering with fear.",
+    flaws: ["The monstrous enemy we faced in battle still leaves me quivering with fear.",
       "I have little respect for anyone who is not a proven warrior.",
       "I made a terrible mistake in battle that cost many lives, and I would do anything to keep that mistake secret.",
       "My hatred of my enemies is blind and unreasoning.",
       "I obey the law, even if the law causes misery.",
       "I'd rather eat my armor than admit when I'm wrong.",
-   ]
+    ]
   },
   wayfarer: {
     personalityTraits: ["I am comfortable sleeping almost anywhere.",
@@ -1312,18 +1363,18 @@ const backgroundTraits = {
       "I sometimes struggle to form lasting bonds."],
     ideals: {
       lawful: ["Direction. Even wanderers need paths and boundaries to stay safe. (Lawful)",
-      "Respect. The road has rules, even if they are unwritten. (Lawful)",
-    ],
+        "Respect. The road has rules, even if they are unwritten. (Lawful)",
+      ],
       neutral: ["Endurance. Keep moving forward, no matter what. (Neutral)",
-      "Acceptance. The world is what it is; I simply pass through it. (Neutral)",
-    ],
+        "Acceptance. The world is what it is; I simply pass through it. (Neutral)",
+      ],
       chaotic: ["Freedom. No one should be bound to a single place or purpose. (Chaotic)",
-      "Change. Life is movement; stillness is stagnation. (Chaotic)",
-    ],
+        "Change. Life is movement; stillness is stagnation. (Chaotic)",
+      ],
       good: ["Compassion. Every stranger on the road deserves kindness. (Good)",
-      "Aid. I help those I encounter, knowing I may need help someday. (Good)",],
-      evil: [ "Survival. The road belongs to those willing to take what they need. (Evil)",
-      "Exploitation. Every traveler is either prey or competition. (Evil)",]
+        "Aid. I help those I encounter, knowing I may need help someday. (Good)",],
+      evil: ["Survival. The road belongs to those willing to take what they need. (Evil)",
+        "Exploitation. Every traveler is either prey or competition. (Evil)",]
     },
     bonds: ["I am searching for someone I lost while traveling long ago.",
       "A place I once knew was destroyed or changed, and I seek it again.",
@@ -2487,13 +2538,13 @@ document.getElementById("generate").addEventListener("click", async () => {
   const name = await names(culture);
 
   // Traits
-  let trait1 = personalityTraits1(background);
-  let trait2 = personalityTraits2(background);
-  while (trait1 === trait2) trait2 = personalityTraits2(background);
+  const profile = generateBackgroundProfile(background, alignment);
 
-  const idealsStr = ideals(background, alignment);
-  const bondsStr = bonds(background);
-  const flawsStr = flaws(background);
+  const trait1 = profile.trait1;
+  const trait2 = profile.trait2;
+  const idealsStr = profile.ideal;
+  const bondsStr = profile.bond;
+  const flawsStr = profile.flaw;
 
   let raceDisplay;
 

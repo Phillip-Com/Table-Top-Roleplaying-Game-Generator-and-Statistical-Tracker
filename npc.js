@@ -495,7 +495,7 @@ async function loadNames() {
 async function getCulture(culture) {
   culture = culture.toLowerCase();
 
-  const response = await fetch(`./data/names.json`);
+  const response = await fetch(`data/names.json`);
 
   if (!response.ok) {
     throw new Error(`Error fetching names.json`);

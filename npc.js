@@ -7,7 +7,7 @@ const racesSummary = {
 }
 
 const regionRaceData = {
-  racesRandom: {
+  Random: {
     phb: {
       dragonborn: 0.0,
       dwarf: 0.0,
@@ -58,7 +58,7 @@ const regionRaceData = {
       zombie: 0.0
     }
   },
-  racesEmpire: {
+  Empire: {
     phb: {
       dragonborn: 3.0,
       dwarf: 12.0,
@@ -109,7 +109,7 @@ const regionRaceData = {
       zombie: 0.01,
     }
   },
-  racesSummerIsle: {
+  SummerIsle: {
     phb: {
       dragonborn: 6.0,
       dwarf: 8.0,
@@ -160,7 +160,7 @@ const regionRaceData = {
       zombie: 0.01,
     }
   },
-  racesNeshiustein: {
+  Neshiustein: {
     phb: {
       dragonborn: 1.0,
       dwarf: 10.0,
@@ -211,7 +211,7 @@ const regionRaceData = {
       zombie: 0.5
     }
   },
-  racesCarponIsles: {
+  CarponIsles: {
     phb: {
       dragonborn: 3.0,
       dwarf: 4.0,
@@ -262,7 +262,7 @@ const regionRaceData = {
       zombie: 0.01,
     }
   },
-  racesSherus: {
+  Sherus: {
     phb: {
       dragonborn: 4.0,
       dwarf: 20.0,
@@ -313,7 +313,7 @@ const regionRaceData = {
       zombie: 0.01,
     }
   },
-  racesDrustein: {
+  Drustein: {
     phb: {
       dragonborn: 2.0,
       dwarf: 5.0,
@@ -364,7 +364,7 @@ const regionRaceData = {
       zombie: 0.0
     }
   },
-  racesWhiteberg: {
+  Whiteberg: {
     phb: {
       dragonborn: 6.0,
       dwarf: 20.0,
@@ -415,7 +415,7 @@ const regionRaceData = {
       zombie: 0.0,
     }
   },
-  racesSundermark: {
+  Sundermark: {
     phb: {
       dragonborn: 1.0,
       dwarf: 5.0,
@@ -643,9 +643,13 @@ function randomFrom(array) {
 }
 
 async function names(region) {
+  region = region.replace(/\s/g, ""); 
 
   const regionMap = {
     Empire: "imperial",
+    SummerIsle: "imperial",
+    Neshiustein: "imperial",
+    CarponIsles: "imperial",
     Sherus: "sherus",
     Drustein: "drustein",
     Whiteberg: "whiteberg",

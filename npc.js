@@ -614,6 +614,7 @@ function abilities(background) {
     soldier: [0, 1, 2],
     wayfarer: [1, 4, 5]
   };
+  console.log("Background:", background);
   const mods = backgroundMods[background.toLowerCase()];
 
   let spread = Math.floor(Math.random() * 2) + 1;
@@ -709,7 +710,7 @@ function alignments() {
 // Background Generator
 function getCheckedBackgrounds() {
   const all = Array.from(
-    document.querySelectorAll('.background-grid input[type="checkbox"][data-bg]')
+    document.querySelectorAll('.check-grid input[type="checkbox"][data-bg]')
   );
 
   const checked = all.filter(cb => cb.checked);

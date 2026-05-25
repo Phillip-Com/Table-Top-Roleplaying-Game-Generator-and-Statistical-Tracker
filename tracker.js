@@ -12,6 +12,9 @@ let selectedTag = null;
 let reactionMode = false;
 let reactionCharacter = null;
 
+const ABILITY_KEYS = ["str", "dex", "con", "int", "wis", "cha"];
+const ABILITY_LABELS = { str: "STR", dex: "DEX", con: "CON", int: "INT", wis: "WIS", cha: "CHA" };
+
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) saveGameData("tab hidden");
 });
@@ -351,6 +354,8 @@ window.switchTab = function (tabId) {
   } else if (tabId === "stats-editor") {
     renderEditorStats(selectedCharacter);
     renderCharacterButtons();
+  } else if (tabId === "character-sheets") {
+    renderSheetTab();
   } else if (tabId === "summary") {
     renderStatsSummary();
   }
@@ -428,7 +433,7 @@ function renderStatsSummary() {
     copyBtn.style.cssText = `
       margin-top: 10px;
       align-self: flex-end;
-      background-color: #333;
+      background-color: var(--primary-accent);
       color: #fff;
       border: none;
       border-radius: 6px;
@@ -436,8 +441,8 @@ function renderStatsSummary() {
       cursor: pointer;
       transition: background 0.2s;
     `;
-    copyBtn.addEventListener("mouseenter", () => (copyBtn.style.backgroundColor = "#555"));
-    copyBtn.addEventListener("mouseleave", () => (copyBtn.style.backgroundColor = "#333"));
+    copyBtn.addEventListener("mouseenter", () => (copyBtn.style.backgroundColor = "var(--elevated)"));
+    copyBtn.addEventListener("mouseleave", () => (copyBtn.style.backgroundColor = "var(--primary-accent)"));
     copyBtn.onclick = async () => {
       try {
         await navigator.clipboard.writeText(summaryText);
@@ -448,7 +453,7 @@ function renderStatsSummary() {
         copyBtn.style.backgroundColor = "#2b662b";
         setTimeout(() => {
           copyBtn.textContent = prevText;
-          copyBtn.style.backgroundColor = "#333";
+          copyBtn.style.backgroundColor = "var(--primary-accent)";
         }, 1500);
       } catch (err) {
         console.warn("Clipboard write failed, using fallback:", err);
@@ -465,7 +470,7 @@ function renderStatsSummary() {
         copyBtn.style.backgroundColor = "#2b662b";
         setTimeout(() => {
           copyBtn.textContent = `Copy ${name}'s Summary`;
-          copyBtn.style.backgroundColor = "#333";
+          copyBtn.style.backgroundColor = "var(--primary-accent)";
         }, 1500);
       }
     };
@@ -575,6 +580,748 @@ function resolveToStatName(idOrTagOrName) {
 
   return null;
 }
+// -------------------- CHARACTER SHEETS --------------------
+function abilityMod(score) {
+  return Math.floor((score - 10) / 2);
+}
+
+function modStr(mod) {
+  return mod >= 0 ? `+${mod}` : `${mod}`;
+}
+
+function blankSheet(name) {
+  const abilities = {};
+  ABILITY_KEYS.forEach(key => { abilities[key] = 10; });
+  return {
+    name,
+    level: 1,
+    proficiencyBonus: 2,
+    jackOfAllTrades: false,
+    initiativeBonus: 0,
+    abilities,
+    savingThrowProficiencies: {},
+    skillProficiencies: {},
+    skills: [],
+    attacks: [],
+    spellAttackBonus: 0,
+    spells: [],
+    createdAt: Date.now()
+  };
+}
+
+function ensureCharacterSheets() {
+  if (!gameData.characterSheets) {
+    gameData.characterSheets = {};
+  }
+}
+
+function createSheetForCharacter(name) {
+  ensureCharacterSheets();
+  if (!gameData.characterSheets[name]) {
+    gameData.characterSheets[name] = blankSheet(name);
+  }
+  saveGameData("Created sheet for " + name);
+}
+
+function addNewCharacter(name) {
+  if (!name || !name.trim()) return alert("Character name cannot be empty.");
+  name = name.trim();
+
+  if (gameData.characters.includes(name)) {
+    showTrackerMessage(`Character "${name}" already exists!`);
+    return;
+  }
+  gameData.characters.push(name);
+  createSheetForCharacter(name);
+
+  ensureCharacterSheets();
+  gameData.characterSheets[name] = blankSheet(name);
+
+  saveGameData("Added new character: " + name);
+  renderCharacterButtons();
+  renderSheetTab();
+  showTrackerMessage(`Character "${name}" added!`);
+}
+
+function removeCharacter(name) {
+  if (!confirm(`remove "${name}"? This cannot be undone.`)) return;
+
+  gameData.characters = gameData.characters.filter(c => c !== name);
+  delete gameData.characterStats[name];
+  if (gameData.selectedCharacter) delete gameData.selectedCharacter[name];
+
+  if (selectedCharacter === name) {
+    selectedCharacter = gameData.characters[0] || null;
+  }
+
+  saveGameData("Removed character: " + name);
+  renderCharacterButtons();
+  renderSheetTab();
+  updateSideStats();
+  showTrackerMessage(`Character "${name}" removed.`);
+}
+
+function profBonusForLevel(level) {
+  if (level <= 4) return 2;
+  if (level <= 8) return 3;
+  if (level <= 12) return 4;
+  if (level <= 16) return 5;
+  return 6;
+}
+
+function renderSheetTab() {
+  const container = document.getElementById("character-sheet-tab");
+  if (!container) return;
+  ensureCharacterSheets();
+
+  container.innerHTML = ""; // clear previous
+
+  const topBar = document.createElement("div");
+  topBar.className = "sheet-topbar";
+
+  const addBtn = document.createElement("button");
+  addBtn.className = "sheet-add-btn";
+  addBtn.textContent = "Add Character";
+  addBtn.onclick = openAddCharacterModal;
+  topBar.appendChild(addBtn);
+
+  container.appendChild(topBar);
+
+  if (gameData.characters.length === 0) {
+    const empty = document.createElement("p");
+    empty.style.padding = "20px";
+    empty.style.opacity = "0.6";
+    empty.textContent = "No character yet. Add one above!";
+    container.appendChild(empty);
+    return;
+  }
+
+  const grid = document.createElement("div");
+  grid.className = "sheet-grid";
+
+  gameData.characters.forEach(name => {
+    const sheet = gameData.characterSheets[name];
+    if (!sheet) {
+      const card = buildSheetlessCard(name);
+      grid.appendChild(card);
+      return;
+    }
+    const card = buildSheetCard(name, sheet);
+    grid.appendChild(card);
+  });
+
+  container.appendChild(grid);
+}
+
+function buildSheetlessCard(name) {
+  const card = document.createElement("div");
+  card.className = "sheet-card sheet-card--empty";
+
+  card.innerHTML = `<div class="sheet-card-name">${name}</div>
+  <p style="opacity:0.5;font-size:0.85rem">No sheet yet</p>`;
+
+  const createBtn = document.createElement("button");
+  createBtn.textContent = "Create Sheet";
+  createBtn.className = "sheet-btn-secondary";
+  createBtn.onclick = () => {
+    createSheetForCharacter(name);
+    renderSheetTab();
+  };
+  card.appendChild(createBtn);
+
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "Remove Character";
+  removeBtn.className = "sheet-button-danger";
+  removeBtn.onclick = () => removeCharacter(name);
+  card.appendChild(removeBtn);
+
+  return card;
+}
+
+function buildSheetCard(name, sheet) {
+  const card = document.createElement("div");
+  card.className = "sheet-card";
+
+  const header = document.createElement("div");
+  header.className = "sheet-card-header";
+
+  const nameE1 = document.createElement("div");
+  nameE1.className = "sheet-card-name";
+
+  const meta = document.createElement("div");
+  meta.className = "sheet-card-meta";
+  const classStr = [sheet.race, sheet.class, sheet.subclass].filter(Boolean).join(" · ");
+  meta.textContent = classStr || "No class set";
+
+  const levelBadge = document.createElement("div");
+  levelBadge.className = "sheet-level-badge";
+  levelBadge.textContent = `Lvl ${sheet.level}`;
+
+  header.appendChild(nameE1);
+  header.appendChild(meta);
+  header.appendChild(levelBadge);
+  card.appendChild(header);
+
+  // ── Ability scores row ──
+  const abilitiesRow = document.createElement("div");
+  abilitiesRow.className = "sheet-abilities-row";
+
+  ABILITY_KEYS.forEach(key => {
+    const score = sheet.abilities[key] ?? 10;
+    const mod = abilityMod(score);
+    const cell = document.createElement("div");
+    cell.className = "sheet-ability-cell";
+    cell.innerHTML = `
+      <span class="ability-label">${key.toUpperCase()}</span>
+      <span class="ability-score">${score}</span>
+      <span class="ability-mod">${modStr(mod)}</span>
+    `;
+    abilitiesRow.appendChild(cell);
+  });
+
+  card.appendChild(abilitiesRow);
+
+  // ── Quick stats row ──
+  const quickStats = document.createElement("div");
+  quickStats.className = "sheet-quick-stats";
+
+  [
+    { label: "Prof", value: modStr(sheet.proficiencyBonus) },
+    { label: "Init", value: modStr(sheet.initiative) }
+  ].forEach(({ label, value }) => {
+    const cell = document.createElement("div");
+    cell.className = "sheet-qs-cell";
+    cell.innerHTML = `<span class="qs-label">${label}</span><span class="qs-value">${value}</span>`;
+    quickStats.appendChild(cell);
+  });
+
+  card.appendChild(quickStats);
+
+  // ── Notes preview ──
+  if (sheet.features || sheet.notes) {
+    const preview = document.createElement("div");
+    preview.className = "sheet-notes-preview";
+    const combined = [sheet.features, sheet.notes].filter(Boolean).join(" · ");
+    preview.textContent = combined.length > 80 ? combined.slice(0, 80) + "…" : combined;
+    card.appendChild(preview);
+  }
+
+  // ── Action buttons ──
+  const btnRow = document.createElement("div");
+  btnRow.className = "sheet-btn-row";
+
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "Edit Sheet";
+  editBtn.className = "sheet-btn-primary";
+  editBtn.onclick = () => openSheetEditor(name);
+  btnRow.appendChild(editBtn);
+
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "Remove";
+  removeBtn.className = "sheet-btn-danger";
+  removeBtn.onclick = () => removeCharacter(name);
+  btnRow.appendChild(removeBtn);
+
+  card.appendChild(btnRow);
+
+  return card;
+}
+
+// ── Add Character Modal ──────────────────────────────────────
+function openAddCharacterModal() {
+  const container = document.createElement("div");
+  container.style.display = "flex";
+  container.style.flexDirection = "column";
+  container.style.gap = "10px";
+
+  const nameLabel = document.createElement("label");
+  nameLabel.textContent = "Character Name:";
+  const nameInput = document.createElement("input");
+  nameInput.type = "text";
+  nameInput.placeholder = "e.g. Thalindra";
+  nameInput.style.fontSize = "1.1rem";
+  nameInput.style.padding = "6px";
+
+  // Pressing Enter confirms
+  nameInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      addNewCharacter(nameInput.value);
+      hideModal();
+    }
+  });
+
+  container.appendChild(nameLabel);
+  container.appendChild(nameInput);
+
+  showModal("Add New Character", container, () => {
+    addNewCharacter(nameInput.value);
+  });
+
+  // Auto-focus
+  setTimeout(() => nameInput.focus(), 50);
+}
+
+// ── Full Sheet Editor Modal ──────────────────────────────────
+function openSheetEditor(name) {
+  ensureCharacterSheets();
+
+  const sheet = gameData.characterSheets[name];
+  if (!sheet) return;
+
+  // ── Wrapper ────────────────────────────────────────────────
+  const wrapper = document.createElement("div");
+  wrapper.style.cssText = `
+    min-width:min(750px, 92vw);
+    max-height:75vh;
+    overflow-y:auto;
+    padding-right:4px;
+  `;
+
+  // ── Helper builders ────────────────────────────────────────
+  function row(label, input) {
+    const d = document.createElement("div");
+    d.style.cssText = `
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:8px;
+    `;
+
+    const l = document.createElement("label");
+    l.textContent = label;
+    l.style.cssText = `
+      min-width:140px;
+      font-size:0.85rem;
+      opacity:0.8;
+    `;
+
+    d.appendChild(l);
+    d.appendChild(input);
+
+    return d;
+  }
+
+  function textInput(val, onChange) {
+    const i = document.createElement("input");
+
+    i.type = "text";
+    i.value = val ?? "";
+
+    i.style.cssText = `
+    width:100%;
+    padding:8px 10px;
+    background:var(--background);
+    border:1px solid var(--primary-accent);
+    color:var(--primary-text);
+    border-radius:6px;
+  `;
+
+    i.addEventListener("input", () => onChange(i.value));
+
+    return i;
+  }
+
+  function numInput(val, onChange, min = 0, max = 9999) {
+    const i = document.createElement("input");
+
+    i.type = "number";
+    i.value = val ?? 0;
+    i.min = min;
+    i.max = max;
+
+    i.style.cssText = `
+    width:100%;
+    padding:8px 10px;
+    background:var(--background);
+    border:1px solid var(--primary-accent);
+    color:var(--primary-text);
+    border-radius:6px;
+  `;
+
+    i.addEventListener("input", () => {
+      onChange(parseInt(i.value) || 0);
+    });
+
+    return i;
+  }
+
+  function selectInput(options, val, onChange) {
+    const s = document.createElement("select");
+
+    s.style.cssText = `
+    width:100%;
+    padding:8px 10px;
+    background:var(--background);
+    border:1px solid var(--primary-accent);
+    color:var(--primary-text);
+    border-radius:6px;
+  `;
+
+    const blank = document.createElement("option");
+    blank.value = "";
+    blank.textContent = "-- Select --";
+    s.appendChild(blank);
+
+    options.forEach(opt => {
+      const o = document.createElement("option");
+
+      o.value = opt;
+      o.textContent = opt;
+
+      if (opt === val) o.selected = true;
+
+      s.appendChild(o);
+    });
+
+    s.addEventListener("change", () => onChange(s.value));
+
+    return s;
+  }
+
+  function textarea(val, onChange) {
+    const t = document.createElement("textarea");
+
+    t.value = val ?? "";
+
+    t.style.cssText = `
+    width:100%;
+    min-height:100px;
+    padding:10px;
+    background:var(--background);
+    border:1px solid var(--primary-accent);
+    color:var(--primary-text);
+    border-radius:6px;
+    font-family:inherit;
+    resize:vertical;
+    box-sizing:border-box;
+  `;
+
+    t.addEventListener("input", () => onChange(t.value));
+
+    return t;
+  }
+
+  function sectionHeader(text) {
+    const h = document.createElement("h3");
+
+    h.textContent = text;
+
+    h.style.cssText = `
+    margin:20px 0 10px;
+    padding-bottom:6px;
+    border-bottom:1px solid var(--primary-accent);
+    color:var(--secondary-text);
+    text-shadow:var(--panel-shadow);
+  `;
+
+    return h;
+  }
+
+  // ── Identity + Advancement ─────────────────────────────────
+  wrapper.appendChild(sectionHeader("Character"));
+
+  const topGrid = document.createElement("div");
+
+  topGrid.style.cssText = `
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:12px;
+    margin-bottom:16px;
+  `;
+
+  
+
+  function topField(labelText, input) {
+    const wrap = document.createElement("div");
+
+    wrap.style.cssText = `
+    display:flex;
+    flex-direction:column;
+    gap:6px`
+
+    const label = document.createElement("label");
+
+    label.textContent = labelText;
+
+    label.style.cssText = `
+  font-size:0.8rem;
+  color:var(--secondary-text);
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  `;
+
+    wrap.appendChild(label);
+    wrap.appendChild(input);
+
+    return wrap;
+  }
+
+  topGrid.appendChild(
+    topField(
+      "Name",
+      textInput(sheet.name, v => sheet.name = v)
+    )
+  );
+
+  const levelInp = numInput(sheet.level, v => {
+    sheet.level = v;
+
+    sheet.proficiencyBonus = profBonusForLevel(v);
+    profInp.value = sheet.proficiencyBonus;
+  }, 1, 20);
+
+  topGrid.appendChild(
+    topField("Level", levelInp)
+  );
+
+  const profInp = numInput(
+    sheet.proficiencyBonus,
+    v => sheet.proficiencyBonus = v,
+    0,
+    10
+  );
+
+  topGrid.appendChild(
+    topField("Proficiency Bonus", profInp)
+  );
+
+  wrapper.appendChild(topGrid);
+
+  // ── Ability Scores ─────────────────────────────────────────
+  wrapper.appendChild(sectionHeader("Ability Scores"));
+
+  const abilGrid = document.createElement("div");
+
+  abilGrid.style.cssText = `
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:16px;
+  `;
+
+  let initModInp;
+
+  ABILITY_KEYS.forEach(key => {
+    const cell = document.createElement("div");
+
+    cell.style.cssText = `
+      background:var(--background);
+      border:1px solid var(--surfaces);
+      border-radius:8px;
+      padding:10px;
+      text-align:center;
+    `;
+
+    const label = document.createElement("div");
+
+    label.textContent = ABILITY_LABELS[key];
+
+    label.style.cssText = `
+      font-size:0.75rem;
+      opacity:0.6;
+      margin-bottom:4px;
+      text-transform:uppercase;
+      letter-spacing:0.05em;
+    `;
+
+    const scoreInp = document.createElement("input");
+
+    scoreInp.type = "number";
+    scoreInp.value = sheet.abilities[key] ?? 10;
+    scoreInp.min = 1;
+    scoreInp.max = 30;
+
+    scoreInp.style.cssText = `
+      width:56px;
+      text-align:center;
+      font-size:1.5rem;
+      font-weight:bold;
+      background:transparent;
+      border:none;
+      border-bottom:2px solid var(--secondary-accent);
+      color:var(--primary-text);
+      outline:none;
+    `;
+
+    const modDisplay = document.createElement("div");
+
+    modDisplay.style.cssText = `
+      font-size:0.9rem;
+      color:var(--secondary-text);
+      margin-top:2px;
+    `;
+
+    modDisplay.textContent = modStr(
+      abilityMod(sheet.abilities[key] ?? 10)
+    );
+
+    scoreInp.addEventListener("input", () => {
+      const val = parseInt(scoreInp.value) || 10;
+
+      sheet.abilities[key] = val;
+
+      modDisplay.textContent = modStr(abilityMod(val));
+
+      // Auto-update initiative from DEX
+      if (key === "dex") {
+        sheet.initiative = abilityMod(val);
+
+        if (initModInp) {
+          initModInp.value = sheet.initiative;
+        }
+      }
+    });
+
+    cell.appendChild(label);
+    cell.appendChild(scoreInp);
+    cell.appendChild(modDisplay);
+
+    abilGrid.appendChild(cell);
+  });
+
+  wrapper.appendChild(abilGrid);
+
+  // ── Saving Throws + Initiative ────────────────────────────
+  wrapper.appendChild(sectionHeader("Saving Throws & Initiative"));
+
+  const saveGrid = document.createElement("div");
+
+  saveGrid.style.cssText = `
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:14px;
+  `;
+
+  ABILITY_KEYS.forEach(key => {
+    const label = document.createElement("label");
+
+    label.style.cssText = `
+      display:flex;
+      align-items:center;
+      gap:4px;
+      font-size:0.85rem;
+    `;
+
+    const cb = document.createElement("input");
+
+    cb.type = "checkbox";
+    cb.checked = !!sheet.savingThrowProficiencies[key];
+
+    cb.addEventListener("change", () => {
+      sheet.savingThrowProficiencies[key] = cb.checked;
+    });
+
+    label.appendChild(cb);
+    label.appendChild(
+      document.createTextNode(ABILITY_LABELS[key])
+    );
+
+    saveGrid.appendChild(label);
+  });
+
+  wrapper.appendChild(saveGrid);
+
+  initModInp = numInput(
+    sheet.initiative,
+    v => sheet.initiative = v,
+    -10,
+    20
+  );
+
+  wrapper.appendChild(
+    row("Initiative Modifier", initModInp)
+  );
+
+  // ── Spellcasting ───────────────────────────────────────────
+  wrapper.appendChild(sectionHeader("Spellcasting"));
+
+  wrapper.appendChild(row(
+    "Casting Ability",
+    selectInput(
+      ["str", "dex", "con", "int", "wis", "cha"],
+      sheet.spellcastingAbility,
+      v => {
+        sheet.spellcastingAbility = v;
+
+        if (v && sheet.abilities[v] !== undefined) {
+          const mod = abilityMod(sheet.abilities[v]);
+
+          sheet.spellSaveDC =
+            8 + sheet.proficiencyBonus + mod;
+
+          sheet.spellAttackBonus =
+            sheet.proficiencyBonus + mod;
+
+          spellDCInp.value = sheet.spellSaveDC;
+          spellAtkInp.value = sheet.spellAttackBonus;
+        }
+      }
+    )
+  ));
+
+  const spellDCInp = numInput(
+    sheet.spellSaveDC,
+    v => sheet.spellSaveDC = v
+  );
+
+  wrapper.appendChild(
+    row("Spell Save DC", spellDCInp)
+  );
+
+  const spellAtkInp = numInput(
+    sheet.spellAttackBonus,
+    v => sheet.spellAttackBonus = v,
+    -10,
+    20
+  );
+
+  wrapper.appendChild(
+    row("Spell Attack Bonus", spellAtkInp)
+  );
+
+  // ── Features / Equipment / Skills ─────────────────────────
+  wrapper.appendChild(sectionHeader("Features & Traits"));
+  wrapper.appendChild(
+    textarea(sheet.features, v => sheet.features = v)
+  );
+
+  wrapper.appendChild(sectionHeader("Equipment"));
+  wrapper.appendChild(
+    textarea(sheet.equipment, v => sheet.equipment = v)
+  );
+
+  wrapper.appendChild(sectionHeader("Skills"));
+  wrapper.appendChild(
+    textarea(
+      sheet.skills?.join(", ") ?? "",
+      v => {
+        sheet.skills = v
+          .split(",")
+          .map(s => s.trim())
+          .filter(Boolean);
+      }
+    )
+  );
+
+  // ── Show Modal ─────────────────────────────────────────────
+  showModal(`📜 ${name}'s Character Sheet`, wrapper, () => {
+    saveGameData("sheet edit");
+    renderSheetTab();
+    updateSideStats();
+
+    showTrackerMessage(`✅ ${name}'s sheet saved.`);
+  });
+}
+
+// ── Expose globally ──────────────────────────────────────────
+window.renderSheetTab = renderSheetTab;
+window.openAddCharacterModal = openAddCharacterModal;
+window.openSheetEditor = openSheetEditor;
+window.addNewCharacter = addNewCharacter;
+window.removeCharacter = removeCharacter;
+window.createSheetForCharacter = createSheetForCharacter;
 
 // -------------------- D20 & INPUT --------------------
 function openUnifiedActionModal(type, includeDamage = false) {

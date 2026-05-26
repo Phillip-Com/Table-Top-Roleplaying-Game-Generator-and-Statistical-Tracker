@@ -923,7 +923,13 @@ function buildInlineSheetEditor(name, sheet) {
     const i = document.createElement("input");
     i.type = "text";
     i.value = val ?? "";
-    i.style.cssText = `width:100%;padding:6px 8px;background:var(--background);border:1px solid var(--primary-accent);color:var(--primary-text);border-radius:6px;`;
+    i.style.cssText = `
+    width:100%;
+    padding:6px 8px;
+    background:var(--background);
+    border:1px solid var(--primary-accent);
+    color:var(--primary-text);
+    border-radius:6px;`;
     i.addEventListener("input", () => { onChange(i.value); saveGameData("sheet edit"); });
     return i;
   }
@@ -934,14 +940,26 @@ function buildInlineSheetEditor(name, sheet) {
     i.value = val ?? 0;
     i.min = min;
     i.max = max;
-    i.style.cssText = `width:100%;padding:6px 8px;background:var(--background);border:1px solid var(--primary-accent);color:var(--primary-text);border-radius:6px;`;
+    i.style.cssText = `
+    width:100%;
+    padding:6px 8px;
+    background:var(--background);
+    border:1px solid var(--primary-accent);
+    color:var(--primary-text);
+    border-radius:6px;`;
     i.addEventListener("input", () => { onChange(parseInt(i.value) || 0); saveGameData("sheet edit"); });
     return i;
   }
 
   function selectInput(options, val, onChange) {
     const s = document.createElement("select");
-    s.style.cssText = `width:100%;padding:6px 8px;background:var(--background);border:1px solid var(--primary-accent);color:var(--primary-text);border-radius:6px;`;
+    s.style.cssText = `
+    width:100%;
+    padding:6px 8px;
+    background:var(--background);
+    border:1px solid var(--primary-accent);
+    color:var(--primary-text);
+    border-radius:6px;`;
     options.forEach(opt => {
       const o = document.createElement("option");
       o.value = opt;
@@ -957,7 +975,10 @@ function buildInlineSheetEditor(name, sheet) {
     const i = document.createElement("input");
     i.type = "checkbox";
     i.checked = !!val;
-    i.style.cssText = `width:18px;height:18px;cursor:pointer;`;
+    i.style.cssText = `
+    width:18px;
+    height:18px;
+    cursor:pointer;`;
     i.addEventListener("change", () => { onChange(i.checked); saveGameData("sheet edit"); });
     return i;
   }
@@ -965,7 +986,14 @@ function buildInlineSheetEditor(name, sheet) {
   function sectionHeader(text) {
     const h = document.createElement("h3");
     h.textContent = text;
-    h.style.cssText = `margin:16px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--primary-accent);color:var(--secondary-text);font-size:0.95rem;text-transform:uppercase;letter-spacing:0.06em;`;
+    h.style.cssText = `
+    margin:16px 0 8px;
+    padding-bottom:5px;
+    border-bottom:1px solid var(--primary-accent);
+    color:var(--secondary-text);
+    font-size:0.95rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;`;
     return h;
   }
 
@@ -977,14 +1005,25 @@ function buildInlineSheetEditor(name, sheet) {
   }
 
   const topGrid = document.createElement("div");
-  topGrid.style.cssText = `display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;`;
+  topGrid.style.cssText = `
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:10px;`;
 
   function topField(labelText, input) {
     const wrap = document.createElement("div");
-    wrap.style.cssText = `display:flex;flex-direction:column;gap:5px;`;
+    wrap.style.cssText = `
+    display:flex;
+    flex-direction:column;
+    gap:5px;`;
     const label = document.createElement("label");
     label.textContent = labelText;
-    label.style.cssText = `font-size:0.75rem;color:var(--secondary-text);font-weight:bold;text-transform:uppercase;letter-spacing:0.05em;`;
+    label.style.cssText = `
+    font-size:0.75rem;
+    color:var(--secondary-text);
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:0.05em;`;
     wrap.appendChild(label);
     wrap.appendChild(input);
     return wrap;
@@ -1100,25 +1139,50 @@ function buildInlineSheetEditor(name, sheet) {
 
   // ── Ability Scores ──
   const abilGrid = document.createElement("div");
-  abilGrid.style.cssText = `display:grid;grid-template-columns:repeat(6,1fr);gap:1px;margin-bottom:1px;`;
+  abilGrid.style.cssText = `
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:1px;
+  margin-bottom:1px;`;
 
   ABILITY_KEYS.forEach(key => {
     const cell = document.createElement("div");
-    cell.style.cssText = `background:var(--background);border:1px solid var(--surfaces);border-radius:8px;padding:8px;text-align:center;`;
+    cell.style.cssText = `
+    background:var(--background);
+    border:1px solid var(--surfaces);
+    border-radius:8px;
+    padding:8px;
+    text-align:center;`;
 
     const label = document.createElement("div");
     label.textContent = key.toUpperCase();
-    label.style.cssText = `font-size:0.85rem;opacity:0.8;margin-bottom:3px;text-transform:uppercase;`;
+    label.style.cssText = `
+    font-size:0.85rem;
+    opacity:0.8;
+    margin-bottom:3px;
+    text-transform:uppercase;`;
 
     const scoreInp = document.createElement("input");
     scoreInp.type = "number";
     scoreInp.value = sheet.abilities[key] ?? 10;
     scoreInp.min = 1;
     scoreInp.max = 30;
-    scoreInp.style.cssText = `width:100%;text-align:center;font-size:1.4rem;font-weight:bold;background:transparent;border:none;border-bottom:2px solid var(--secondary-accent);color:var(--primary-text);outline:none;`;
+    scoreInp.style.cssText = `
+    width:100%;
+    text-align:center;
+    font-size:1.4rem;
+    font-weight:bold;
+    background:transparent;
+    border:none;
+    border-bottom:2px solid var(--secondary-accent);
+    color:var(--primary-text);
+    outline:none;`;
 
     const modDisplay = document.createElement("div");
-    modDisplay.style.cssText = `font-size:0.9rem;color:var(--secondary-text);margin-top:2px;`;
+    modDisplay.style.cssText = `
+    font-size:0.9rem;
+    color:var(--secondary-text);
+    margin-top:2px;`;
     modDisplay.textContent = modStr(abilityMod(sheet.abilities[key] ?? 10));
 
     scoreInp.addEventListener("input", () => {
@@ -1510,6 +1574,9 @@ window.addNewCharacter = addNewCharacter;
 window.removeCharacter = removeCharacter;
 window.createSheetForCharacter = createSheetForCharacter;
 window.toggleCharacterActive = toggleCharacterActive;
+
+// -------------------- Modal Update for Sheets --------
+
 
 // -------------------- D20 & INPUT --------------------
 function openUnifiedActionModal(type, includeDamage = false) {

@@ -61,6 +61,7 @@ function loadGameData() {
   const saved = localStorage.getItem("myGameData");
   if (!saved) return false;
   gameData = JSON.parse(saved);
+  window.gameData = gameData;
   console.log("📂 Loaded saved game");
   return gameData.characters && gameData.characters.length > 0;
 }
@@ -162,6 +163,7 @@ function setupGame(e) {
   if (!gameData) {
     gameData = {
       edition: "5e",
+      theme: "light",
       characters: [],
       characterStats: {},
       characterSheets: {},
@@ -998,10 +1000,10 @@ function buildInlineSheetEditor(name, sheet) {
   }
 
   // ── Identity ──
-  const header = document.getElementById("character-sheets-header");
+  const header1 = document.getElementById("character-sheets-header");
 
-  if (header) {
-    header.textContent = `${sheet.name}'s Character Sheet`;
+  if (header1) {
+    header1.textContent = `${sheet.name}'s Character Sheet`;
   }
 
   const topGrid = document.createElement("div");
@@ -1309,22 +1311,45 @@ function buildInlineSheetEditor(name, sheet) {
 
   function renderSkillSection() {
     skillsContainer.innerHTML = "";
+    if (!sheet.customSkills) sheet.customSkills = [];
     if (!sheet.skillProficiencies) sheet.skillProficiencies = {};
-    DND5E_SKILLS.forEach(sk => {
-      if (!sheet.skillProficiencies[sk.name]) {
-        sheet.skillProficiencies[sk.name] = { type: "none", miscBonus: 0 };
-      }
-    });
+    const allSkills = [
+  ...DND5E_SKILLS,
+  ...sheet.customSkills
+];
+    allSkills.forEach(sk => {
+
+  const skillKey = sk.custom ? sk.id : sk.name;
+
+  if (!sheet.skillProficiencies[skillKey]) {
+
+    sheet.skillProficiencies[skillKey] = {
+      type: "none",
+      miscBonus: 0
+    };
+  }
+});
 
     const grid = document.createElement("div");
     grid.style.cssText = `display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px;`;
 
-    DND5E_SKILLS.forEach(sk => {
-      const skData = sheet.skillProficiencies[sk.name];
+    allSkills.forEach(sk => {
+      const skillKey = sk.custom ? sk.id : sk.name;
+
+const skData = sheet.skillProficiencies[skillKey];
       const total = computeSkillTotal(sheet, sk.name, sk.ability);
 
       const card = document.createElement("div");
-      card.style.cssText = `display:flex;align-items:center;gap:6px;padding:5px 8px;background:var(--background);border:1px solid var(--surfaces);border-radius:6px;`;
+      card.style.cssText = `
+  display:flex;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:6px;
+  padding:5px 8px;
+  background:var(--background);
+  border:1px solid var(--surfaces);
+  border-radius:6px;
+`;
 
       // Total modifier badge
       const badge = document.createElement("span");
@@ -1342,9 +1367,96 @@ function buildInlineSheetEditor(name, sheet) {
       `;
 
       // Skill name + ability
-      const skillLabel = document.createElement("span");
-      skillLabel.style.cssText = `flex:1;font-size:0.85rem;`;
-      skillLabel.innerHTML = `<strong>${sk.name}</strong> <span style="opacity:0.6;font-size:0.8rem;">(${sk.ability.toUpperCase()})</span>`;
+      const skillWrap = document.createElement("div");
+
+skillWrap.style.cssText = `
+  display:flex;
+  flex-direction:column;
+  flex:1 1 120px;
+  min-width:120px;
+  gap:4px;
+`;
+
+if (sk.custom) {
+
+  const nameInput = document.createElement("input");
+
+  nameInput.type = "text";
+
+  nameInput.value = sk.name;
+
+  nameInput.style.cssText = `
+    width:100%;
+    padding:2px 4px;
+    font-size:0.8rem;
+    background:var(--background);
+    border:1px solid var(--surfaces);
+    color:var(--primary-text);
+    border-radius:4px;
+  `;
+
+  nameInput.addEventListener("input", () => {
+
+    sk.name = nameInput.value;
+
+    saveGameData("custom skill rename");
+  });
+
+  const abilitySelect = document.createElement("select");
+
+  abilitySelect.style.cssText = `
+    padding:2px 4px;
+    font-size:0.75rem;
+    background:var(--background);
+    border:1px solid var(--surfaces);
+    color:var(--primary-text);
+    border-radius:4px;
+  `;
+
+  ABILITY_KEYS.forEach(ab => {
+
+    const opt = document.createElement("option");
+
+    opt.value = ab;
+    opt.textContent = ab.toUpperCase();
+
+    if (ab === sk.ability) {
+      opt.selected = true;
+    }
+
+    abilitySelect.appendChild(opt);
+  });
+
+  abilitySelect.addEventListener("change", () => {
+
+    sk.ability = abilitySelect.value;
+
+    renderSkillSection();
+
+    saveGameData("custom skill ability");
+  });
+
+  skillWrap.appendChild(nameInput);
+  skillWrap.appendChild(abilitySelect);
+
+} else {
+
+  const skillLabel = document.createElement("span");
+
+  skillLabel.style.cssText = `
+    flex:1;
+    font-size:0.85rem;
+  `;
+
+  skillLabel.innerHTML = `
+    <strong>${sk.name}</strong>
+    <span style="opacity:0.6;font-size:0.8rem;">
+      (${sk.ability.toUpperCase()})
+    </span>
+  `;
+
+  skillWrap.appendChild(skillLabel);
+}
 
       // Prof type select
       const profSel = document.createElement("select");
@@ -1378,12 +1490,72 @@ function buildInlineSheetEditor(name, sheet) {
         saveGameData("skill misc edit");
       });
 
+
+      const deleteBtn = document.createElement("button");
+
+      if (sk.custom) {  
+
+  deleteBtn.textContent = "✕";
+
+  deleteBtn.className = "sheet-btn-danger";
+  deleteBtn.style.flexShrink = "0";
+
+  deleteBtn.onclick = () => {
+
+    sheet.customSkills =
+      sheet.customSkills.filter(s => s.id !== sk.id);
+
+    delete sheet.skillProficiencies[sk.id];
+
+    renderSkillSection();
+
+    saveGameData("custom skill removed");
+  };
+}
+
       card.appendChild(badge);
-      card.appendChild(skillLabel);
+      card.appendChild(skillWrap);
       card.appendChild(profSel);
       card.appendChild(miscInp);
+      if (sk.custom) {
+        card.appendChild(deleteBtn);
+      }
       grid.appendChild(card);
     });
+
+    const addSkillBtn = document.createElement("button");
+
+addSkillBtn.textContent = "+ Add Custom Skill";
+addSkillBtn.className = "sheet-add-btn";
+
+addSkillBtn.style.marginTop = "10px";
+
+addSkillBtn.onclick = () => {
+
+  if (!sheet.customSkills) {
+    sheet.customSkills = [];
+  }
+
+  const newSkill = {
+    id: crypto.randomUUID(),
+    name: "New Skill",
+    ability: "dex",
+    custom: true
+  };
+
+  sheet.customSkills.push(newSkill);
+
+  sheet.skillProficiencies[newSkill.id] = {
+    type: "none",
+    miscBonus: 0
+  };
+
+  renderSkillSection();
+
+  saveGameData("custom skill added");
+};
+
+skillsContainer.appendChild(addSkillBtn);
 
     skillsContainer.appendChild(grid);
 
@@ -1509,19 +1681,19 @@ function buildInlineSheetEditor(name, sheet) {
       row.appendChild(deleteBtn);
 
       if (!section.querySelector(".attacks-grid")) {
-  const grid = document.createElement("div");
-  grid.className = "attacks-grid";
+        const grid = document.createElement("div");
+        grid.className = "attacks-grid";
 
-  grid.style.cssText = `
+        grid.style.cssText = `
     display:grid;
     grid-template-columns:repeat(4, minmax(0, 1fr));
     gap:8px;
   `;
 
-  section.appendChild(grid);
-}
+        section.appendChild(grid);
+      }
 
-section.querySelector(".attacks-grid").appendChild(row);
+      section.querySelector(".attacks-grid").appendChild(row);
     });
 
     attacksContainer.appendChild(section);
@@ -1579,7 +1751,7 @@ window.toggleCharacterActive = toggleCharacterActive;
 
 
 // -------------------- D20 & INPUT --------------------
-function openUnifiedActionModal(type, includeDamage = false) {
+function openUnifiedActionModal(characterName, type, includeDamage = false) {
   return new Promise(resolve => {
     const container = document.createElement("div");
 
@@ -1614,6 +1786,8 @@ function openUnifiedActionModal(type, includeDamage = false) {
     modLabel.textContent = "Modifier:";
     const modInput = document.createElement("input");
     modInput.type = "number";
+    modInput.style.width = "60px";
+    modInput.classList.add("roll-mod-input");
     modInput.value = "0";
     modInput.style.cssText = `margin-left:6px;width:100px;`;
     container.appendChild(document.createElement("br"));
@@ -1646,14 +1820,28 @@ function openUnifiedActionModal(type, includeDamage = false) {
   });
 }
 
+
+
 async function openMultiRollModal(characterName, type, includeDamage = false) {
   return new Promise(resolve => {
+    const modButtonContainer = document.createElement("div");
+
+    modButtonContainer.style.cssText = `
+  display:grid;
+  grid-auto-flow:column;
+  grid-template-rows:repeat(6, auto);
+  gap:6px;
+  margin-bottom:12px;
+  width:100%;
+  align-items:start;
+`;
+
     const container = document.createElement("div");
 
     const typeLabel = document.createElement("p");
     typeLabel.textContent = `Enter number of ${type} rolls and set values:`;
     container.appendChild(typeLabel);
-
+    container.appendChild(modButtonContainer);
     const countLabel = document.createElement("label");
     countLabel.textContent = "Number of Rolls:";
     const countInput = document.createElement("input");
@@ -1667,7 +1855,10 @@ async function openMultiRollModal(characterName, type, includeDamage = false) {
     container.appendChild(document.createElement("hr"));
 
     const rollsContainer = document.createElement("div");
-    rollsContainer.style.cssText = `display:grid;grid-gap:10px;`;
+    rollsContainer.style.cssText = `
+    display:grid;
+    grid-gap:10px;
+    justify-content:center`;
     container.appendChild(rollsContainer);
 
     const maxPerColumn = 10;
@@ -1684,6 +1875,102 @@ async function openMultiRollModal(characterName, type, includeDamage = false) {
       });
       return headerRow;
     }
+
+    function buildModifierGroups() {
+      const sheet = gameData.characterSheets?.[characterName];
+      if (!sheet) return {};
+
+      const groups = {};
+
+      function addMod(label, value) {
+        if (value === undefined || value === null) return;
+
+        const key = Number(value);
+
+        if (!groups[key]) {
+          groups[key] = [];
+        }
+
+        groups[key].push(label);
+      }
+
+      switch (type) {
+
+        case "Attack":
+          (sheet.attacks || []).forEach(atk => {
+              addMod(atk.name, atk.modifier);
+          });
+          break;
+
+        case "Save":
+          ABILITY_KEYS.forEach(key => {
+            addMod(
+              `${ABILITY_LABELS[key]} Save`,
+              computeSaveTotal(sheet, key)
+            );
+          });
+          break;
+
+        case "Ability":
+          const allSkills = [
+  ...DND5E_SKILLS,
+  ...(sheet.customSkills || [])
+];
+
+allSkills.forEach(sk => {
+            addMod(
+              sk.name,
+              computeSkillTotal(sheet, sk.name, sk.ability)
+            );
+          });
+          break;
+      }
+
+      return groups;
+    }
+
+    function renderModifierButtons() {
+
+      modButtonContainer.innerHTML = "";
+
+      const groups = buildModifierGroups();
+
+      Object.entries(groups).forEach(([mod, labels]) => {
+
+        const btn = document.createElement("button");
+
+        btn.type = "button";
+
+        btn.textContent =
+          `${mod >= 0 ? "+" : ""}${mod} (${labels.join(", ")})`;
+
+        btn.style.cssText = `
+  width:100%;
+  text-align:left;
+  padding:8px 10px;
+  border-radius:6px;
+  cursor:pointer;
+  border:1px solid var(--primary-accent);
+  background:var(--surface-color);
+  color:var(--primary-text);
+  font-size:0.85rem;
+  overflow-wrap:anywhere;
+`;
+
+        btn.addEventListener("click", () => {
+
+          rollsContainer.querySelectorAll(".roll-mod-input")
+            .forEach(input => {
+              input.value = Number(mod);
+            });
+
+        });
+
+        modButtonContainer.appendChild(btn);
+      });
+    }
+
+
 
     function rebuildRows() {
       const currentValues = [];
@@ -1711,13 +1998,20 @@ async function openMultiRollModal(characterName, type, includeDamage = false) {
           const d20Input = document.createElement("input");
           d20Input.type = "number"; d20Input.min = 1; d20Input.max = 20; d20Input.style.width = "60px";
           const modInput = document.createElement("input");
-          modInput.type = "number"; modInput.style.width = "60px";
+          modInput.type = "number";
+          modInput.style.width = "60px";
+          modInput.classList.add("roll-mod-input");
           const dmgInput = includeDamage ? document.createElement("input") : null;
           if (dmgInput) { dmgInput.type = "number"; dmgInput.style.width = "60px"; }
 
+          let sheetMod = 0;
+          if (type === "Initiative") {
+            sheetMod = gameData.characterSheets[characterName].initiative;
+          }
+
           const saved = currentValues[i] || [];
           d20Input.value = saved[0] ?? 1;
-          modInput.value = saved[1] ?? 0;
+          modInput.value = saved[1] ?? sheetMod;
           if (dmgInput) dmgInput.value = saved[2] ?? 0;
 
           inputRow.append(d20Input, modInput);
@@ -1728,6 +2022,7 @@ async function openMultiRollModal(characterName, type, includeDamage = false) {
       }
     }
 
+    renderModifierButtons();
     rebuildRows();
     countInput.addEventListener("input", rebuildRows);
 
@@ -2093,7 +2388,7 @@ function renderInitiativeControls() {
     const stats = gameData.characterStats[name];
     if (!stats.initiativeRolls) stats.initiativeRolls = [];
     stats.isActiveInCombat = true;
-    const result = await openUnifiedActionModal(`${name} Initiative`, false);
+    const result = await openUnifiedActionModal(name, "Initiative", false);
     if (!result) return;
     const { roll, modifier } = result;
     const total = roll + modifier;
@@ -2276,7 +2571,7 @@ async function startCombat() {
 
   for (const pc of gameData.characters) {
     if (pc === "NPC") continue;
-    const result = await openUnifiedActionModal(pc + " Initiative", false);
+    const result = await openUnifiedActionModal(pc, "Initiative", false);
     if (!result) continue;
     const { roll, modifier } = result;
     const total = roll + modifier;
@@ -2293,7 +2588,7 @@ async function startCombat() {
   if (npcPool) {
     npcPool.isActiveInCombat = true;
     for (let i = 1; i <= npcCount; i++) {
-      const result = await openUnifiedActionModal(`NPC ${i} Initiative`, false);
+      const result = await openUnifiedActionModal("NPC", "Initiative", false);
       if (!result) continue;
       const { roll, modifier } = result;
       const total = roll + modifier;
@@ -2392,7 +2687,7 @@ function getStatName(name) {
 async function performSingleAttack(name, options = { logGlobal: false }) {
   const stats = gameData.characterStats[name];
   if (!stats) return null;
-  const result = await openUnifiedActionModal("attack", true);
+  const result = await openUnifiedActionModal(name, "attack", true);
   if (!result) return null;
   const { roll, modifier, damage } = result;
   const moddedRoll = roll + modifier;
@@ -2882,6 +3177,13 @@ function updateSideStats() {
   if (!panel) return;
 
   let nameToUse = selectedCharacter;
+
+  const header2 = document.getElementById("side-stats-header");
+
+  if (header2) {
+    header2.textContent = `${nameToUse}'s Character Stats`;
+  }
+
   if (selectedTag) {
     for (const [charName, stats] of Object.entries(gameData.characterStats)) {
       const match = stats.initiativeRolls?.some(r => r.tag === selectedTag);
@@ -2899,9 +3201,9 @@ function updateSideStats() {
   const combinedDamage = (s.totalDamage || 0) + s.attackDamage;
   const combinedHealing = (s.healingDone || 0) + spellHealing;
 
+
   if (gameData.edition === "pathfinder") {
     panel.innerHTML = `
-      <h4>Stats for ${nameToUse}:</h4>
       <p>Attacks Made: ${s.attacksMade}</p>
       <p>Ability Checks: ${s.abilityChecks}</p>
       <p>Saving Throws: ${s.savingThrows}</p>
@@ -2920,7 +3222,6 @@ function updateSideStats() {
     `;
   } else {
     panel.innerHTML = `
-      <h4>Stats for ${nameToUse}:</h4>
       <p>Attacks Made: ${s.attacksMade}</p>
       <p>Ability Checks: ${s.abilityChecks}</p>
       <p>Saving Throws: ${s.savingThrows}</p>

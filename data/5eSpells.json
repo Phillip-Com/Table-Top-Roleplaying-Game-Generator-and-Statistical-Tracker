@@ -1,0 +1,1805 @@
+{
+    "0": {
+        "acidSplash": {
+            "name": "Acid Splash",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "dex"
+            }
+        },
+        "boomingBlade": {
+            "name": "Booming Blade",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "chillTouch": {
+            "name": "Chill Touch",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "createBonfire": {
+            "name": "Create Bonfire",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "dex"
+            }
+        },
+        "eldritchBlast": {
+            "name": "Eldritch Blast",
+            "scaling": {
+                "type": "characterLevel",
+                "every": 5,
+                "add": 1
+            },
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "fireBolt": {
+            "name": "Fire Bolt",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "friends": {
+            "name": "Friends",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "frostbite": {
+            "name": "Frostbite",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "green-flameBlade": {
+            "name": "Green-Flame Blade",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "gust": {
+            "name": "Gust",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "str"
+            }
+        },
+        "infestation": {
+            "name": "Infestation",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "lightningLure": {
+            "name": "Lightning Lure",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "str"
+            }
+        },
+        "magicStone": {
+            "name": "Magic Stone",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "mindSliver": {
+            "name": "Mind Sliver",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "int"
+            }
+        },
+        "poisonSpray": {
+            "name": "Poison Spray",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "primalSavagery": {
+            "name": "Primal Savagery",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "produceFlame": {
+            "name": "Primal Savagery",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "rayOfFrost": {
+            "name": "Ray of Frost",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "sacredFlame": {
+            "name": "Sacred Flame",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "dex"
+            }
+        },
+        "shillelagh": {
+            "name": "Shillelagh",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "shockingGrasp": {
+            "name": "Shocking Grasp",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "sorcerousBurst": {
+            "name": "Sorcerous Burst",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "starryWisp": {
+            "name": "Starry Wisp",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "swordBurst": {
+            "name": "Sword Burst",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "dex"
+            }
+        },
+        "thornWhip": {
+            "name": "Thorn Whip",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "thunderclap": {
+            "name": "Thunderclap",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "con"
+            }
+        },
+        "tollTheDead": {
+            "name": "Toll the Dead",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "trueStrike": {
+            "name": "True Strike",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "dex"
+            }
+        },
+        "viciousMockery": {
+            "name": "Vicious Mockery",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "wordOfRadiance": {
+            "name": "Word of Radiance",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "con"
+            }
+        }
+    },
+    "1": {
+        "animalFriendship": {
+            "name": "Animal Friendship",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "armsOfHadar": {
+            "name": "Arms of Hadar",
+            "attacks": 0,
+            "saves": {
+                "count": 5,
+                "type": "str"
+            }
+        },
+        "bane": {
+            "name": "Bane",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "cha"
+            }
+        },
+        "burningHands": {
+            "name": "Burning Hands",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "catapult": {
+            "name": "Catapult",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "dex"
+            }
+        },
+        "causeFear": {
+            "name": "Cause Fear",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "chaosBolt": {
+            "name": "Chaos Bolt",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "charmPerson": {
+            "name": "Charm Person",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "chromaticOrb": {
+            "name": "Chromatic Orb",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "colorSpray": {
+            "name": "Color Spray",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "con"
+            }
+        },
+        "command": {
+            "name": "Command",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "compelledDuel": {
+            "name": "Compelled Duel",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "dissonantWhispers": {
+            "name": "Dissonant Whispers",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "earthTremor": {
+            "name": "Earth Tremor",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "ensnaringStrike": {
+            "name": "Ensnaring Strike",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "str"
+            }
+        },
+        "entangle": {
+            "name": "Entangle",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "str"
+            }
+        },
+        "faerieFire": {
+            "name": "Faerie Fire",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "grease": {
+            "name": "Grease",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "dex"
+            }
+        },
+        "guidingBolt": {
+            "name": "Guiding Bolt",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "hailOfThorns": {
+            "name": "Hail of Thorns",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "dex"
+            }
+        },
+        "hellishRebuke": {
+            "name": "Hellish Rebuke",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "dex"
+            }
+        },
+        "hideousLaughter": {
+            "name": "Hideous Laughter",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "wis"
+            }
+        },
+        "iceKnife": {
+            "name": "Ice Knife",
+            "attacks": 1,
+            "saves": {
+                "count": 2,
+                "type": "dex"
+            }
+        },
+        "inflictWounds": {
+            "name": "Inflict Wounds",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "jim'sMagicMissile": {
+            "name": "Jim's Magic Missile",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 3,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "rayOfSickness": {
+            "name": "Ray of Sickness",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "sleep": {
+            "name": "Sleep",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "wis"
+            }
+        },
+        "tasha'sCausticBrew": {
+            "name": "Tasha's Caustic Brew",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "Tasha'sHideousLaughter": {
+            "name": "Tasha's Hideous Laughter",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "thunderousSmite": {
+            "name": "Thunderous Smite",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "str"
+            }
+        },
+        "thunderwave": {
+            "name": "Thunderwave",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "con"
+            }
+        },
+        "witchBolt": {
+            "name": "Witch Bolt",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "wrathfulSmite": {
+            "name": "Wrathful Smite",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        }
+    },
+    "2": {
+        "aganazzar'sScorcher": {
+            "name": "Aganazzar's Scrocher",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "animalMessenger": {
+            "name": "Animal Messenger",
+            "attacks": 0,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "blindness/deafness": {
+            "name": "Blindness/Deafness",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "calmEmotions": {
+            "name": "Calm Emotions",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "cha"
+            }
+        },
+        "crownOfMadness": {
+            "name": "Crown of Madness",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "dragon'sBreath": {
+            "name": "Dragon's Breath",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "earthBind": {
+            "name": "Earth Bind",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "str"
+            }
+        },
+        "enlarge/reduce": {
+            "name": "Enlarge/Reduce",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "enthrall": {
+            "name": "Enthrall",
+            "attacks": 0,
+            "saves": {
+                "count": 5,
+                "type": "wis"
+            }
+        },
+        "flameBlade": {
+            "name": "Flame Blade",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "flamingSphere": {
+            "name": "Flaming Sphere",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "dex"
+            }
+        },
+        "gustOfWind": {
+            "name": "Gust of Wind",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "str"
+            }
+        },
+        "heatMetal": {
+            "name": "Heat Metal",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "holdPerson": {
+            "name": "Hold Person",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "jim'sGlowingCoin": {
+            "name": "Jim's Glowing Coin",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "wis"
+            }
+        },
+        "levitate": {
+            "name": "Levitate",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "maximilian'sEarthenGrasp": {
+            "name": "Mazimilian's Earthen Grasp",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "str"
+            }
+        },
+        "melf'sAcidArrow": {
+            "name": "Melf's Acid Arrow",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "mindSpike": {
+            "name": "Mind Spike",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "moonbeam": {
+            "name": "Moonbeam",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "con"
+            }
+        },
+        "phantasmalForce": {
+            "name": "Phantasmal Force",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "int"
+            }
+        },
+        "pyrotechnics": {
+            "name": "Pyrotechnics",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "con"
+            }
+        },
+        "rayOfEnfeeblement": {
+            "name": "Ray of Enfeeblement",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "rime'sBindingIce": {
+            "name": "Rime's Binding Ice",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "con"
+            }
+        },
+        "scorchingRay": {
+            "name": "Scorching Ray",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 3,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "shatter": {
+            "name": "Shatter",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "con"
+            }
+        },
+        "snilloc'sSnowballSwarm": {
+            "name": "Snilloc's Snowball Swarm",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "dex"
+            }
+        },
+        "spiritualWeapon": {
+            "name": "Spiritual Weapon",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "suggestion": {
+            "name": "Suggestion",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "tasha'sMindWhip": {
+            "name": "Tasha's Mind Whip",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "int"
+            }
+        },
+        "vortexWarp": {
+            "name": "Vortex Warp",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "web": {
+            "name": "Web",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "witherAndBloom": {
+            "name": "Whither and Bloom",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "con"
+            }
+        },
+        "zoneOfTruth": {
+            "name": "Zone of Truth",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "cha"
+            }
+        }
+    },
+    "3": {
+        "bestowCurse": {
+            "name": "Bestow Curse",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "callLightning": {
+            "name": "Call Lightning",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "dex"
+            }
+        },
+        "conjureBarrage": {
+            "name": "Conjure Barrage",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "dex"
+            }
+        },
+        "counterspell": {
+            "name": "Counterspell",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "enemiesAbound": {
+            "name": "Enemies Abound",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "int"
+            }
+        },
+        "eruptingEarth": {
+            "name": "Erupting Earth",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "fastFriends": {
+            "name": "Fast Friends",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "fear": {
+            "name": "Fear",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "wis"
+            }
+        },
+        "fireball": {
+            "name": "Fireball",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "dex"
+            }
+        },
+        "hungerOfHadar": {
+            "name": "Hunger of Hadar",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "dex"
+            }
+        },
+        "hypnoticPattern": {
+            "name": "Hypnotic Pattern",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "wis"
+            }
+        },
+        "inciteGreed": {
+            "name": "Incite Greed",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "wis"
+            }
+        },
+        "lightningArrow": {
+            "name": "Lightning Arrow",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "lightningBolt": {
+            "name": "Lightning Bolt",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "dex"
+            }
+        },
+        "melf'sMinuteMeteors": {
+            "name": "Melf's Minute Meteors",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "sleetStorm": {
+            "name": "Sleet Storm",
+            "attacks": 0,
+            "saves": {
+                "count": 5,
+                "type": "dex"
+            }
+        },
+        "slow": {
+            "name": "Slow",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "wis"
+            }
+        },
+        "spiritGuardians": {
+            "name": "Spirit Guardians",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "wis"
+            }
+        },
+        "stinkingCloud": {
+            "name": "Stinking Cloud",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "con"
+            }
+        },
+        "thunderStep": {
+            "name": "Thunder Step",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "con"
+            }
+        },
+        "tidalWave": {
+            "name": "Tidal Wave",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "vampiricTouch": {
+            "name": "Vampiric Touch",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "windWall": {
+            "name": "Wind Wall",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "str"
+            }
+        }
+    },
+    "4": {
+        "banishment": {
+            "name": "Banishment",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "cha"
+            }
+        },
+        "blackTentacles": {
+            "name": "Black Tentacles",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "blight": {
+            "name": "Blight",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "charmMonster": {
+            "name": "Charm Monster",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "compulsion": {
+            "name": "Compulsion",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "wis"
+            }
+        },
+        "confusion": {
+            "name": "Confusion",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "wis"
+            }
+        },
+        "conjureWoodlandBeings": {
+            "name": "Conjure Woodland Beings",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "wis"
+            }
+        },
+        "dominateBeast": {
+            "name": "Dominate Beast",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "elementalBane": {
+            "name": "Elemental Bane",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "iceStorm": {
+            "name": "Ice Storm",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "dex"
+            }
+        },
+        "otiluke'sResilientSphere": {
+            "name": "Oriluke's Resilient Sphere",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "dex"
+            }
+        },
+        "phantasmalKiller": {
+            "name": "Phantasmal Killer",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "polymorph": {
+            "name": "Polymorph",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "raulothim'sPychicLance": {
+            "name": "Raulothim's Psychic Lance",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "int"
+            }
+        },
+        "sickeningRadiance": {
+            "name": "Sickening Radiance",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "con"
+            }
+        },
+        "staggeringSmite": {
+            "name": "Staggering Smite",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "stormSphere": {
+            "name": "Storm Sphere",
+            "attacks": 1,
+            "saves": {
+                "count": 1,
+                "type": "str"
+            }
+        },
+        "vitriolicSphere": {
+            "name": "Vitriolic Sphere",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "dex"
+            }
+        },
+        "wallOfFire": {
+            "name": "Wall of Fire",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "dex"
+            }
+        },
+        "waterySphere": {
+            "name": "Watery Sphere",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "str"
+            }
+        }
+    },
+    "5": {
+        "banishingSmite": {
+            "name": "Banishing Smite",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "cha"
+            }
+        },
+        "cloudkill": {
+            "name": "Cloudkill",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "con"
+            }
+        },
+        "coneOfCold": {
+            "name": "Cone of Cold",
+            "attacks": 0,
+            "saves": {
+                "count": 5,
+                "type": "con"
+            }
+        },
+        "conjureVolley": {
+            "name": "Conjure Volley",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "dex"
+            }
+        },
+        "contagion": {
+            "name": "Contagion",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "dawn": {
+            "name": "Dawn",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "con"
+            }
+        },
+        "destructiveWave": {
+            "name": "Destructive Wave",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "con"
+            }
+        },
+        "dispelEvilAndGood": {
+            "name": "Dispel Evil and Good",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "cha"
+            }
+        },
+        "dominatePerson": {
+            "name": "Dominate Person",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "dream": {
+            "name": "Dream",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "enervation": {
+            "name": "Enervation",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "dex"
+            }
+        },
+        "flameStrike": {
+            "name": "Flame Strike",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "dex"
+            }
+        },
+        "geas": {
+            "name": "Geas",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "holdMonster": {
+            "name": "Hold Monster",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "immolation": {
+            "name": "Immolation",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "dex"
+            }
+        },
+        "insectPlague": {
+            "name": "Insect Plague",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "con"
+            }
+        },
+        "jallarzi'sStormOfRadiance": {
+            "name": "Jallarzi's Storm of Radiance",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "con"
+            }
+        },
+        "maelstrom": {
+            "name": "Maelstrom",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "str"
+            }
+        },
+        "modifyMemory": {
+            "name": "Modify Memory",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "negativeEnergyFlood": {
+            "name": "Negative Energy Flood",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "planarBinding": {
+            "name": "Planar Binding",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "cha"
+            }
+        },
+        "scrying": {
+            "name": "Scrying",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "steelWindStrike": {
+            "name": "Steal Wind Strike",
+            "attacks": 5,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "synapticStatic": {
+            "name": "Synaptic Static",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "int"
+            }
+        },
+        "wallOfLight": {
+            "name": "Wall of Light",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "con"
+            }
+        },
+        "yolande'sRegalPresence": {
+            "name": "Yolande's Regal Presence",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "wis"
+            }
+        }
+    },
+    "6": {
+        "bladeBarrier": {
+            "name": "Blade Barrier",
+            "attacks": 0,
+            "saves": {
+                "count": 5,
+                "type": "dex"
+            }
+        },
+        "bonesOfTheEarth": {
+            "name": "Bones of the Earth",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 2
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "dex"
+            }
+        },
+        "chainLightning": {
+            "name": "Chain Lightning",
+            "scaling": {
+                "type": "spellSlot",
+                "every": 1,
+                "add": 1
+            },
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "dex"
+            }
+        },
+        "circleOfDeath": {
+            "name": "Circle of Death",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "con"
+            }
+        },
+        "conjureFey": {
+            "name": "Conjure Fey",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "disintegrate": {
+            "name": "Disintegrate",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "dex"
+            }
+        },
+        "eyebite": {
+            "name": "Eyebite",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "fleshToStone": {
+            "name": "Flesh to Stone",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "harm": {
+            "name": "Harm",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "massSuggestion": {
+            "name": "Mass Suggestion",
+            "attacks": 0,
+            "saves": {
+                "count": 12,
+                "type": "wis"
+            }
+        },
+        "mentalPrison": {
+            "name": "Mental Prison",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "int"
+            }
+        },
+        "otiluke'sFreezingSphere": {
+            "name": "Otiluke's Freezing Sphere",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "con"
+            }
+        },
+        "otto'sIrriesistableDance": {
+            "name": "Otto's Irresistible Dance",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "scatter": {
+            "name": "Scatter",
+            "attacks": 0,
+            "saves": {
+                "count": 5,
+                "type": "wis"
+            }
+        },
+        "sunbeam": {
+            "name": "Sunbeam",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "con"
+            }
+        },
+        "wallOfIce": {
+            "name": "Wall of Ice",
+            "attacks": 0,
+            "saves": {
+                "count": 5,
+                "type": "dex"
+            }
+        },
+        "wallOfThorns": {
+            "name": "Wall of Thorns",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "dex"
+            }
+        }
+    },
+    "7": {
+        "conjureCelestial": {
+            "name": "Conjure Celestial",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "dex"
+            }
+        },
+        "divineWord": {
+            "name": "Divine Word",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "cha"
+            }
+        },
+        "fingerOfDeath": {
+            "name": "Finger of Death",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "fireStorm": {
+            "name": "Fire Storm",
+            "attacks": 0,
+            "saves": {
+                "count": 3,
+                "type": "dex"
+            }
+        },
+        "mordenkainen'sSword": {
+            "name": "Mordenkainen's Sword",
+            "attacks": 1,
+            "saves": {
+                "count": 0,
+                "type": "wis"
+            }
+        },
+        "powerWordPain": {
+            "name": "Power Word Pain",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "con"
+            }
+        },
+        "prismaticSpray": {
+            "name": "Prismatic Spray",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "dex"
+            }
+        },
+        "reverseGravity": {
+            "name": "Reverse Gravity",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "dex"
+            }
+        },
+        "whirlwind": {
+            "name": "Whirlwind",
+            "attacks": 0,
+            "saves": {
+                "count": 2,
+                "type": "dex"
+            }
+        },
+        "abi-dalzim'sHorridWilting": {
+            "name": "Abi-Dalzim's Horrid Wilting",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "con"
+            }
+        }
+    },
+    "8": {
+        "antipathy/sympathy": {
+            "name": "Antipathy/Sympathy",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "befuddlement": {
+            "name": "Befuddlement",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "int"
+            }
+        },
+        "dominateMonster": {
+            "name": "Dominate Monster",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "earthquake": {
+            "name": "Earthquake",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "dex"
+            }
+        },
+        "feeblemind": {
+            "name": "Feeblemind",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "int"
+            }
+        },
+        "illusoryDragon": {
+            "name": "Illusory Dragon",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "wis"
+            }
+        },
+        "incendiaryCloud": {
+            "name": "Incendiary Cloud",
+            "attacks": 0,
+            "saves": {
+                "count": 4,
+                "type": "dex"
+            }
+        },
+        "maddeningDarkness": {
+            "name": "Maddening Darkness",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "wis"
+            }
+        },
+        "sunburst": {
+            "name": "Sunburst",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "con"
+            }
+        },
+        "tsunami": {
+            "name": "Tsunami",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "str"
+            }
+        }
+    },
+    "9": {
+        "imprisonment": {
+            "name": "Imprisonment",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "massPolymorph": {
+            "name": "Mass Polymorph",
+            "attacks": 0,
+            "saves": {
+                "count": 10,
+                "type": "wis"
+            }
+        },
+        "meteorSwarm": {
+            "name": "Meteor Swarm",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "dex"
+            }
+        },
+        "prismaticWall": {
+            "name": "Prismatic Wall",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "con"
+            }
+        },
+        "psychicScream": {
+            "name": "Psychic Scream",
+            "attacks": 0,
+            "saves": {
+                "count": 10,
+                "type": "int"
+            }
+        },
+        "stormOfVengeance": {
+            "name": "Storm of Vengeance",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "con"
+            }
+        },
+        "truePolymorph": {
+            "name": "True Polymorph",
+            "attacks": 0,
+            "saves": {
+                "count": 1,
+                "type": "wis"
+            }
+        },
+        "weird": {
+            "name": "Weird",
+            "attacks": 0,
+            "saves": {
+                "count": 6,
+                "type": "wis"
+            }
+        }
+    }
+}

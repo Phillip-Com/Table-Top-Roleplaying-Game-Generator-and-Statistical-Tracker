@@ -11,7 +11,7 @@
   --primary-accent:    #6d4aff;
   --secondary-accent:  #0d8c95;
 
-  --button-hover:      #bbbbbb;
+  --button-hover:      #6d4aff;
   --panel-shadow:      0 0 8px var(--secondary-accent);
 }
 
@@ -24,7 +24,7 @@ body.dark-mode {
   --primary-accent:    #8b5cf6;
   --secondary-accent:  #4fd1c5;
 
-  --button-hover:      #555555;
+  --button-hover:      #8b5cf6;
   --panel-shadow:      0 0 8px var(--secondary-accent);
 }
 
@@ -421,12 +421,6 @@ table th {
 
 .character-buttons button:hover {
   background-color: var(--button-hover);
-}
-
-.character-buttons button.selected {
-  background-color: var(--secondary-text) !important;
-  border-color: var(--secondary-text) !important;
-  box-shadow: 0 0 8px var(--panel-shadow) !important;
 }
 
 /* Initiative list */

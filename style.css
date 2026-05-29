@@ -349,6 +349,22 @@ table th {
    TRACKER LAYOUT
    ============================================================ */
 
+   .tracker-tabs {
+  display:flex;
+  align-items:center;
+  width:100%;
+}
+
+.tracker-tabs-left {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.tracker-edition-toggle {
+  margin-left:auto;
+}
+
 .centered-panel {
   text-align: center;
   line-height: 2.0;
@@ -405,7 +421,8 @@ table th {
 }
 
 .tab-content.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Character selector buttons */

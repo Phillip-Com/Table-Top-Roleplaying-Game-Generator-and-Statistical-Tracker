@@ -67,46 +67,66 @@ function loadGameData() {
 }
 
 function init() {
+
   const hasCharacters = loadGameData();
-  const startForm = document.getElementById("start-form");
-  const numPCsInput = document.getElementById("numPCs");
 
-  if (!startForm || !numPCsInput) {
-    console.error("❌ Missing #start-form or #numPCs in the DOM");
-    return;
-  }
-
-  document.getElementById("start-btn")?.addEventListener("click", setupGame);
-  numPCsInput.addEventListener("input", generatePCInputs);
   setupTabs();
 
-  // Edition toggle in tracker (replaces restart for edition switching)
-  const editionToggleBtn = document.getElementById("edition-toggle-btn");
+  // Edition toggle
+  const editionToggleBtn =
+    document.getElementById("edition-toggle-btn");
+
   if (editionToggleBtn) {
-    editionToggleBtn.addEventListener("click", toggleEdition);
+    editionToggleBtn.addEventListener(
+      "click",
+      toggleEdition
+    );
   }
 
-  const syncBtn = document.getElementById("sync-google-btn");
+  // Google sync
+  const syncBtn =
+    document.getElementById("sync-google-btn");
+
   if (syncBtn) {
-    syncBtn.addEventListener("click", openSyncModal);
+    syncBtn.addEventListener(
+      "click",
+      openSyncModal
+    );
   }
 
-  if (hasCharacters) {
-    trackerStarted = true;
-    document.getElementById("start-menu").style.display = "none";
-    document.getElementById("app-tracker").style.display = "block";
-    selectedCharacter = getActiveCharacters()[0] || gameData.characters[0] || null;
-    renderCharacterButtons();
-    populateStatsSelects();
-    renderStatsActions(selectedCharacter);
-    updateEditionToggleLabel();
-    console.log("📂 Loaded saved game and skipping start menu!");
-  } else {
-    trackerStarted = false;
-    document.getElementById("start-menu").style.display = "block";
-    document.getElementById("app-tracker").style.display = "none";
-    console.log("🟢 Ready for new game input");
+  // If no save exists, create blank tracker data
+  if (!hasCharacters) {
+
+    gameData = {
+      edition: "5e",
+      theme: "light",
+      characters: [],
+      characterStats: {},
+      characterSheets: {},
+      sessionStartedAt: Date.now()
+    };
+
+    saveGameData("initial setup");
   }
+
+  trackerStarted = true;
+
+  // Pick selected character
+  selectedCharacter =
+    getCompatibleActiveCharacters()[0]
+    || gameData.characters[0]
+    || null;
+
+  renderCharacterButtons();
+  populateStatsSelects();
+
+  if (selectedCharacter) {
+    renderStatsActions(selectedCharacter);
+  }
+
+  updateEditionToggleLabel();
+
+  console.log("✅ Tracker initialized");
 }
 
 // -------------------- EDITION --------------------
@@ -149,87 +169,6 @@ function getCompatibleActiveCharacters() {
     if (!sheet.edition) return true; // no edition set — show always
     return sheet.edition === trackerEdition;
   });
-}
-
-// -------------------- GAME SETUP --------------------
-function setupGame(e) {
-  if (trackerStarted) {
-    console.warn("⚠️ Tracker already started");
-    return;
-  }
-
-  trackerStarted = true;
-
-  if (!gameData) {
-    gameData = {
-      edition: "5e",
-      theme: "light",
-      characters: [],
-      characterStats: {},
-      characterSheets: {},
-      sessionStartedAt: Date.now()
-    };
-  }
-
-  if (e && typeof e.preventDefault === "function") e.preventDefault();
-
-  gameData.scriptUrl = "https://script.google.com/macros/s/AKfycbwZvcjT_o93h80haSyjvx5B0O3EtX9pcLRPoIBUQGq3n2oRhX1SDLffZipEyeWOuRdq/exec";
-
-  const sheetIdInput = (document.getElementById("sheetId")?.value || "").trim();
-  let sheetId = "";
-  if (sheetIdInput) {
-    const sheetMatch = sheetIdInput.match(/\/d\/([A-Za-z0-9\-_]+)/);
-    sheetId = sheetMatch?.[1] || sheetIdInput.replace(/[^A-Za-z0-9\-_]/g, "");
-  }
-  gameData.sheetId = sheetId;
-
-  const editionInput = document.getElementById("edition");
-  if (editionInput) gameData.edition = editionInput.value;
-
-  const numPCs = parseInt(document.getElementById("numPCs")?.value, 10) || 0;
-  gameData.characters = [];
-  for (let i = 1; i <= numPCs; i++) {
-    const input = document.getElementById(`pcName${i}`);
-    gameData.characters.push(input?.value.trim() || `PC${i}`);
-  }
-
-  const includeNPCs = document.getElementById("includeNPCs")?.checked;
-  if (includeNPCs && !gameData.characters.includes("NPC")) {
-    gameData.characters.push("NPC");
-  }
-
-  if (!gameData.characterSheets) gameData.characterSheets = {};
-
-  // For start-menu: optionally import saved character sheets
-  const savedSheetKeys = Object.keys(gameData.characterSheets || {});
-  // Merge any existing saved sheets into the new session if names match
-  gameData.characters.forEach(name => {
-    if (!gameData.characterSheets[name]) {
-      gameData.characterSheets[name] = blankSheet(name, gameData.edition);
-    }
-    // Ensure active flag
-    if (gameData.characterSheets[name].active === undefined) {
-      gameData.characterSheets[name].active = true;
-    }
-  });
-
-  gameData.characters.forEach(name => {
-    if (!gameData.characterStats[name]) {
-      gameData.characterStats[name] = buildBlankStats();
-    }
-  });
-
-  selectedCharacter = getCompatibleActiveCharacters()[0] || gameData.characters[0] || null;
-
-  document.getElementById("start-menu").style.display = "none";
-  document.getElementById("app-tracker").style.display = "block";
-
-  renderCharacterButtons();
-  populateStatsSelects();
-  renderStatsActions(selectedCharacter);
-  updateEditionToggleLabel();
-
-  console.log("✅ Game setup complete!", gameData);
 }
 
 function buildBlankStats() {
@@ -342,61 +281,90 @@ function generatePCInputs() {
     pcNamesDiv.appendChild(document.createElement("br"));
   }
 }
-
 // -------------------- TABS --------------------
+
 function setupTabs() {
-  const tabs = document.querySelectorAll("#app-tracker .tab-btn");
-  const contents = document.querySelectorAll("#app-tracker .tab-content");
 
-  tabs.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const tabId = btn.dataset.tab;
-      tabs.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      contents.forEach(c => (c.style.display = "none"));
-      const target = document.getElementById(tabId);
-      if (target) target.style.display = "flex";
-      if (tabId === "stats") renderStatsActions(selectedCharacter);
-      else clearStatsActions();
+  // Hide all tabs first
+  document.querySelectorAll("#tab-tracker .tab-content")
+    .forEach(tab => {
+      tab.classList.remove("active");
+      tab.style.display = "none";
     });
-  });
 
-  if (tabs.length > 0) tabs[0].click();
+  // Open default tab
+  switchTab("combat");
 }
 
 window.switchTab = function (tabId) {
-  document.querySelectorAll("#app-tracker .tab-content").forEach(tab => {
-    tab.style.display = "none";
-  });
-  document.getElementById(tabId).style.display = "block";
 
-  document.querySelectorAll(".tab-buttons button").forEach(btn => {
-    btn.classList.remove("active");
-  });
-  const activeBtn = document.querySelector(`.tab-buttons button[onclick="switchTab('${tabId}')"]`);
-  if (activeBtn) activeBtn.classList.add("active");
+  // Hide ALL tracker tabs
+  document.querySelectorAll("#tab-tracker .tab-content")
+    .forEach(tab => {
+      tab.classList.remove("active");
+      tab.style.display = "none";
+    });
 
-  const sideStats = document.getElementById("side-stats");
-  if (sideStats) {
-    sideStats.style.display = (tabId === "summary" || tabId === "character-sheets") ? "none" : "block";
+  // Show selected tab
+  const selectedTab = document.getElementById(tabId);
+
+  if (selectedTab) {
+    selectedTab.classList.add("active");
+    selectedTab.style.display = "flex";
+    selectedTab.style.flexDirection = "column";
   }
 
+  // Remove active state from buttons
+  document.querySelectorAll("#tab-tracker .tracker-tabs button")
+    .forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+  // Add active state to clicked button
+  const activeBtn = document.querySelector(
+    `#tab-tracker .tracker-tabs button[onclick="switchTab('${tabId}')"]`
+  );
+
+  if (activeBtn) {
+    activeBtn.classList.add("active");
+  }
+
+  // Toggle side stats panel
+  const sideStats = document.getElementById("side-stats");
+
+  if (sideStats) {
+    sideStats.style.display =
+      (tabId === "summary" || tabId === "character-sheets")
+        ? "none"
+        : "block";
+  }
+
+  // Render logic
   if (tabId === "combat") {
+
     renderStatsActions(selectedCharacter, "combat");
     renderInitiativeControls();
     renderInitiative();
+
   } else if (tabId === "stats") {
+
     renderCharacterButtons();
     renderStatsActions(selectedCharacter, "stats");
+
   } else if (tabId === "stats-editor") {
+
     renderEditorStats(selectedCharacter);
     renderCharacterButtons();
+
   } else if (tabId === "character-sheets") {
+
     renderSheetTab();
+
   } else if (tabId === "summary") {
+
     renderStatsSummary();
   }
-}
+};
 
 function playSoundFromUrl(url, vol) {
   const audio = new Audio(url);
@@ -999,6 +967,49 @@ function buildInlineSheetEditor(name, sheet) {
     return h;
   }
 
+  let SPELL_DATABASE = null;
+
+  async function loadSpellDatabase() {
+
+    if (SPELL_DATABASE) {
+      return SPELL_DATABASE;
+    }
+
+    const response =
+      await fetch("./data/5.5eSpells.json");
+
+    if (!response.ok) {
+      throw new Error(
+        "Failed to load 5.5eSpells.json"
+      );
+    }
+
+    SPELL_DATABASE = await response.json();
+
+    return SPELL_DATABASE;
+  }
+
+  function getAllSpells(db) {
+
+    const all = [];
+
+    Object.entries(db).forEach(([level, spells]) => {
+
+      Object.entries(spells).forEach(([id, spell]) => {
+
+        all.push({
+          id,
+          level: Number(level),
+          ...spell
+        });
+      });
+    });
+
+    return all.sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+  }
+
   // ── Identity ──
   const header1 = document.getElementById("character-sheets-header");
 
@@ -1191,7 +1202,6 @@ function buildInlineSheetEditor(name, sheet) {
       const val = parseInt(scoreInp.value) || 10;
       sheet.abilities[key] = val;
       modDisplay.textContent = modStr(abilityMod(val));
-      if (key === "dex") { sheet.initiative = abilityMod(val); initModInp.value = sheet.initiative; }
       renderSkillSection();
       renderSaveSection();
       sheet.initiative = computeInitiative(sheet);
@@ -1217,7 +1227,12 @@ function buildInlineSheetEditor(name, sheet) {
     if (!sheet.savingThrowProficiencies) sheet.savingThrowProficiencies = {};
 
     const saveGrid = document.createElement("div");
-    saveGrid.style.cssText = `display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;`;
+    saveGrid.style.cssText = `
+display:grid;
+grid-template-columns:repeat(6,minmax(30px,1fr));
+gap:8px;
+align-items:stretch;
+`;
 
     ABILITY_KEYS.forEach(key => {
       if (!sheet.savingThrowProficiencies[key]) {
@@ -1227,7 +1242,16 @@ function buildInlineSheetEditor(name, sheet) {
       const total = computeSaveTotal(sheet, key);
 
       const card = document.createElement("div");
-      card.style.cssText = `background:var(--background);border:1px solid var(--surfaces);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:5px;`;
+      card.style.cssText = `
+background:var(--background);
+border:1px solid var(--surfaces);
+border-radius:8px;
+padding:8px;
+display:flex;
+flex-direction:column;
+gap:6px;
+min-width:0;
+`;
 
       const header = document.createElement("div");
       header.style.cssText = `display:flex;align-items:center;justify-content:space-between;`;
@@ -1246,12 +1270,27 @@ function buildInlineSheetEditor(name, sheet) {
 
       // Proficiency type select
       const profRow = document.createElement("div");
-      profRow.style.cssText = `display:flex;align-items:center;gap:6px;`;
+      profRow.style.cssText = `
+display:flex;
+align-items:center;
+gap:6px;
+min-width:0;
+`;
       const profLabel = document.createElement("label");
       profLabel.textContent = "Prof:";
       profLabel.style.cssText = `font-size:0.8rem;min-width:36px;`;
       const profSel = document.createElement("select");
-      profSel.style.cssText = `flex:1;font-size:0.8rem;padding:3px 5px;background:var(--background);border:1px solid var(--surfaces);color:var(--primary-text);border-radius:4px;`;
+      profSel.style.cssText = `
+flex:1 1 auto;
+min-width:0;
+width:100%;
+font-size:0.8rem;
+padding:3px 5px;
+background:var(--background);
+border:1px solid var(--surfaces);
+color:var(--primary-text);
+border-radius:4px;
+`;
       ["Unproficient", "proficient", "expertise"].forEach(opt => {
         const o = document.createElement("option");
         o.value = opt;
@@ -1314,41 +1353,47 @@ function buildInlineSheetEditor(name, sheet) {
     if (!sheet.customSkills) sheet.customSkills = [];
     if (!sheet.skillProficiencies) sheet.skillProficiencies = {};
     const allSkills = [
-  ...DND5E_SKILLS,
-  ...sheet.customSkills
-];
+      ...DND5E_SKILLS,
+      ...sheet.customSkills
+    ];
     allSkills.forEach(sk => {
 
-  const skillKey = sk.custom ? sk.id : sk.name;
+      const skillKey = sk.custom ? sk.id : sk.name;
 
-  if (!sheet.skillProficiencies[skillKey]) {
+      if (!sheet.skillProficiencies[skillKey]) {
 
-    sheet.skillProficiencies[skillKey] = {
-      type: "none",
-      miscBonus: 0
-    };
-  }
-});
+        sheet.skillProficiencies[skillKey] = {
+          type: "none",
+          miscBonus: 0
+        };
+      }
+    });
 
     const grid = document.createElement("div");
-    grid.style.cssText = `display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:6px;`;
+    grid.style.cssText = `
+display:grid;
+grid-template-columns:repeat(6,minmax(180px,1fr));
+gap:8px;
+align-items:stretch;
+`;
 
     allSkills.forEach(sk => {
       const skillKey = sk.custom ? sk.id : sk.name;
 
-const skData = sheet.skillProficiencies[skillKey];
+      const skData = sheet.skillProficiencies[skillKey];
       const total = computeSkillTotal(sheet, sk.name, sk.ability);
 
       const card = document.createElement("div");
       card.style.cssText = `
-  display:flex;
-  align-items:flex-start;
-  flex-wrap:wrap;
-  gap:6px;
-  padding:5px 8px;
-  background:var(--background);
-  border:1px solid var(--surfaces);
-  border-radius:6px;
+display:grid;
+grid-template-columns:auto 1fr;
+gap:6px;
+padding:8px;
+background:var(--background);
+border:1px solid var(--surfaces);
+border-radius:8px;
+min-width:0;
+align-items:start;
 `;
 
       // Total modifier badge
@@ -1368,24 +1413,23 @@ const skData = sheet.skillProficiencies[skillKey];
 
       // Skill name + ability
       const skillWrap = document.createElement("div");
-
-skillWrap.style.cssText = `
-  display:flex;
-  flex-direction:column;
-  flex:1 1 120px;
-  min-width:120px;
-  gap:4px;
+      skillWrap.style.cssText = `
+display:flex;
+flex-direction:column;
+min-width:0;
+width:100%;
+gap:4px;
 `;
 
-if (sk.custom) {
+      if (sk.custom) {
 
-  const nameInput = document.createElement("input");
+        const nameInput = document.createElement("input");
 
-  nameInput.type = "text";
+        nameInput.type = "text";
 
-  nameInput.value = sk.name;
+        nameInput.value = sk.name;
 
-  nameInput.style.cssText = `
+        nameInput.style.cssText = `
     width:100%;
     padding:2px 4px;
     font-size:0.8rem;
@@ -1395,16 +1439,16 @@ if (sk.custom) {
     border-radius:4px;
   `;
 
-  nameInput.addEventListener("input", () => {
+        nameInput.addEventListener("input", () => {
 
-    sk.name = nameInput.value;
+          sk.name = nameInput.value;
 
-    saveGameData("custom skill rename");
-  });
+          saveGameData("custom skill rename");
+        });
 
-  const abilitySelect = document.createElement("select");
+        const abilitySelect = document.createElement("select");
 
-  abilitySelect.style.cssText = `
+        abilitySelect.style.cssText = `
     padding:2px 4px;
     font-size:0.75rem;
     background:var(--background);
@@ -1413,54 +1457,63 @@ if (sk.custom) {
     border-radius:4px;
   `;
 
-  ABILITY_KEYS.forEach(ab => {
+        ABILITY_KEYS.forEach(ab => {
 
-    const opt = document.createElement("option");
+          const opt = document.createElement("option");
 
-    opt.value = ab;
-    opt.textContent = ab.toUpperCase();
+          opt.value = ab;
+          opt.textContent = ab.toUpperCase();
 
-    if (ab === sk.ability) {
-      opt.selected = true;
-    }
+          if (ab === sk.ability) {
+            opt.selected = true;
+          }
 
-    abilitySelect.appendChild(opt);
-  });
+          abilitySelect.appendChild(opt);
+        });
 
-  abilitySelect.addEventListener("change", () => {
+        abilitySelect.addEventListener("change", () => {
 
-    sk.ability = abilitySelect.value;
+          sk.ability = abilitySelect.value;
 
-    renderSkillSection();
+          renderSkillSection();
 
-    saveGameData("custom skill ability");
-  });
+          saveGameData("custom skill ability");
+        });
 
-  skillWrap.appendChild(nameInput);
-  skillWrap.appendChild(abilitySelect);
+        skillWrap.appendChild(nameInput);
+        skillWrap.appendChild(abilitySelect);
 
-} else {
+      } else {
 
-  const skillLabel = document.createElement("span");
+        const skillLabel = document.createElement("span");
 
-  skillLabel.style.cssText = `
+        skillLabel.style.cssText = `
     flex:1;
     font-size:0.85rem;
   `;
 
-  skillLabel.innerHTML = `
+        skillLabel.innerHTML = `
     <strong>${sk.name}</strong>
     <span style="opacity:0.6;font-size:0.8rem;">
       (${sk.ability.toUpperCase()})
     </span>
   `;
 
-  skillWrap.appendChild(skillLabel);
-}
+        skillWrap.appendChild(skillLabel);
+      }
 
       // Prof type select
       const profSel = document.createElement("select");
-      profSel.style.cssText = `font-size:0.78rem;padding:2px 4px;background:var(--background);border:1px solid var(--surfaces);color:var(--primary-text);border-radius:4px;max-width:90px;`;
+      profSel.style.cssText = `
+width:100%;
+font-size:0.78rem;
+padding:2px 4px;
+background:var(--background);
+border:1px solid var(--surfaces);
+color:var(--primary-text);
+border-radius:4px;
+min-width:0;
+`;
       ["none", "proficient", "expertise"].forEach(opt => {
         const o = document.createElement("option");
         o.value = opt;
@@ -1481,7 +1534,17 @@ if (sk.custom) {
       miscInp.type = "number";
       miscInp.value = skData.miscBonus ?? 0;
       miscInp.title = "Misc bonus";
-      miscInp.style.cssText = `width:44px;font-size:0.78rem;padding:2px 4px;background:var(--background);border:1px solid var(--surfaces);color:var(--primary-text);border-radius:4px;text-align:center;`;
+      miscInp.style.cssText = `
+width:100%;
+min-width:0;
+font-size:0.78rem;
+padding:2px 4px;
+background:var(--background);
+border:1px solid var(--surfaces);
+color:var(--primary-text);
+border-radius:4px;
+text-align:center;
+`;
       miscInp.addEventListener("input", () => {
         skData.miscBonus = parseInt(miscInp.value) || 0;
         renderSkillSection();
@@ -1493,25 +1556,25 @@ if (sk.custom) {
 
       const deleteBtn = document.createElement("button");
 
-      if (sk.custom) {  
+      if (sk.custom) {
 
-  deleteBtn.textContent = "✕";
+        deleteBtn.textContent = "✕";
 
-  deleteBtn.className = "sheet-btn-danger";
-  deleteBtn.style.flexShrink = "0";
+        deleteBtn.className = "sheet-btn-danger";
+        deleteBtn.style.flexShrink = "0";
 
-  deleteBtn.onclick = () => {
+        deleteBtn.onclick = () => {
 
-    sheet.customSkills =
-      sheet.customSkills.filter(s => s.id !== sk.id);
+          sheet.customSkills =
+            sheet.customSkills.filter(s => s.id !== sk.id);
 
-    delete sheet.skillProficiencies[sk.id];
+          delete sheet.skillProficiencies[sk.id];
 
-    renderSkillSection();
+          renderSkillSection();
 
-    saveGameData("custom skill removed");
-  };
-}
+          saveGameData("custom skill removed");
+        };
+      }
 
       card.appendChild(badge);
       card.appendChild(skillWrap);
@@ -1525,37 +1588,37 @@ if (sk.custom) {
 
     const addSkillBtn = document.createElement("button");
 
-addSkillBtn.textContent = "+ Add Custom Skill";
-addSkillBtn.className = "sheet-add-btn";
+    addSkillBtn.textContent = "+ Add Custom Skill";
+    addSkillBtn.className = "sheet-add-btn";
 
-addSkillBtn.style.marginTop = "10px";
+    addSkillBtn.style.marginTop = "10px";
 
-addSkillBtn.onclick = () => {
+    addSkillBtn.onclick = () => {
 
-  if (!sheet.customSkills) {
-    sheet.customSkills = [];
-  }
+      if (!sheet.customSkills) {
+        sheet.customSkills = [];
+      }
 
-  const newSkill = {
-    id: crypto.randomUUID(),
-    name: "New Skill",
-    ability: "dex",
-    custom: true
-  };
+      const newSkill = {
+        id: crypto.randomUUID(),
+        name: "New Skill",
+        ability: "dex",
+        custom: true
+      };
 
-  sheet.customSkills.push(newSkill);
+      sheet.customSkills.push(newSkill);
 
-  sheet.skillProficiencies[newSkill.id] = {
-    type: "none",
-    miscBonus: 0
-  };
+      sheet.skillProficiencies[newSkill.id] = {
+        type: "none",
+        miscBonus: 0
+      };
 
-  renderSkillSection();
+      renderSkillSection();
 
-  saveGameData("custom skill added");
-};
+      saveGameData("custom skill added");
+    };
 
-skillsContainer.appendChild(addSkillBtn);
+    skillsContainer.appendChild(addSkillBtn);
 
     skillsContainer.appendChild(grid);
 
@@ -1592,6 +1655,7 @@ skillsContainer.appendChild(addSkillBtn);
     `;
 
     const title = document.createElement("h3");
+    title.textContent = "Attacks";
     title.style.cssText = `
       margin:0;
       padding-bottom:5px;
@@ -1686,12 +1750,12 @@ skillsContainer.appendChild(addSkillBtn);
 
         grid.style.cssText = `
     display:grid;
-    grid-template-columns:repeat(4, minmax(0, 1fr));
+    grid-template-columns:repeat(3, minmax(0, 1fr));
     gap:8px;
   `;
-
-        section.appendChild(grid);
       }
+      section.appendChild(grid);
+
 
       section.querySelector(".attacks-grid").appendChild(row);
     });
@@ -1699,7 +1763,520 @@ skillsContainer.appendChild(addSkillBtn);
     attacksContainer.appendChild(section);
   }
 
+  // ── Spells ──
+  const spellsContainer = document.createElement("div");
+  wrapper.appendChild(spellsContainer);
+
+  function renderSpellsSection() {
+
+    spellsContainer.innerHTML = "";
+
+    if (!sheet.spells) {
+      sheet.spells = [];
+    }
+
+    const section = document.createElement("div");
+
+    section.style.cssText = `
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:12px;
+  `;
+
+    // ── Header ──
+    const header = document.createElement("div");
+
+    header.style.cssText = `
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  `;
+
+    const title = document.createElement("h3");
+
+    title.textContent = "Spells";
+
+    title.style.cssText = `
+    margin:0;
+    padding-bottom:5px;
+    border-bottom:1px solid var(--primary-accent);
+    color:var(--secondary-text);
+    font-size:0.95rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    flex:1;
+  `;
+
+    header.appendChild(title);
+
+    // ── Add Custom Spell ──
+    const addBtn = document.createElement("button");
+
+    addBtn.textContent = "+ Custom Spell";
+
+    addBtn.className = "sheet-add-btn";
+
+    addBtn.onclick = () => {
+
+      sheet.spells.push({
+        custom: true,
+        name: "New Spell",
+        level: 0,
+        attacks: 0,
+        saves: {
+          count: 0,
+          type: "dex"
+        }
+      });
+
+      renderSpellsSection();
+
+      saveGameData("custom spell added");
+    };
+
+    header.appendChild(addBtn);
+
+    section.appendChild(header);
+
+    // ── Import Existing Spell ──
+    const importRow = document.createElement("div");
+
+    importRow.style.cssText = `
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    align-items:center;
+  `;
+
+    const spellSelect = document.createElement("select");
+
+    spellSelect.style.cssText = `
+    flex:1;
+    min-width:240px;
+    padding:6px 8px;
+    background:var(--background);
+    border:1px solid var(--surfaces);
+    color:var(--primary-text);
+    border-radius:6px;
+  `;
+
+    const placeholder = document.createElement("option");
+
+    placeholder.value = "";
+    placeholder.textContent = "Select spell...";
+
+    spellSelect.appendChild(placeholder);
+
+    loadSpellDatabase().then(db => {
+
+      const allSpells = getAllSpells(db);
+
+      const spellsByLevel = {};
+
+      allSpells.forEach(spell => {
+
+        if (!spellsByLevel[spell.level]) {
+          spellsByLevel[spell.level] = [];
+        }
+
+        spellsByLevel[spell.level].push(spell);
+      });
+
+      // SORT LEVELS NUMERICALLY
+      Object.keys(spellsByLevel)
+        .map(Number)
+        .sort((a, b) => a - b)
+        .forEach(level => {
+
+          const group = document.createElement("optgroup");
+
+          group.label =
+            level === 0
+              ? "Cantrips"
+              : `Level ${level}`;
+
+          // SORT SPELLS ALPHABETICALLY
+          spellsByLevel[level]
+            .sort((a, b) =>
+              a.name.localeCompare(b.name)
+            )
+            .forEach(spell => {
+
+              const opt = document.createElement("option");
+
+              opt.value = spell.id;
+
+              opt.textContent = spell.name;
+
+              group.appendChild(opt);
+            });
+
+          spellSelect.appendChild(group);
+        });
+    });
+
+    const importBtn = document.createElement("button");
+
+    importBtn.textContent = "+ Add Existing Spell";
+
+    importBtn.className = "sheet-add-btn";
+
+    importBtn.onclick = async () => {
+
+      const spellId = spellSelect.value;
+
+      if (!spellId) {
+        return;
+      }
+
+      const db = await loadSpellDatabase();
+
+      let foundSpell = null;
+
+      Object.entries(db).forEach(([level, spells]) => {
+
+        if (spells[spellId]) {
+
+          foundSpell = {
+            id: spellId,
+            level: Number(level),
+            ...spells[spellId]
+          };
+        }
+      });
+
+      if (!foundSpell) {
+        return;
+      }
+
+      sheet.spells.push({
+        source: "database",
+        spellId: foundSpell.id,
+
+        name: foundSpell.name,
+        level: foundSpell.level,
+
+        attacks: foundSpell.attacks ?? 0,
+
+        saves: foundSpell.saves ?? {
+          count: 0,
+          type: "dex"
+        },
+
+        custom: false
+      });
+
+      renderSpellsSection();
+
+      saveGameData("spell imported");
+    };
+
+    importRow.appendChild(spellSelect);
+    importRow.appendChild(importBtn);
+
+    section.appendChild(importRow);
+
+    // ── Empty State ──
+    if (sheet.spells.length === 0) {
+
+      const empty = document.createElement("div");
+
+      empty.textContent = "No spells added.";
+
+      empty.style.cssText = `
+      opacity:0.6;
+      font-size:0.9rem;
+      padding:4px;
+    `;
+
+      section.appendChild(empty);
+    }
+
+    // ── Spell Grid ──
+    const spellGrid = document.createElement("div");
+
+    spellGrid.style.cssText = `
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fill, minmax(170px, 1fr));
+  gap:8px;
+  align-items:start;
+`;
+
+    section.appendChild(spellGrid);
+
+    // ── Sort Spells ──
+    // Level ascending, then alphabetically
+    const sortedSpells = [...sheet.spells].sort((a, b) => {
+
+      // Sort by level first
+      if ((a.level ?? 0) !== (b.level ?? 0)) {
+        return (a.level ?? 0) - (b.level ?? 0);
+      }
+
+      // Then alphabetically
+      return (a.name ?? "").localeCompare(b.name ?? "");
+    });
+
+    // Spell Cards
+    sortedSpells.forEach((spell) => {
+
+      // Find original index for deletion
+      const index = sheet.spells.indexOf(spell);
+
+      const card = document.createElement("div");
+
+      card.style.cssText = `
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      padding:8px;
+      border:1px solid var(--surfaces);
+      border-radius:8px;
+      background:var(--background);
+    `;
+
+      // Top Row
+      const top = document.createElement("div");
+
+      top.style.cssText = `
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      flex-wrap:wrap;
+    `;
+
+      // Left Side
+      const info = document.createElement("div");
+
+      info.style.cssText = `
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    `;
+
+      if (spell.custom) {
+
+        const nameInput = textInput(
+          spell.name,
+          v => spell.name = v
+        );
+
+        info.appendChild(nameInput);
+
+      } else {
+
+        const title = document.createElement("div");
+
+        title.innerHTML = `
+        <strong>${spell.name}</strong>
+        <span style="opacity:0.6;">
+          • Level ${spell.level}
+        </span>
+      `;
+
+        info.appendChild(title);
+      }
+
+      // Only show summary meta for imported spells
+      if (!spell.custom) {
+
+        const meta = document.createElement("div");
+
+        meta.style.cssText = `
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    font-size:0.72rem;
+    opacity:0.75;
+  `;
+
+        meta.innerHTML = `
+    <span>ATK ${spell.attacks}</span>
+    <span>
+      SAVE ${spell.saves?.count ?? 0}
+      ${(spell.saves?.type ?? "dex").toUpperCase()}
+    </span>
+  `;
+
+        info.appendChild(meta);
+      }
+
+      top.appendChild(info);
+
+      // Delete Button
+      const deleteBtn = document.createElement("button");
+
+      deleteBtn.textContent = "✕";
+
+      deleteBtn.className = "sheet-btn-danger";
+
+      deleteBtn.onclick = () => {
+
+        sheet.spells.splice(index, 1);
+
+        renderSpellsSection();
+
+        saveGameData("spell removed");
+      };
+
+      top.appendChild(deleteBtn);
+
+      card.appendChild(top);
+
+      // Editable Custom Fields
+      if (spell.custom) {
+
+        // Ensure scaling exists
+        if (!spell.scaling) {
+
+          spell.scaling = {
+            type: "spellSlot",
+            every: 1,
+            add: 1
+          };
+        }
+
+        const grid = document.createElement("div");
+
+        grid.style.cssText = `
+    display:grid;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+    gap:6px;
+  `;
+
+        function labeledField(labelText, input) {
+
+          const wrap = document.createElement("div");
+
+          wrap.style.cssText = `
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+    `;
+
+          const label = document.createElement("label");
+
+          label.textContent = labelText;
+
+          label.style.cssText = `
+      font-size:0.68rem;
+      opacity:0.7;
+      text-transform:uppercase;
+      letter-spacing:0.04em;
+    `;
+
+          wrap.appendChild(label);
+          wrap.appendChild(input);
+
+          return wrap;
+        }
+
+        // Level
+        grid.appendChild(
+          labeledField(
+            "Level",
+            numInput(
+              spell.level,
+              v => spell.level = v,
+              0,
+              9
+            )
+          )
+        );
+
+        // Attacks
+        grid.appendChild(
+          labeledField(
+            "Attacks",
+            numInput(
+              spell.attacks,
+              v => spell.attacks = v,
+              0,
+              20
+            )
+          )
+        );
+
+        // Save Count
+        grid.appendChild(
+          labeledField(
+            "Save Count",
+            numInput(
+              spell.saves?.count ?? 0,
+              v => spell.saves.count = v,
+              0,
+              20
+            )
+          )
+        );
+
+        // Save Type
+        grid.appendChild(
+          labeledField(
+            "Save Type",
+            selectInput(
+              ABILITY_KEYS,
+              spell.saves?.type ?? "dex",
+              v => spell.saves.type = v
+            )
+          )
+        );
+
+        // Scaling Type
+        grid.appendChild(
+          labeledField(
+            "Scaling Type",
+            selectInput(
+              ["spellSlot", "characterLevel", "none"],
+              spell.scaling?.type ?? "spellSlot",
+              v => spell.scaling.type = v
+            )
+          )
+        );
+
+        // Scaling Every
+        grid.appendChild(
+          labeledField(
+            "Scale Every",
+            numInput(
+              spell.scaling?.every ?? 1,
+              v => spell.scaling.every = v,
+              1,
+              20
+            )
+          )
+        );
+
+        // Scaling Add
+        grid.appendChild(
+          labeledField(
+            "Scale Add",
+            numInput(
+              spell.scaling?.add ?? 1,
+              v => spell.scaling.add = v,
+              0,
+              20
+            )
+          )
+        );
+
+        card.appendChild(grid);
+      }
+
+      spellGrid.appendChild(card);
+    });
+
+    spellsContainer.appendChild(section);
+  }
+
   renderAttacksSection();
+  renderSpellsSection();
   renderSkillSection();
   sheet.initiative = computeInitiative(sheet);
   initModInp.value = sheet.initiative;
@@ -1746,9 +2323,6 @@ window.addNewCharacter = addNewCharacter;
 window.removeCharacter = removeCharacter;
 window.createSheetForCharacter = createSheetForCharacter;
 window.toggleCharacterActive = toggleCharacterActive;
-
-// -------------------- Modal Update for Sheets --------
-
 
 // -------------------- D20 & INPUT --------------------
 function openUnifiedActionModal(characterName, type, includeDamage = false) {
@@ -1819,8 +2393,6 @@ function openUnifiedActionModal(characterName, type, includeDamage = false) {
     triggerEasterEgg();
   });
 }
-
-
 
 async function openMultiRollModal(characterName, type, includeDamage = false) {
   return new Promise(resolve => {
@@ -1898,7 +2470,7 @@ async function openMultiRollModal(characterName, type, includeDamage = false) {
 
         case "Attack":
           (sheet.attacks || []).forEach(atk => {
-              addMod(atk.name, atk.modifier);
+            addMod(atk.name, atk.modifier);
           });
           break;
 
@@ -1913,11 +2485,11 @@ async function openMultiRollModal(characterName, type, includeDamage = false) {
 
         case "Ability":
           const allSkills = [
-  ...DND5E_SKILLS,
-  ...(sheet.customSkills || [])
-];
+            ...DND5E_SKILLS,
+            ...(sheet.customSkills || [])
+          ];
 
-allSkills.forEach(sk => {
+          allSkills.forEach(sk => {
             addMod(
               sk.name,
               computeSkillTotal(sheet, sk.name, sk.ability)
@@ -2141,175 +2713,1095 @@ function openNumberModal(title, prompt, step = 0) {
 }
 
 function openCastSpellModal(characterName) {
+
   return new Promise(resolve => {
-    const spell = { name: "", attacks: [], saves: [], spellResistance: [], extra: { damage: 0, healing: 0 } };
+
+    const spell = {
+      name: "",
+      selectedSpell: null,
+
+      attacks: [],
+      saves: [],
+      spellResistance: [],
+
+      saveType: "dex",
+
+      scaling: null,
+
+      extra: {
+        damage: 0,
+        healing: 0
+      }
+    };
+
+    // ─────────────────────────────────────────────
+    // LAYOUT
+    // ─────────────────────────────────────────────
 
     const wrapper = document.createElement("div");
-    wrapper.style.cssText = `display:grid;grid-template-columns:1fr 1.5fr;gap:16px;`;
 
-    const left = document.createElement("div");
-    const right = document.createElement("div");
-    wrapper.append(left, right);
+    wrapper.style.cssText = `
+      display:grid;
+      grid-template-columns:320px 1fr 300px;
+      gap:16px;
+      align-items:start;
+      max-height:75vh;
+    `;
 
-    const attackSection = document.createElement("div");
-    const saveSection = document.createElement("div");
-    const srSection = document.createElement("div");
-    right.append(attackSection, saveSection, srSection);
+    const left =
+      document.createElement("div");
 
-    function createBoundInput(obj, key, min = null, max = null, onChange = null) {
-      const input = document.createElement("input");
+    const right =
+      document.createElement("div");
+
+    const spellLibrary =
+      document.createElement("div");
+
+    spellLibrary.style.cssText = `
+      border-left:1px solid var(--surfaces);
+      padding-left:12px;
+      overflow:auto;
+      max-height:70vh;
+    `;
+
+    wrapper.append(
+      left,
+      right,
+      spellLibrary
+    );
+
+    const attackSection =
+      document.createElement("div");
+
+    const saveSection =
+      document.createElement("div");
+
+    const srSection =
+      document.createElement("div");
+
+    right.append(
+      attackSection,
+      saveSection,
+      srSection
+    );
+
+    // ─────────────────────────────────────────────
+    // HELPERS
+    // ─────────────────────────────────────────────
+
+    function createBoundInput(
+      obj,
+      key,
+      min = null,
+      max = null,
+      onChange = null
+    ) {
+
+      const input =
+        document.createElement("input");
+
       input.type = "number";
-      if (min !== null) input.min = min;
-      if (max !== null) input.max = max;
+
+      if (min !== null) {
+        input.min = min;
+      }
+
+      if (max !== null) {
+        input.max = max;
+      }
+
       input.value = obj[key] ?? 0;
-      input.addEventListener("input", () => { obj[key] = parseInt(input.value) || 0; if (onChange) onChange(); });
+
+      input.addEventListener(
+        "input",
+        () => {
+
+          obj[key] =
+            parseInt(input.value) || 0;
+
+          if (onChange) {
+            onChange();
+          }
+        }
+      );
+
       return input;
     }
 
-    function createCountInput(label, onChange) {
-      const row = document.createElement("div");
-      const l = document.createElement("label");
-      const i = document.createElement("input");
-      l.textContent = label + ": "; i.type = "number"; i.min = 0; i.value = 0;
-      i.addEventListener("input", () => { onChange(parseInt(i.value) || 0); });
-      row.append(l, i);
-      return row;
+    function createCountInput(
+      label,
+      onChange
+    ) {
+
+      const row =
+        document.createElement("div");
+
+      row.style.marginBottom = "8px";
+
+      const l =
+        document.createElement("label");
+
+      const i =
+        document.createElement("input");
+
+      l.textContent = label + ": ";
+
+      i.type = "number";
+      i.min = 0;
+      i.value = 0;
+
+      i.addEventListener(
+        "input",
+        () => {
+
+          onChange(
+            parseInt(i.value) || 0
+          );
+        }
+      );
+
+      row.append(
+        l,
+        i
+      );
+
+      return {
+        row,
+        input: i
+      };
     }
 
-    function createNumberInput(label, onChange) {
-      const row = document.createElement("div");
-      const l = document.createElement("label");
-      const i = document.createElement("input");
-      l.textContent = label + ": "; i.type = "number"; i.value = 0;
-      i.addEventListener("input", () => { onChange(parseFloat(i.value) || 0); });
-      row.append(l, i);
+    function createNumberInput(
+      label,
+      onChange
+    ) {
+
+      const row =
+        document.createElement("div");
+
+      row.style.marginBottom = "8px";
+
+      const l =
+        document.createElement("label");
+
+      const i =
+        document.createElement("input");
+
+      l.textContent = label + ": ";
+
+      i.type = "number";
+
+      i.value = 0;
+
+      i.addEventListener(
+        "input",
+        () => {
+
+          onChange(
+            parseFloat(i.value) || 0
+          );
+        }
+      );
+
+      row.append(
+        l,
+        i
+      );
+
       return row;
     }
 
     function buildColumnHeader(labels) {
-      const row = document.createElement("div");
-      row.style.cssText = `display:grid;grid-template-columns:120px repeat(${labels.length},1fr);font-weight:bold;margin-bottom:4px;`;
-      row.appendChild(document.createElement("div"));
+
+      const row =
+        document.createElement("div");
+
+      row.style.cssText = `
+        display:grid;
+        grid-template-columns:
+          120px repeat(${labels.length},1fr);
+        font-weight:bold;
+        margin-bottom:4px;
+      `;
+
+      row.appendChild(
+        document.createElement("div")
+      );
+
       labels.forEach(text => {
-        const cell = document.createElement("div");
-        cell.textContent = text; cell.style.textAlign = "center";
+
+        const cell =
+          document.createElement("div");
+
+        cell.textContent = text;
+
+        cell.style.textAlign =
+          "center";
+
         row.appendChild(cell);
       });
+
       return row;
     }
 
-    function buildAttackRow(atk, index) {
-      const row = document.createElement("div");
-      row.style.cssText = `display:grid;grid-template-columns:120px 1fr 1fr 1fr;gap:6px;align-items:center;`;
-      const label = document.createElement("div"); label.textContent = `Atk ${index + 1}`;
-      row.append(label, createBoundInput(atk, "roll", 1, 20), createBoundInput(atk, "modifier"), createBoundInput(atk, "damage"));
+    // ─────────────────────────────────────────────
+    // ATTACK ROWS
+    // ─────────────────────────────────────────────
+
+    function buildAttackRow(
+      atk,
+      index
+    ) {
+
+      const row =
+        document.createElement("div");
+
+      row.style.cssText = `
+        display:grid;
+        grid-template-columns:
+          120px 1fr 1fr 1fr;
+        gap:6px;
+        align-items:center;
+      `;
+
+      const label =
+        document.createElement("div");
+
+      label.textContent =
+        `Atk ${index + 1}`;
+
+      row.append(
+        label,
+
+        createBoundInput(
+          atk,
+          "roll",
+          1,
+          20
+        ),
+
+        createBoundInput(
+          atk,
+          "modifier"
+        ),
+
+        createBoundInput(
+          atk,
+          "damage"
+        )
+      );
+
       return row;
     }
 
-    function buildSaveRow(sv, index, casterName) {
-      const row = document.createElement("div");
-      row.style.cssText = `display:grid;grid-template-columns:120px 1.5fr 1fr 1fr;gap:6px;align-items:center;`;
-      const label = document.createElement("div"); label.textContent = `Save ${index + 1}`;
-      const targetSelect = document.createElement("select");
-      const emptyOption = document.createElement("option");
-      emptyOption.value = ""; emptyOption.textContent = "-- Select Target --";
-      targetSelect.appendChild(emptyOption);
-      Object.keys(gameData.characterStats).forEach(char => {
-        const opt = document.createElement("option"); opt.value = char; opt.textContent = char; targetSelect.appendChild(opt);
+    // ─────────────────────────────────────────────
+    // SAVE ROWS
+    // ─────────────────────────────────────────────
+
+    function buildSaveRow(
+      sv,
+      index,
+      casterName
+    ) {
+
+      const row =
+        document.createElement("div");
+
+      row.style.cssText = `
+        display:grid;
+        grid-template-columns:
+          120px 1.5fr 1fr 1fr;
+        gap:6px;
+        align-items:center;
+      `;
+
+      const label =
+        document.createElement("div");
+
+      label.textContent =
+        `Save ${index + 1}`;
+
+      const targetSelect =
+        document.createElement("select");
+
+      const emptyOption =
+        document.createElement("option");
+
+      emptyOption.value = "";
+
+      emptyOption.textContent =
+        "-- Select Target --";
+
+      targetSelect.appendChild(
+        emptyOption
+      );
+
+      Object.keys(
+        gameData.characterSheets || {}
+      ).forEach(char => {
+
+        const opt =
+          document.createElement("option");
+
+        opt.value = char;
+
+        opt.textContent = char;
+
+        targetSelect.appendChild(opt);
       });
-      sv.target = null;
 
-      function updateTarget(newTarget) {
-        const oldTarget = sv.target;
-        if (oldTarget && oldTarget !== newTarget) {
-          const oldStats = gameData.characterStats[oldTarget];
-          if (oldStats?.savesFromSpells) { oldStats.savesFromSpells = oldStats.savesFromSpells.filter(s => s !== sv); recalcCharacterStats(oldTarget); }
+      function updateTarget(
+        newTarget
+      ) {
+
+        const oldTarget =
+          sv.target;
+
+        if (
+          oldTarget &&
+          oldTarget !== newTarget
+        ) {
+
+          const oldStats =
+            gameData.characterStats?.[
+            oldTarget
+            ];
+
+          if (
+            oldStats?.savesFromSpells
+          ) {
+
+            oldStats.savesFromSpells =
+              oldStats.savesFromSpells
+                .filter(
+                  s => s !== sv
+                );
+
+            recalcCharacterStats(
+              oldTarget
+            );
+          }
         }
-        if (newTarget && newTarget !== casterName) {
-          const tStats = gameData.characterStats[newTarget];
-          if (!tStats.savesFromSpells) tStats.savesFromSpells = [];
-          if (!tStats.savesFromSpells.includes(sv)) tStats.savesFromSpells.push(sv);
+
+        if (
+          newTarget &&
+          newTarget !== casterName
+        ) {
+
+          const tStats =
+            gameData.characterStats?.[
+            newTarget
+            ];
+
+          if (
+            !tStats.savesFromSpells
+          ) {
+
+            tStats.savesFromSpells =
+              [];
+          }
+
+          if (
+            !tStats
+              .savesFromSpells
+              .includes(sv)
+          ) {
+
+            tStats
+              .savesFromSpells
+              .push(sv);
+          }
         }
+
         sv.target = newTarget;
-        if (casterName) recalcCharacterStats(casterName);
-        if (newTarget) recalcCharacterStats(newTarget);
+
+        if (casterName) {
+
+          recalcCharacterStats(
+            casterName
+          );
+        }
+
+        if (newTarget) {
+
+          recalcCharacterStats(
+            newTarget
+          );
+        }
+
         updateSideStats();
       }
 
-      targetSelect.addEventListener("change", () => { updateTarget(targetSelect.value || null); });
-      const roll = createBoundInput(sv, "roll", 1, 20, () => { if (sv.target) recalcCharacterStats(sv.target); updateSideStats(); });
-      const mod = createBoundInput(sv, "modifier", null, null, () => { if (sv.target) recalcCharacterStats(sv.target); updateSideStats(); });
-      row.append(label, targetSelect, roll, mod);
+      const roll =
+        createBoundInput(
+          sv,
+          "roll",
+          1,
+          20,
+          () => {
+
+            if (sv.target) {
+
+              recalcCharacterStats(
+                sv.target
+              );
+            }
+
+            updateSideStats();
+          }
+        );
+
+      const mod =
+        createBoundInput(
+          sv,
+          "modifier",
+          null,
+          null,
+          () => {
+
+            if (sv.target) {
+
+              recalcCharacterStats(
+                sv.target
+              );
+            }
+
+            updateSideStats();
+          }
+        );
+
+      function updateSaveModifier() {
+
+        if (!sv.target) {
+          return;
+        }
+
+        const targetSheet =
+          gameData.characterSheets?.[
+          sv.target
+          ];
+
+        if (!targetSheet) {
+
+          sv.modifier = 0;
+
+          mod.value = 0;
+
+          return;
+        }
+
+        const saveType =
+          sv.saveType || "dex";
+
+        const total =
+          computeSaveTotal(
+            targetSheet,
+            saveType
+          );
+
+        sv.modifier = total;
+
+        mod.value = total;
+      }
+
+      targetSelect.addEventListener(
+        "change",
+        () => {
+
+          updateTarget(
+            targetSelect.value || null
+          );
+
+          updateSaveModifier();
+        }
+      );
+
+      if (sv.target) {
+
+        targetSelect.value =
+          sv.target;
+
+        updateSaveModifier();
+      }
+
+      row.append(
+        label,
+        targetSelect,
+        roll,
+        mod
+      );
+
       return row;
     }
 
-    function buildSRRow(sr, index) {
-      const row = document.createElement("div");
-      row.style.cssText = `display:grid;grid-template-columns:120px 1fr 1fr;gap:6px;align-items:center;`;
-      const label = document.createElement("div"); label.textContent = `SR ${index + 1}`;
-      const roll = createBoundInput(sr, "roll", 1, 20);
-      const mod = createBoundInput(sr, "modifier");
-      mod.addEventListener("input", () => sr.casterLevel = sr.modifier);
-      row.append(label, roll, mod);
+    // ─────────────────────────────────────────────
+    // SPELL RESISTANCE
+    // ─────────────────────────────────────────────
+
+    function buildSRRow(
+      sr,
+      index
+    ) {
+
+      const row =
+        document.createElement("div");
+
+      row.style.cssText = `
+        display:grid;
+        grid-template-columns:
+          120px 1fr 1fr;
+        gap:6px;
+        align-items:center;
+      `;
+
+      const label =
+        document.createElement("div");
+
+      label.textContent =
+        `SR ${index + 1}`;
+
+      const roll =
+        createBoundInput(
+          sr,
+          "roll",
+          1,
+          20
+        );
+
+      const mod =
+        createBoundInput(
+          sr,
+          "modifier"
+        );
+
+      mod.addEventListener(
+        "input",
+        () => {
+
+          sr.casterLevel =
+            sr.modifier;
+        }
+      );
+
+      row.append(
+        label,
+        roll,
+        mod
+      );
+
       return row;
     }
+
+    // ─────────────────────────────────────────────
+    // SYNC FUNCTIONS
+    // ─────────────────────────────────────────────
 
     function syncAttacks(count) {
-      while (spell.attacks.length < count) spell.attacks.push({ roll: 1, modifier: 0, damage: 0 });
-      spell.attacks.length = count;
-      attackSection.innerHTML = "";
+
+      while (
+        spell.attacks.length < count
+      ) {
+
+        const casterSheet =
+          gameData.characterSheets?.[
+          characterName
+          ];
+
+        spell.attacks.push({
+          roll: 1,
+
+          modifier:
+            casterSheet
+              ?.spellAttackBonus || 0,
+
+          damage: 0
+        });
+      }
+
+      spell.attacks.length =
+        count;
+
+      attackSection.innerHTML =
+        "";
+
       if (count > 0) {
-        attackSection.appendChild(document.createElement("h4")).textContent = "Attacks";
-        attackSection.appendChild(buildColumnHeader(["D20", "Mod", "Dmg"]));
-        spell.attacks.forEach((atk, i) => attackSection.appendChild(buildAttackRow(atk, i)));
+
+        attackSection.appendChild(
+          document.createElement("h4")
+        ).textContent =
+          "Attacks";
+
+        attackSection.appendChild(
+          buildColumnHeader([
+            "D20",
+            "Mod",
+            "Dmg"
+          ])
+        );
+
+        spell.attacks.forEach(
+          (atk, i) => {
+
+            attackSection.appendChild(
+              buildAttackRow(
+                atk,
+                i
+              )
+            );
+          }
+        );
       }
     }
 
     function syncSaves(count) {
-      while (spell.saves.length < count) spell.saves.push({ target: null, roll: 1, modifier: 0 });
-      spell.saves.length = count;
-      saveSection.innerHTML = "";
-      if (count > 0) {
-        saveSection.appendChild(document.createElement("h4")).textContent = "Saving Throws";
-        saveSection.appendChild(buildColumnHeader(["Target", "D20", "Mod"]));
-        spell.saves.forEach((sv, i) => {
-          const row = buildSaveRow(sv, i, characterName);
-          const select = row.querySelector("select");
-          if (select) select.value = "";
-          saveSection.appendChild(row);
+
+      while (
+        spell.saves.length < count
+      ) {
+
+        spell.saves.push({
+          target: null,
+          roll: 1,
+          modifier: 0,
+          saveType:
+            spell.saveType || "dex"
         });
+      }
+
+      spell.saves.length =
+        count;
+
+      saveSection.innerHTML =
+        "";
+
+      if (count > 0) {
+
+        saveSection.appendChild(
+          document.createElement("h4")
+        ).textContent =
+          "Saving Throws";
+
+        saveSection.appendChild(
+          buildColumnHeader([
+            "Target",
+            "D20",
+            "Mod"
+          ])
+        );
+
+        spell.saves.forEach(
+          (sv, i) => {
+
+            sv.saveType =
+              spell.saveType;
+
+            saveSection.appendChild(
+              buildSaveRow(
+                sv,
+                i,
+                characterName
+              )
+            );
+          }
+        );
       }
     }
 
     function syncSR(count) {
-      while (spell.spellResistance.length < count) spell.spellResistance.push({ roll: 1, modifier: 0, casterLevel: 0 });
-      spell.spellResistance.length = count;
-      srSection.innerHTML = "";
+
+      while (spell.spellResistance.length < count) {
+
+        spell.spellResistance.push({
+          roll: 1,
+          modifier: 0,
+          casterLevel: 0
+        });
+      }
+
+      spell.spellResistance.length =
+        count;
+
+      srSection.innerHTML =
+        "";
+
       if (count > 0) {
-        srSection.appendChild(document.createElement("h4")).textContent = "Spell Resistance";
-        srSection.appendChild(buildColumnHeader(["D20", "CL"]));
-        spell.spellResistance.forEach((sr, i) => srSection.appendChild(buildSRRow(sr, i)));
+
+        srSection.appendChild(
+          document.createElement("h4")
+        ).textContent =
+          "Spell Resistance";
+
+        srSection.appendChild(
+          buildColumnHeader([
+            "D20",
+            "CL"
+          ])
+        );
+
+        spell.spellResistance.forEach(
+          (sr, i) => {
+
+            srSection.appendChild(
+              buildSRRow(
+                sr,
+                i
+              )
+            );
+          }
+        );
       }
     }
 
-    const nameInput = document.createElement("input");
-    nameInput.placeholder = "Spell Name";
-    nameInput.addEventListener("input", () => spell.name = nameInput.value);
-    left.appendChild(nameInput);
-    left.appendChild(document.createElement("hr"));
-    left.appendChild(createCountInput("Attack Rolls", v => syncAttacks(v)));
-    left.appendChild(createCountInput("Saving Throws", v => syncSaves(v)));
-    if (gameData.edition === "pathfinder") left.appendChild(createCountInput("Spell Resistance", v => syncSR(v)));
-    left.appendChild(document.createElement("hr"));
-    left.appendChild(createNumberInput("Extra Damage", v => spell.extra.damage = v));
-    left.appendChild(createNumberInput("Extra Healing", v => spell.extra.healing = v));
+    // ─────────────────────────────────────────────
+    // SPELL LIBRARY
+    // ─────────────────────────────────────────────
 
-    showModal(`Cast Spell — ${characterName}`, wrapper, () => {
-      spell.name = spell.name || "New Spell";
-      resolve(spell);
+    function getCharacterSpells() {
+
+      return (
+        gameData.characterSheets?.[
+          characterName
+        ]?.spells || []
+      );
+    }
+
+    function applySpellData(sp) {
+
+      spell.selectedSpell = sp;
+
+      spell.name = sp.name;
+
+      nameInput.value = sp.name;
+
+      spell.saveType =
+        sp.saves?.type || "dex";
+
+      saveTypeSelect.value =
+        spell.saveType;
+
+      spell.scaling =
+        sp.scaling || null;
+
+      // Sync actual data
+      syncAttacks(
+        sp.attacks || 0
+      );
+
+      syncSaves(
+        sp.saves?.count || 0
+      );
+
+      if (
+        gameData.edition ===
+        "pathfinder"
+      ) {
+
+        syncSR(
+          sp.spellResistance || 0
+        );
+      }
+
+      // Sync UI inputs
+      attackCountInput.input.value =
+        sp.attacks || 0;
+
+      saveCountInput.input.value =
+        sp.saves?.count || 0;
+
+      if (srCountInput) {
+
+        srCountInput.input.value =
+          sp.spellResistance || 0;
+      }
+
+      // Refresh save rows
+      syncSaves(
+        spell.saves.length
+      );
+    }
+
+    function renderSpellLibrary() {
+
+      spellLibrary.innerHTML =
+        "";
+
+      const title =
+        document.createElement("h4");
+
+      title.textContent =
+        "Character Spells";
+
+      spellLibrary.appendChild(
+        title
+      );
+
+      const spells =
+        getCharacterSpells();
+
+      if (!spells.length) {
+
+        const empty =
+          document.createElement("div");
+
+        empty.textContent =
+          "No spells available.";
+
+        empty.style.opacity =
+          "0.6";
+
+        spellLibrary.appendChild(
+          empty
+        );
+
+        return;
+      }
+
+      spells.sort((a, b) => {
+
+        if (
+          a.level !== b.level
+        ) {
+
+          return (
+            a.level - b.level
+          );
+        }
+
+        return a.name.localeCompare(
+          b.name
+        );
+      });
+
+      spells.forEach(sp => {
+
+        const btn =
+          document.createElement(
+            "button"
+          );
+
+        btn.className =
+          "sheet-add-btn";
+
+        btn.style.cssText = `
+          width:100%;
+          text-align:left;
+          margin-bottom:6px;
+          display:flex;
+          flex-direction:column;
+          gap:2px;
+        `;
+
+        btn.innerHTML = `
+          <strong>${sp.name}</strong>
+          <span style="
+            opacity:0.7;
+            font-size:0.75rem;
+          ">
+            Level ${sp.level}
+          </span>
+        `;
+
+        btn.onclick = () => {
+          applySpellData(sp);
+        };
+
+        spellLibrary.appendChild(
+          btn
+        );
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // LEFT COLUMN
+    // ─────────────────────────────────────────────
+
+    const nameInput =
+      document.createElement("input");
+
+    nameInput.placeholder =
+      "Spell Name";
+
+    nameInput.addEventListener(
+      "input",
+      () => {
+
+        spell.name =
+          nameInput.value;
+      }
+    );
+
+    left.appendChild(
+      nameInput
+    );
+
+    left.appendChild(
+      document.createElement("hr")
+    );
+
+    // Attack Count
+
+    const attackCountInput =
+      createCountInput(
+        "Attack Rolls",
+        v => syncAttacks(v)
+      );
+
+    left.appendChild(
+      attackCountInput.row
+    );
+
+    // Save Count
+
+    const saveCountInput =
+      createCountInput(
+        "Saving Throws",
+        v => syncSaves(v)
+      );
+
+    left.appendChild(
+      saveCountInput.row
+    );
+
+    // Save Type
+
+    const saveTypeRow =
+      document.createElement("div");
+
+    saveTypeRow.style.cssText = `
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:6px;
+      margin-bottom:10px;
+    `;
+
+    const saveTypeLabel =
+      document.createElement("label");
+
+    saveTypeLabel.textContent =
+      "Save Type:";
+
+    const saveTypeSelect =
+      document.createElement("select");
+
+    ABILITY_KEYS.forEach(ab => {
+
+      const opt =
+        document.createElement("option");
+
+      opt.value = ab;
+
+      opt.textContent =
+        ab.toUpperCase();
+
+      if (ab === spell.saveType) {
+        opt.selected = true;
+      }
+
+      saveTypeSelect.appendChild(opt);
     });
 
-    document.getElementById("modal-cancel").onclick = () => { hideModal(); resolve(null); };
+    saveTypeSelect.addEventListener(
+      "change",
+      () => {
+
+        spell.saveType =
+          saveTypeSelect.value;
+
+        spell.saves.forEach(
+          save => {
+
+            save.saveType =
+              spell.saveType;
+          }
+        );
+
+        syncSaves(
+          spell.saves.length
+        );
+      }
+    );
+
+    saveTypeRow.append(
+      saveTypeLabel,
+      saveTypeSelect
+    );
+
+    left.appendChild(
+      saveTypeRow
+    );
+
+    // SR Count
+
+    let srCountInput = null;
+
+    if (
+      gameData.edition ===
+      "pathfinder"
+    ) {
+
+      srCountInput =
+        createCountInput(
+          "Spell Resistance",
+          v => syncSR(v)
+        );
+
+      left.appendChild(
+        srCountInput.row
+      );
+    }
+
+    left.appendChild(
+      document.createElement("hr")
+    );
+
+    left.appendChild(
+      createNumberInput(
+        "Extra Damage",
+        v => {
+
+          spell.extra.damage = v;
+        }
+      )
+    );
+
+    left.appendChild(
+      createNumberInput(
+        "Extra Healing",
+        v => {
+
+          spell.extra.healing = v;
+        }
+      )
+    );
+
+    // ─────────────────────────────────────────────
+    // INIT
+    // ─────────────────────────────────────────────
+
+    renderSpellLibrary();
+
+    showModal(
+      `Cast Spell — ${characterName}`,
+      wrapper,
+      () => {
+
+        spell.name =
+          spell.name ||
+          "New Spell";
+
+        resolve(spell);
+      }
+    );
+
+    document.getElementById(
+      "modal-cancel"
+    ).onclick = () => {
+
+      hideModal();
+
+      resolve(null);
+    };
   });
 }
 

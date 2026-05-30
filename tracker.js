@@ -60,43 +60,42 @@ function saveGameData(reason = "auto") {
 function loadGameData() {
   const saved = localStorage.getItem("myGameData");
   if (!saved) return false;
+  try {
   gameData = JSON.parse(saved);
+} catch (e) {
+  console.error("⚠️ Save data corrupted, starting fresh:", e);
+  gameData = {
+    edition: "5e",
+    theme: "light",
+    characters: [],
+    characterStats: {},
+    characterSheets: {},
+    sessionStartedAt: Date.now()
+  };
+}
   window.gameData = gameData;
   console.log("📂 Loaded saved game");
   return gameData.characters && gameData.characters.length > 0;
 }
 
 function init() {
+  const saved = localStorage.getItem("myGameData");
 
-  const hasCharacters = loadGameData();
+  if (saved) {
+    // Always load whatever is saved, even if characters array is empty
+    gameData = JSON.parse(saved);
+    window.gameData = gameData;
+    console.log("📂 Loaded saved game");
 
-  setupTabs();
+    // Patch in any missing top-level fields without overwriting existing data
+    if (!gameData.edition) gameData.edition = "5e";
+    if (!gameData.characters) gameData.characters = [];
+    if (!gameData.characterStats) gameData.characterStats = {};
+    if (!gameData.characterSheets) gameData.characterSheets = {};
 
-  // Edition toggle
-  const editionToggleBtn =
-    document.getElementById("edition-toggle-btn");
-
-  if (editionToggleBtn) {
-    editionToggleBtn.addEventListener(
-      "click",
-      toggleEdition
-    );
-  }
-
-  // Google sync
-  const syncBtn =
-    document.getElementById("sync-google-btn");
-
-  if (syncBtn) {
-    syncBtn.addEventListener(
-      "click",
-      openSyncModal
-    );
-  }
-
-  // If no save exists, create blank tracker data
-  if (!hasCharacters) {
-
+  } else {
+    // Only create fresh data if there is truly nothing saved
+    console.log("🆕 No save found, creating fresh data");
     gameData = {
       edition: "5e",
       theme: "light",
@@ -105,13 +104,27 @@ function init() {
       characterSheets: {},
       sessionStartedAt: Date.now()
     };
-
     saveGameData("initial setup");
   }
 
+  window.gameData = gameData;
   trackerStarted = true;
 
-  // Pick selected character
+  setupTabs();
+  // ... rest of init
+
+  // Edition toggle
+  const editionToggleBtn = document.getElementById("edition-toggle-btn");
+  if (editionToggleBtn) {
+    editionToggleBtn.addEventListener("click", toggleEdition);
+  }
+
+  // Google sync
+  const syncBtn = document.getElementById("sync-google-btn");
+  if (syncBtn) {
+    syncBtn.addEventListener("click", openSyncModal);
+  }
+
   selectedCharacter =
     getCompatibleActiveCharacters()[0]
     || gameData.characters[0]
@@ -281,6 +294,53 @@ function generatePCInputs() {
     pcNamesDiv.appendChild(document.createElement("br"));
   }
 }
+
+function resetSessionStats(characterName) {
+  const stats = gameData.characterStats[characterName];
+  if (!stats) return;
+
+  stats.rolls = [];
+  stats.attackRolls = [];
+  stats.abilityRolls = [];
+  stats.saveRolls = [];
+  stats.concentrationRolls = [];
+  stats.initiativeRolls = [];
+  stats.spellResistanceRolls = [];
+  stats.spellHistory = [];
+  stats.savesFromSpells = [];
+
+  stats.attacksMade = 0;
+  stats.abilityChecks = 0;
+  stats.savingThrows = 0;
+  stats.concentrationChecks = 0;
+  stats.totalSpellResistance = 0;
+  stats.spellsCast = 0;
+  stats.initiative = 0;
+  stats.timesKilled = 0;
+  stats.natural1s = 0;
+  stats.natural20s = 0;
+  stats.moneySpent = 0;
+  stats.totalDamage = 0;
+  stats.attackDamage = 0;
+  stats.healingDone = 0;
+  stats.totalHealing = 0;
+  stats.totalD20Rolls = [];
+  stats.totalModD20Rolls = [];
+}
+
+function resetAllSessionStats() {
+  const activeChars = getCompatibleActiveCharacters();
+
+  if (!confirm(`Reset session stats for ${activeChars.length} active character(s)?\n\n${activeChars.join(", ")}\n\nThis cannot be undone.`)) return;
+
+  activeChars.forEach(name => resetSessionStats(name));
+
+  saveGameData("session reset");
+  renderEditorStats(selectedCharacter);
+  updateSideStats();
+  showTrackerMessage("✅ Session stats reset for all active characters.");
+}
+
 // -------------------- TABS --------------------
 
 function setupTabs() {
@@ -4127,6 +4187,22 @@ function renderCharacterButtons() {
         container.appendChild(initBtn);
       }
     });
+
+     // ── Add reset button inline in the editor bar only ──
+    if (container.id === "editor-character-buttons") {
+      const resetBtn = document.createElement("button");
+      resetBtn.textContent = "🔄 Reset Session Stats";
+      resetBtn.style.cssText = `
+        margin-left:auto;
+        background-color:var(--secondary-accent);
+        color:#fff;
+        border:none;
+      `;
+      resetBtn.onmouseenter = () => resetBtn.style.filter = "brightness(1.2)";
+      resetBtn.onmouseleave = () => resetBtn.style.filter = "";
+      resetBtn.onclick = resetAllSessionStats;
+      container.appendChild(resetBtn);
+    }
   });
 
   highlightSelectedButton(selectedCharacter);
@@ -4434,6 +4510,7 @@ const handlerMap = {
 };
 
 function renderStatsActions(characterName, context = "combat") {
+  if (!gameData) return;
   let containerId;
   if (context === "combat") containerId = "combat-actions";
   else if (context === "stats") containerId = "stats-actions";

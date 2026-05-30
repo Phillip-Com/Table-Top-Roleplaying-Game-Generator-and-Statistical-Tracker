@@ -3096,19 +3096,17 @@ function openCastSpellModal(characterName) {
         emptyOption
       );
 
-      Object.keys(
-        gameData.characterSheets || {}
-      ).forEach(char => {
+      getActiveCharacters().forEach(char => {
 
-        const opt =
-          document.createElement("option");
+  const opt =
+    document.createElement("option");
 
-        opt.value = char;
+  opt.value = char;
 
-        opt.textContent = char;
+  opt.textContent = char;
 
-        targetSelect.appendChild(opt);
-      });
+  targetSelect.appendChild(opt);
+});
 
       function updateTarget(
         newTarget
@@ -3262,6 +3260,16 @@ function openCastSpellModal(characterName) {
         sv.modifier = total;
 
         mod.value = total;
+
+        console.log(
+  "Updating save modifier",
+  {
+    target: sv.target,
+    saveType: sv.saveType,
+    total,
+    sv
+  }
+);
       }
 
       targetSelect.addEventListener(
@@ -3273,6 +3281,11 @@ function openCastSpellModal(characterName) {
           );
 
           updateSaveModifier();
+
+          if (sv.target) {
+      recalcCharacterStats(sv.target);
+      updateSideStats();
+    }
         }
       );
 
